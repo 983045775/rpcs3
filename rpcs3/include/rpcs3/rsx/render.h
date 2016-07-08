@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RSX/RSXThread.h"
+#include <rpcs3/rsx/thread.h>
 #include <memory>
 
 struct RSXDebuggerProgram

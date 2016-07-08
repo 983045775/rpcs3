@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "Utilities/Config.h"
-#include "rsx_methods.h"
-#include "RSXThread.h"
+#include "rpcs3/rsx/methods.h"
+#include "rpcs3/rsx/thread.h"
 #include "Memory/Memory.h"
 #include "System.h"
-#include "rsx_utils.h"
+#include "rpcs3/rsx/utils.h"
 #include "Cell/PPUCallback.h"
 
 #include <thread>

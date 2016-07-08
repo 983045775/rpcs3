@@ -2,12 +2,11 @@
 #include "Utilities/Config.h"
 #include "Memory/Memory.h"
 #include "System.h"
-#include "RSXThread.h"
+#include <rpcs3/rsx/thread.h>
 
 #include "Cell/PPUCallback.h"
 
-#include "Common/BufferUtils.h"
-#include "rsx_methods.h"
+#include <rpcs3/rsx/methods.h>
 
 #include "Utilities/GSL.h"
 #include "Utilities/StrUtil.h"
@@ -332,6 +331,7 @@ namespace rsx
 
 	void thread::capture_frame(const std::string &name)
 	{
+		/*
 		frame_capture_data::draw_state draw_state = {};
 
 		int clip_w = rsx::method_registers[NV4097_SET_SURFACE_CLIP_HORIZONTAL] >> 16;
@@ -369,6 +369,7 @@ namespace rsx
 		draw_state.programs = get_programs();
 		draw_state.name = name;
 		frame_debug.draw_calls.push_back(draw_state);
+		*/
 	}
 
 	void thread::begin()
@@ -527,6 +528,7 @@ namespace rsx
 
 	void thread::fill_scale_offset_data(void *buffer, bool is_d3d) const
 	{
+		/*
 		int clip_w = rsx::method_registers[NV4097_SET_SURFACE_CLIP_HORIZONTAL] >> 16;
 		int clip_h = rsx::method_registers[NV4097_SET_SURFACE_CLIP_VERTICAL] >> 16;
 
@@ -550,6 +552,7 @@ namespace rsx
 		stream_vector((char*)buffer + 16, 0, (u32&)scale_y, 0, (u32&)offset_y);
 		stream_vector((char*)buffer + 32, 0, 0, (u32&)scale_z, (u32&)offset_z);
 		stream_vector((char*)buffer + 48, 0, 0, 0, (u32&)one);
+		*/
 	}
 
 	/**
@@ -559,9 +562,14 @@ namespace rsx
 	void thread::fill_vertex_program_constants_data(void *buffer)
 	{
 		for (const auto &entry : transform_constants)
+		{
 			local_transform_constants[entry.first] = entry.second;
+		}
+
 		for (const auto &entry : local_transform_constants)
-			stream_vector_from_memory((char*)buffer + entry.first * 4 * sizeof(float), (void*)entry.second.rgba);
+		{
+			std::memcpy((char*)buffer + entry.first, entry.second.rgba, sizeof(f32) * 4);
+		}
 	}
 
 	void thread::write_inline_array_to_buffer(void *dst_buffer)

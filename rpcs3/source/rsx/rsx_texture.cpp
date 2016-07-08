@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Memory/Memory.h"
-#include "RSXThread.h"
-#include "RSXTexture.h"
-#include "rsx_methods.h"
+#include "rpcs3/rsx/thread.h"
+#include "rpcs3/rsx/texture.h"
+#include "rpcs3/rsx/methods.h"
 
 namespace rsx
 {

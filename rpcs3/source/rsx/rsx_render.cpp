@@ -3,7 +3,7 @@
 #include "Memory/Memory.h"
 #include "System.h"
 
-#include "GSRender.h"
+#include <rpcs3/rsx/render.h>
 
 // temporarily (u8 value is really CellVideoOutResolutionId, but HLE declarations shouldn't be available for the rest of emu, even indirectly)
 extern cfg::map_entry<u8> g_cfg_video_out_resolution;

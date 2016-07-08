@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "rsx_cache.h"
+#include "rpcs3/rsx/cache.h"
 #include "System.h"
 
 namespace rsx

@@ -1,8 +1,7 @@
 #include "stdafx.h"
-#include "rsx_utils.h"
-#include "rsx_methods.h"
-#include "RSX/GCM.h"
-#include "Common/BufferUtils.h"
+#include "rpcs3/rsx/utils.h"
+#include "rpcs3/rsx/methods.h"
+#include "rpcs3/gcm.h"
 
 extern "C"
 {
@@ -11,6 +10,16 @@ extern "C"
 
 namespace rsx
 {
+	static void stream_vector(void *dst, f32 x, f32 y, f32 z, f32 w)
+	{
+		f32 *dst_f32 = (f32 *)dst;
+
+		dst_f32[0] = x;
+		dst_f32[1] = y;
+		dst_f32[2] = z;
+		dst_f32[3] = w;
+	}
+
 	void convert_scale_image(u8 *dst, AVPixelFormat dst_format, int dst_width, int dst_height, int dst_pitch,
 		const u8 *src, AVPixelFormat src_format, int src_width, int src_height, int src_pitch, int src_slice_h, bool bilinear)
 	{

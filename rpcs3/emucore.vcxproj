@@ -72,7 +72,14 @@
     <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\gcm.cpp" />
     <ClCompile Include="source\psf.cpp" />
+    <ClCompile Include="source\rsx\rsx_cache.cpp" />
+    <ClCompile Include="source\rsx\rsx_methods.cpp" />
+    <ClCompile Include="source\rsx\rsx_render.cpp" />
+    <ClCompile Include="source\rsx\rsx_texture.cpp" />
+    <ClCompile Include="source\rsx\rsx_thread.cpp" />
+    <ClCompile Include="source\rsx\rsx_utils.cpp" />
     <ClCompile Include="source\tropusr.cpp" />
     <ClCompile Include="source\trp.cpp" />
     <ClCompile Include="Utilities\AutoPause.cpp" />
@@ -253,20 +260,6 @@
     <ClCompile Include="Cell\SPUInterpreter.cpp" />
     <ClCompile Include="IdManager.cpp" />
     <ClCompile Include="Memory\wait_engine.cpp" />
-    <ClCompile Include="RSX\CgBinaryFragmentProgram.cpp" />
-    <ClCompile Include="RSX\CgBinaryVertexProgram.cpp" />
-    <ClCompile Include="RSX\Common\BufferUtils.cpp" />
-    <ClCompile Include="RSX\Common\FragmentProgramDecompiler.cpp" />
-    <ClCompile Include="RSX\Common\ProgramStateCache.cpp" />
-    <ClCompile Include="RSX\Common\ShaderParam.cpp" />
-    <ClCompile Include="RSX\Common\surface_store.cpp" />
-    <ClCompile Include="RSX\Common\TextureUtils.cpp" />
-    <ClCompile Include="RSX\Common\VertexProgramDecompiler.cpp" />
-    <ClCompile Include="RSX\GCM.cpp" />
-    <ClCompile Include="RSX\Null\NullGSRender.cpp" />
-    <ClCompile Include="RSX\rsx_cache.cpp" />
-    <ClCompile Include="RSX\rsx_methods.cpp" />
-    <ClCompile Include="RSX\rsx_utils.cpp" />
     <ClCompile Include="Crypto\aes.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -363,9 +356,6 @@
     <ClCompile Include="Memory\Memory.cpp">
       <ObjectFileName>$(IntDir)OldMemory.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="RSX\GSRender.cpp" />
-    <ClCompile Include="RSX\RSXTexture.cpp" />
-    <ClCompile Include="RSX\RSXThread.cpp" />
     <ClCompile Include="Memory\vm.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="rpcs3_api.cpp" />
@@ -383,6 +373,14 @@
     <ClInclude Include="include\rpcs3\mouse.h" />
     <ClInclude Include="include\rpcs3\pad.h" />
     <ClInclude Include="include\rpcs3\psf.h" />
+    <ClInclude Include="include\rpcs3\rsx\cache.h" />
+    <ClInclude Include="include\rpcs3\rsx\fragment_program.h" />
+    <ClInclude Include="include\rpcs3\rsx\methods.h" />
+    <ClInclude Include="include\rpcs3\rsx\render.h" />
+    <ClInclude Include="include\rpcs3\rsx\texture.h" />
+    <ClInclude Include="include\rpcs3\rsx\thread.h" />
+    <ClInclude Include="include\rpcs3\rsx\utils.h" />
+    <ClInclude Include="include\rpcs3\rsx\vertex_program.h" />
     <ClInclude Include="include\rpcs3\tropusr.h" />
     <ClInclude Include="include\rpcs3\trp.h" />
     <ClInclude Include="Utilities\Atomic.h" />
@@ -606,34 +604,15 @@
     <ClInclude Include="CPU\CPUThread.h" />
     <ClInclude Include="DbgCommand.h" />
     <ClInclude Include="Memory\wait_engine.h" />
-    <ClInclude Include="RSX\rsx_cache.h" />
     <ClInclude Include="VFS.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="IdManager.h" />
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\MemoryBlock.h" />
-    <ClInclude Include="RSX\CgBinaryProgram.h" />
-    <ClInclude Include="RSX\Common\BufferUtils.h" />
-    <ClInclude Include="RSX\Common\FragmentProgramDecompiler.h" />
-    <ClInclude Include="RSX\Common\ProgramStateCache.h" />
-    <ClInclude Include="RSX\Common\ring_buffer_helper.h" />
-    <ClInclude Include="RSX\Common\ShaderParam.h" />
-    <ClInclude Include="RSX\Common\surface_store.h" />
-    <ClInclude Include="RSX\Common\TextureUtils.h" />
-    <ClInclude Include="RSX\Common\VertexProgramDecompiler.h" />
-    <ClInclude Include="RSX\GCM.h" />
-    <ClInclude Include="RSX\GSRender.h" />
-    <ClInclude Include="RSX\Null\NullGSRender.h" />
-    <ClInclude Include="RSX\RSXFragmentProgram.h" />
-    <ClInclude Include="RSX\RSXTexture.h" />
-    <ClInclude Include="RSX\RSXThread.h" />
-    <ClInclude Include="RSX\RSXVertexProgram.h" />
     <ClInclude Include="Memory\vm.h" />
     <ClInclude Include="Memory\vm_ptr.h" />
     <ClInclude Include="Memory\vm_ref.h" />
     <ClInclude Include="Memory\vm_var.h" />
-    <ClInclude Include="RSX\rsx_methods.h" />
-    <ClInclude Include="RSX\rsx_utils.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="ps3emu_api_enums.h" />
     <ClInclude Include="ps3emu_api_structs.h" />

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GCM.h"
+#include "rpcs3/gcm.h"
 
 namespace
 {

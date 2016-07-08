@@ -4,11 +4,11 @@
 #include <deque>
 #include <set>
 #include <mutex>
-#include "GCM.h"
-#include "rsx_cache.h"
-#include "RSXTexture.h"
-#include "RSXVertexProgram.h"
-#include "RSXFragmentProgram.h"
+#include <rpcs3/gcm.h>
+#include <rpcs3/rsx/cache.h>
+#include <rpcs3/rsx/texture.h>
+#include <rpcs3/rsx/vertex_program.h>
+#include <rpcs3/rsx/fragment_program.h>
 
 #include "Utilities/Thread.h"
 #include "Utilities/Timer.h"

@@ -3,7 +3,7 @@
 #include "IdManager.h"
 #include "Cell/PPUModule.h"
 
-#include "Io/MouseHandler.h"
+#include "rpcs3/mouse.h"
 #include "cellMouse.h"
 
 extern logs::channel sys_io;

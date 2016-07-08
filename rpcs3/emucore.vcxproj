@@ -72,6 +72,9 @@
     <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\psf.cpp" />
+    <ClCompile Include="source\tropusr.cpp" />
+    <ClCompile Include="source\trp.cpp" />
     <ClCompile Include="Utilities\AutoPause.cpp" />
     <ClCompile Include="Utilities\dynamic_library.cpp" />
     <ClCompile Include="Utilities\JIT.cpp">
@@ -365,9 +368,6 @@
     <ClCompile Include="RSX\RSXThread.cpp" />
     <ClCompile Include="Memory\vm.cpp" />
     <ClCompile Include="System.cpp" />
-    <ClCompile Include="Loader\PSF.cpp" />
-    <ClCompile Include="Loader\TROPUSR.cpp" />
-    <ClCompile Include="Loader\TRP.cpp" />
     <ClCompile Include="rpcs3_api.cpp" />
     <ClCompile Include="rpcs3_version.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -378,6 +378,13 @@
   <ItemGroup>
     <ClInclude Include="..\3rdparty\stblib\stb_image.h" />
     <ClInclude Include="..\ps3emu_api\ps3emu_api.h" />
+    <ClInclude Include="include\rpcs3\elf.h" />
+    <ClInclude Include="include\rpcs3\keyboard.h" />
+    <ClInclude Include="include\rpcs3\mouse.h" />
+    <ClInclude Include="include\rpcs3\pad.h" />
+    <ClInclude Include="include\rpcs3\psf.h" />
+    <ClInclude Include="include\rpcs3\tropusr.h" />
+    <ClInclude Include="include\rpcs3\trp.h" />
     <ClInclude Include="Utilities\Atomic.h" />
     <ClInclude Include="Utilities\AtomicPtr.h" />
     <ClInclude Include="Utilities\AutoPause.h" />
@@ -603,12 +610,6 @@
     <ClInclude Include="VFS.h" />
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="IdManager.h" />
-    <ClInclude Include="Io\KeyboardHandler.h" />
-    <ClInclude Include="Io\MouseHandler.h" />
-    <ClInclude Include="Io\Null\NullKeyboardHandler.h" />
-    <ClInclude Include="Io\Null\NullMouseHandler.h" />
-    <ClInclude Include="Io\Null\NullPadHandler.h" />
-    <ClInclude Include="Io\PadHandler.h" />
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\MemoryBlock.h" />
     <ClInclude Include="RSX\CgBinaryProgram.h" />
@@ -634,10 +635,6 @@
     <ClInclude Include="RSX\rsx_methods.h" />
     <ClInclude Include="RSX\rsx_utils.h" />
     <ClInclude Include="System.h" />
-    <ClInclude Include="Loader\ELF.h" />
-    <ClInclude Include="Loader\PSF.h" />
-    <ClInclude Include="Loader\TROPUSR.h" />
-    <ClInclude Include="Loader\TRP.h" />
     <ClInclude Include="ps3emu_api_enums.h" />
     <ClInclude Include="ps3emu_api_structs.h" />
     <ClInclude Include="restore_new.h" />

@@ -3,7 +3,7 @@
 #include "IdManager.h"
 #include "Cell/PPUModule.h"
 
-#include "Io/KeyboardHandler.h"
+#include "rpcs3/keyboard.h"
 #include "cellKb.h"
 
 extern logs::channel sys_io;

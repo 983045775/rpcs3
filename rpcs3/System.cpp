@@ -16,8 +16,8 @@
 #include "IdManager.h"
 #include "RSX/GSRender.h"
 
-#include "Loader/PSF.h"
-#include "Loader/ELF.h"
+#include "rpcs3/psf.h"
+#include "rpcs3/elf.h"
 
 #include "Utilities/StrUtil.h"
 

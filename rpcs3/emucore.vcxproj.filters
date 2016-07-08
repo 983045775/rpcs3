@@ -1,22 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Crypto">
       <UniqueIdentifier>{d614f6ff-cd3b-40c4-8a76-1ff82b68d3d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Emu">
       <UniqueIdentifier>{ad58328f-b041-41e0-ad17-dbad7d193051}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Io">
-      <UniqueIdentifier>{1df5b438-f263-4ff4-9b86-a9ea368f2106}</UniqueIdentifier>
     </Filter>
     <Filter Include="CPU">
       <UniqueIdentifier>{037247b4-0370-4193-a25d-bc9d075bf0a7}</UniqueIdentifier>
@@ -27,14 +16,8 @@
     <Filter Include="Memory">
       <UniqueIdentifier>{960c535f-dabe-4f7e-b73f-fb0fac60d7c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Loader">
-      <UniqueIdentifier>{cd540262-1ecb-4160-a69f-95704e32f2d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{be701b55-2a3d-4692-a3bf-347681ab1c7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Io\Null">
-      <UniqueIdentifier>{fcac6852-b45f-4cf2-afee-cf56bcea14e5}</UniqueIdentifier>
     </Filter>
     <Filter Include="GPU">
       <UniqueIdentifier>{6674e2ab-90cd-47de-a852-d21643ab18c2}</UniqueIdentifier>
@@ -65,6 +48,14 @@
     </Filter>
     <Filter Include="PSP2\Modules">
       <UniqueIdentifier>{1d9e6fc4-9a79-4329-a8b5-081e24822aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{7ebaeedc-9c3a-40a5-9545-6eeb1d867029}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{c3ffefb0-6b61-4c03-ae5c-bd5f3d419dc8}</UniqueIdentifier>
+      <Extensions>cpp</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -118,15 +109,6 @@
     </ClCompile>
     <ClCompile Include="Memory\vm.cpp">
       <Filter>Memory</Filter>
-    </ClCompile>
-    <ClCompile Include="Loader\PSF.cpp">
-      <Filter>Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Loader\TROPUSR.cpp">
-      <Filter>Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Loader\TRP.cpp">
-      <Filter>Loader</Filter>
     </ClCompile>
     <ClCompile Include="Utilities\StrFmt.cpp">
       <Filter>Utilities</Filter>
@@ -211,12 +193,6 @@
     </ClCompile>
     <ClCompile Include="RSX\rsx_methods.cpp">
       <Filter>GPU\RSX</Filter>
-    </ClCompile>
-    <ClCompile Include="stb_image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RSX\Common\ProgramStateCache.cpp">
       <Filter>GPU\RSX\Common</Filter>
@@ -863,23 +839,38 @@
     <ClCompile Include="Utilities\dynamic_library.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="rpcs3_api.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rpcs3_version.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Utilities\JIT.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Cell\PPUAnalyser.cpp">
       <Filter>Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="rpcs3_api.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="rpcs3_version.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\version.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\psf.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\tropusr.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\trp.cpp">
+      <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -912,15 +903,6 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Emu</Filter>
-    </ClInclude>
-    <ClInclude Include="Io\KeyboardHandler.h">
-      <Filter>Io</Filter>
-    </ClInclude>
-    <ClInclude Include="Io\MouseHandler.h">
-      <Filter>Io</Filter>
-    </ClInclude>
-    <ClInclude Include="Io\PadHandler.h">
-      <Filter>Io</Filter>
     </ClInclude>
     <ClInclude Include="Cell\MFC.h">
       <Filter>Cell</Filter>
@@ -973,15 +955,6 @@
     <ClInclude Include="Memory\MemoryBlock.h">
       <Filter>Memory</Filter>
     </ClInclude>
-    <ClInclude Include="Loader\PSF.h">
-      <Filter>Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="Loader\TROPUSR.h">
-      <Filter>Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\BEType.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -1027,20 +1000,8 @@
     <ClInclude Include="IdManager.h">
       <Filter>Emu</Filter>
     </ClInclude>
-    <ClInclude Include="Io\Null\NullPadHandler.h">
-      <Filter>Io\Null</Filter>
-    </ClInclude>
-    <ClInclude Include="Io\Null\NullKeyboardHandler.h">
-      <Filter>Io\Null</Filter>
-    </ClInclude>
-    <ClInclude Include="Io\Null\NullMouseHandler.h">
-      <Filter>Io\Null</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\rXml.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Loader\TRP.h">
-      <Filter>Loader</Filter>
     </ClInclude>
     <ClInclude Include="Memory\vm.h">
       <Filter>Memory</Filter>
@@ -1053,12 +1014,6 @@
     </ClInclude>
     <ClInclude Include="Memory\vm_var.h">
       <Filter>Memory</Filter>
-    </ClInclude>
-    <ClInclude Include="restore_new.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="define_new_memleakdetect.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Crypto\ec.h">
       <Filter>Crypto</Filter>
@@ -1140,9 +1095,6 @@
     </ClInclude>
     <ClInclude Include="Utilities\Platform.h">
       <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Loader\ELF.h">
-      <Filter>Loader</Filter>
     </ClInclude>
     <ClInclude Include="Cell\lv2\sys_cond.h">
       <Filter>Cell\lv2</Filter>
@@ -1423,9 +1375,6 @@
     <ClInclude Include="CPU\CPUTranslator.h">
       <Filter>CPU</Filter>
     </ClInclude>
-    <ClInclude Include="..\3rdparty\stblib\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Config.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -1666,23 +1615,56 @@
     <ClInclude Include="Utilities\dynamic_library.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="ps3emu_api_enums.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ps3emu_api_structs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ps3emu_api\ps3emu_api.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rpcs3_version.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\JIT.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="define_new_memleakdetect.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ps3emu_api\ps3emu_api.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ps3emu_api_enums.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="ps3emu_api_structs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="restore_new.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="rpcs3_version.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdparty\stblib\stb_image.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\version.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\pad.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\psf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\tropusr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\trp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\elf.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\keyboard.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\mouse.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

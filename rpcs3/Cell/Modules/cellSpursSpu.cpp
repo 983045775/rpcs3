@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Loader/ELF.h"
+#include "rpcs3/elf.h"
 #include "System.h"
 #include "Cell/PPUModule.h"
 

@@ -3,7 +3,7 @@
 #include "System.h"
 #include "IdManager.h"
 #include "Crypto/unself.h"
-#include "Loader/ELF.h"
+#include "rpcs3/elf.h"
 
 #include "Cell/ErrorCodes.h"
 #include "Cell/RawSPUThread.h"

@@ -4,7 +4,7 @@
 
 #include "cellSaveData.h"
 
-#include "Loader/PSF.h"
+#include "rpcs3/psf.h"
 #include "Utilities/StrUtil.h"
 
 #include <algorithm>

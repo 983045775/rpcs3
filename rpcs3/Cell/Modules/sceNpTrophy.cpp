@@ -4,8 +4,8 @@
 #include "Cell/PPUModule.h"
 
 #include "Utilities/rXml.h"
-#include "Loader/TRP.h"
-#include "Loader/TROPUSR.h"
+#include "rpcs3/trp.h"
+#include "rpcs3/tropusr.h"
 
 #include "sceNp.h"
 #include "sceNpTrophy.h"

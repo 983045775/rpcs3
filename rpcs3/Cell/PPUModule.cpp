@@ -2,7 +2,7 @@
 #include "Utilities/Config.h"
 #include "Utilities/AutoPause.h"
 #include "Crypto/sha1.h"
-#include "Loader/ELF.h"
+#include "rpcs3/elf.h"
 #include "System.h"
 #include "IdManager.h"
 

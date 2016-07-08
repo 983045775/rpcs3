@@ -3,7 +3,7 @@
 #include "IdManager.h"
 #include "Cell/PPUModule.h"
 
-#include "Io/PadHandler.h"
+#include "rpcs3/pad.h"
 #include "cellPad.h"
 
 extern logs::channel sys_io;

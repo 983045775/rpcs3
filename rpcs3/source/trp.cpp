@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "System.h"
-#include "TRP.h"
+#include <rpcs3/trp.h>
 
 TRPLoader::TRPLoader(const fs::file& f)
 	: trp_f(f)

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Utilities/Config.h"
-#include "Loader/ELF.h"
+#include "rpcs3/elf.h"
 #include "Memory/Memory.h"
 #include "System.h"
 #include "IdManager.h"

@@ -64,7 +64,7 @@
       <AdditionalIncludeDirectories>..\llvm\include;..\llvm_build\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <PreBuildEvent>
-      <Command>%windir%\sysnative\cmd.exe /c "$(SolutionDir)rpcs3\Utilities\git-version-gen.cmd"</Command>
+      <Command>%windir%\sysnative\cmd.exe /c "$(SolutionDir)rpcs3\git-version-gen.cmd"</Command>
       <Message>Updating git-version.h</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>

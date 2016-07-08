@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../Utilities/types.h"
-#include "../../Utilities/File.h"
+#include "../Utilities/types.h"
+#include "../Utilities/File.h"
 
 enum class elf_os : u8
 {

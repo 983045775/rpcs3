@@ -136,7 +136,7 @@ ${LLVM_INCLUDE_DIRS}
 "${RPCS3_SRC_DIR}/Loader"
 "${RPCS3_SRC_DIR}/Crypto"
 "${RPCS3_SRC_DIR}/.."
-"${RPCS3_SRC_DIR}/../Utilities/yaml-cpp/include"
+"${RPCS3_SRC_DIR}/Utilities/yaml-cpp/include"
 "${RPCS3_SRC_DIR}/../asmjit/src/asmjit"
 "${RPCS3_SRC_DIR}/../3rdparty/GSL/include"
 "${RPCS3_SRC_DIR}/../rsx_program_decompiler/rsx_decompiler"
@@ -165,7 +165,7 @@ else()
 		llvm_map_components_to_libnames(LLVM_LIBS mcjit vectorize ipo x86codegen x86disassembler mcdisassembler)
 	endif()
 	if (NOT MSVC)
-		set_source_files_properties(${RPCS3_SRC_DIR}/../Utilities/JIT.cpp PROPERTIES COMPILE_FLAGS -fno-rtti)
+		set_source_files_properties(${RPCS3_SRC_DIR}/Utilities/JIT.cpp PROPERTIES COMPILE_FLAGS -fno-rtti)
 	endif()
 endif()
 
@@ -188,7 +188,7 @@ file(
 GLOB_RECURSE
 RPCS3_SRC
 "${RPCS3_SRC_DIR}/*.cpp"
-"${RPCS3_SRC_DIR}/../Utilities/*.cpp"
+"${RPCS3_SRC_DIR}/Utilities/*.cpp"
 "${RPCS3_SRC_DIR}/../rsx_program_decompiler/rsx_decompiler/*.cpp"
 "${RPCS3_SRC_DIR}/../rsx_program_decompiler/shader_code/*.cpp"
 "${RPCS3_SRC_DIR}/../asmjit/src/asmjit/*.cpp"

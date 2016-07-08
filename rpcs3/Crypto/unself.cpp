@@ -3,8 +3,6 @@
 #include "sha1.h"
 #include "utils.h"
 #include "unself.h"
-
-// TODO: Still reliant on wxWidgets for zlib functions. Alternative solutions?
 #include <zlib.h>
 
 force_inline u8 Read8(const fs::file& f)

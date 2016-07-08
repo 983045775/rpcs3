@@ -131,10 +131,10 @@
     <ClCompile Include="Loader\TRP.cpp">
       <Filter>Loader</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\StrFmt.cpp">
+    <ClCompile Include="Utilities\StrFmt.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\Log.cpp">
+    <ClCompile Include="Utilities\Log.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="RSX\GSRender.cpp">
@@ -149,16 +149,16 @@
     <ClCompile Include="RSX\CgBinaryFragmentProgram.cpp">
       <Filter>GPU\RSX</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\AutoPause.cpp">
+    <ClCompile Include="Utilities\AutoPause.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\rXml.cpp">
+    <ClCompile Include="Utilities\rXml.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Crypto\ec.cpp">
       <Filter>Crypto</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\Thread.cpp">
+    <ClCompile Include="Utilities\Thread.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="RSX\CgBinaryVertexProgram.cpp">
@@ -170,7 +170,7 @@
     <ClCompile Include="Cell\SPUInterpreter.cpp">
       <Filter>Cell</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\File.cpp">
+    <ClCompile Include="Utilities\File.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="RSX\Common\FragmentProgramDecompiler.cpp">
@@ -182,10 +182,10 @@
     <ClCompile Include="RSX\Common\VertexProgramDecompiler.cpp">
       <Filter>GPU\RSX\Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\Semaphore.cpp">
+    <ClCompile Include="Utilities\Semaphore.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\VirtualMemory.cpp">
+    <ClCompile Include="Utilities\VirtualMemory.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Cell\SPURecompiler.cpp">
@@ -650,13 +650,13 @@
     <ClCompile Include="Cell\Modules\sys_libc_.cpp">
       <Filter>Cell\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\Config.cpp">
+    <ClCompile Include="Utilities\Config.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="VFS.cpp">
       <Filter>Emu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\SharedMutex.cpp">
+    <ClCompile Include="Utilities\SharedMutex.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Memory\wait_engine.cpp">
@@ -863,7 +863,7 @@
     <ClCompile Include="RSX\rsx_cache.cpp">
       <Filter>GPU\RSX</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\dynamic_library.cpp">
+    <ClCompile Include="Utilities\dynamic_library.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="rpcs3_api.cpp">
@@ -872,13 +872,13 @@
     <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\version.cpp">
+    <ClCompile Include="Utilities\version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rpcs3_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Utilities\JIT.cpp">
+    <ClCompile Include="Utilities\JIT.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Cell\PPUAnalyser.cpp">
@@ -985,19 +985,19 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\BEType.h">
+    <ClInclude Include="Utilities\BEType.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\StrFmt.h">
+    <ClInclude Include="Utilities\StrFmt.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Timer.h">
+    <ClInclude Include="Utilities\Timer.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="DbgCommand.h">
       <Filter>Emu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Log.h">
+    <ClInclude Include="Utilities\Log.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="RSX\Null\NullGSRender.h">
@@ -1024,7 +1024,7 @@
     <ClInclude Include="RSX\GCM.h">
       <Filter>GPU\RSX</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\AutoPause.h">
+    <ClInclude Include="Utilities\AutoPause.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="IdManager.h">
@@ -1039,7 +1039,7 @@
     <ClInclude Include="Io\Null\NullMouseHandler.h">
       <Filter>Io\Null</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\rXml.h">
+    <ClInclude Include="Utilities\rXml.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Loader\TRP.h">
@@ -1066,7 +1066,7 @@
     <ClInclude Include="Crypto\ec.h">
       <Filter>Crypto</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Thread.h">
+    <ClInclude Include="Utilities\Thread.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Audio\Null\NullAudioThread.h">
@@ -1075,7 +1075,7 @@
     <ClInclude Include="Audio\AudioThread.h">
       <Filter>Audio</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\File.h">
+    <ClInclude Include="Utilities\File.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="RSX\Common\ProgramStateCache.h">
@@ -1090,13 +1090,13 @@
     <ClInclude Include="RSX\Common\VertexProgramDecompiler.h">
       <Filter>GPU\RSX\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Semaphore.h">
+    <ClInclude Include="Utilities\Semaphore.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Cell\Common.h">
       <Filter>Cell</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\VirtualMemory.h">
+    <ClInclude Include="Utilities\VirtualMemory.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Cell\SPUASMJITRecompiler.h">
@@ -1105,10 +1105,10 @@
     <ClInclude Include="Cell\SPUAnalyser.h">
       <Filter>Cell</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\SharedMutex.h">
+    <ClInclude Include="Utilities\SharedMutex.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Atomic.h">
+    <ClInclude Include="Utilities\Atomic.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="RSX\Common\TextureUtils.h">
@@ -1117,13 +1117,13 @@
     <ClInclude Include="RSX\Common\BufferUtils.h">
       <Filter>GPU\RSX\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\types.h">
+    <ClInclude Include="Utilities\types.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\event.h">
+    <ClInclude Include="Utilities\event.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\BitField.h">
+    <ClInclude Include="Utilities\BitField.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="RSX\rsx_utils.h">
@@ -1138,10 +1138,10 @@
     <ClInclude Include="RSX\Common\ring_buffer_helper.h">
       <Filter>GPU\RSX\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Macro.h">
+    <ClInclude Include="Utilities\Macro.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Platform.h">
+    <ClInclude Include="Utilities\Platform.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Loader\ELF.h">
@@ -1429,28 +1429,28 @@
     <ClInclude Include="..\3rdparty\stblib\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\Config.h">
+    <ClInclude Include="Utilities\Config.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="VFS.h">
       <Filter>Emu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\GSL.h">
+    <ClInclude Include="Utilities\GSL.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\AtomicPtr.h">
+    <ClInclude Include="Utilities\AtomicPtr.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Memory\wait_engine.h">
       <Filter>Memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\StrUtil.h">
+    <ClInclude Include="Utilities\StrUtil.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\geometry.h">
+    <ClInclude Include="Utilities\geometry.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\BitSet.h">
+    <ClInclude Include="Utilities\BitSet.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="PSP2\ARMv7Callback.h">
@@ -1657,16 +1657,16 @@
     <ClInclude Include="IPC.h">
       <Filter>Emu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\lockless.h">
+    <ClInclude Include="Utilities\lockless.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\sync.h">
+    <ClInclude Include="Utilities\sync.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="RSX\rsx_cache.h">
       <Filter>GPU\RSX</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\dynamic_library.h">
+    <ClInclude Include="Utilities\dynamic_library.h">
       <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="ps3emu_api_enums.h">
@@ -1678,13 +1678,13 @@
     <ClInclude Include="..\ps3emu_api\ps3emu_api.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\version.h">
+    <ClInclude Include="Utilities\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="rpcs3_version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Utilities\JIT.h">
+    <ClInclude Include="Utilities\JIT.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>

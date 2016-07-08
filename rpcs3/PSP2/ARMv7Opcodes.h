@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Utilities/BitField.h"
+#include "Utilities/BitField.h"
 
 #include <set>
 

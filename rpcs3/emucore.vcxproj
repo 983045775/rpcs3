@@ -657,7 +657,7 @@
   </ItemGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">
-    <IncludePath>..\rsx_program_decompiler\rsx_decompiler;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)rsx_program_decompiler\rsx_decompiler;$(SolutionDir)3rdparty\zlib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">
     <IncludePath>..\rsx_program_decompiler\rsx_decompiler;$(IncludePath)</IncludePath>

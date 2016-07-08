@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Emu/Io/PadHandler.h"
+#include "Io/PadHandler.h"
 #include <Xinput.h>
 
 class XInputPadHandler final : public PadHandlerBase

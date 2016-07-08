@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Config.h"
-#include "Emu/System.h"
+#include "System.h"
 #include "AutoPause.h"
 
 cfg::bool_entry g_cfg_debug_autopause_syscall(cfg::root.misc, "Auto Pause at System Call");

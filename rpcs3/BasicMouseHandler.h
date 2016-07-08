@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Emu/Io/MouseHandler.h"
+#include "Io/MouseHandler.h"
 
 class BasicMouseHandler final : public MouseHandlerBase, public wxWindow
 {

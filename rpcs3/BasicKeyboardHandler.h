@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Emu/Io/KeyboardHandler.h"
+#include "Io/KeyboardHandler.h"
 
 class BasicKeyboardHandler final : public KeyboardHandlerBase, public wxWindow
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Utilities/Config.h"
-#include "Emu/Io/PadHandler.h"
+#include "Io/PadHandler.h"
 
 struct KeyboardPadConfig final : cfg::node
 {

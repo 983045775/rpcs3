@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "Emu/Memory/Memory.h"
-#include "Emu/System.h"
-#include "Emu/IdManager.h"
-#include "Emu/Cell/RawSPUThread.h"
+#include "Memory/Memory.h"
+#include "System.h"
+#include "IdManager.h"
+#include "Cell/RawSPUThread.h"
 #include "Thread.h"
 
 #ifdef _WIN32

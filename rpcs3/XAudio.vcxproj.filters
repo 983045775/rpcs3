@@ -7,12 +7,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\rpcs3\Emu\Audio\XAudio2\XAudio2Thread.cpp">
+    <ClCompile Include="..\rpcs3\Audio\XAudio2\XAudio2Thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\rpcs3\Emu\Audio\XAudio2\XAudio2Thread.h">
+    <ClInclude Include="..\rpcs3\Audio\XAudio2\XAudio2Thread.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

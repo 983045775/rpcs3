@@ -72,10 +72,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\rpcs3\Emu\Audio\XAudio2\XAudio2Thread.h" />
+    <ClInclude Include="..\rpcs3\Audio\XAudio2\XAudio2Thread.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\rpcs3\Emu\Audio\XAudio2\XAudio2Thread.cpp" />
+    <ClCompile Include="..\rpcs3\Audio\XAudio2\XAudio2Thread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

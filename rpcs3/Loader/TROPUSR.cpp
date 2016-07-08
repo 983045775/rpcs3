@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Utilities/rXml.h"
-#include "Emu/System.h"
+#include "System.h"
 #include "TROPUSR.h"
 
 bool TROPUSRLoader::Load(const std::string& filepath, const std::string& configpath)

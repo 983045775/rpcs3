@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Emu/System.h"
+#include "System.h"
 #include "TRP.h"
 
 TRPLoader::TRPLoader(const fs::file& f)

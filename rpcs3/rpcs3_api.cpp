@@ -2,7 +2,7 @@
 #include "ps3emu_api_enums.h"
 #include "ps3emu_api_structs.h"
 #include "rpcs3_version.h"
-#include "Emu/System.h"
+#include "System.h"
 
 #ifdef _MSC_VER
 	#define UTILS_DLL_C_EXPORT extern "C" __declspec(dllexport)

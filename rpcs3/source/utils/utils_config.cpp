@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "Config.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
 
 #include "yaml-cpp/yaml.h"
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "NullGSRender.h"
-#include "System.h"
+#include "rpcs3/system.h"
 
 NullGSRender::NullGSRender() : GSRender(frame_type::Null)
 {

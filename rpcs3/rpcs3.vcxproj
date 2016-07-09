@@ -62,17 +62,61 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <AdditionalIncludeDirectories>..\llvm\include;..\llvm_build\include;</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <PreBuildEvent>
-      <Command>%windir%\sysnative\cmd.exe /c "$(SolutionDir)rpcs3\git-version-gen.cmd"</Command>
+      <Command>%windir%\sysnative\cmd.exe /c "$(ProjectDir)git-version-gen.cmd"</Command>
       <Message>Updating git-version.h</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\ps3emu_api\ps3emu_api.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="source\audio\audio_dumper.cpp" />
+    <ClCompile Include="source\cell\cpu_thread.cpp" />
+    <ClCompile Include="source\cell\ppu\ppu_analyser.cpp" />
+    <ClCompile Include="source\cell\ppu\ppu_callback.cpp" />
+    <ClCompile Include="source\cell\ppu\ppu_function.cpp" />
+    <ClCompile Include="source\cell\ppu\ppu_module.cpp" />
+    <ClCompile Include="source\cell\ppu\ppu_thread.cpp" />
+    <ClCompile Include="source\cell\raw_spu\raw_spu_thread.cpp" />
+    <ClCompile Include="source\cell\spu\mfc.cpp" />
+    <ClCompile Include="source\cell\spu\spu_thread.cpp" />
     <ClCompile Include="source\gcm.cpp" />
+    <ClCompile Include="source\id_manager.cpp" />
+    <ClCompile Include="source\lv2\lv2.cpp" />
+    <ClCompile Include="source\lv2\sys_cond.cpp" />
+    <ClCompile Include="source\lv2\sys_dbg.cpp" />
+    <ClCompile Include="source\lv2\sys_event.cpp" />
+    <ClCompile Include="source\lv2\sys_event_flag.cpp" />
+    <ClCompile Include="source\lv2\sys_fs.cpp" />
+    <ClCompile Include="source\lv2\sys_interrupt.cpp" />
+    <ClCompile Include="source\lv2\sys_lwcond.cpp" />
+    <ClCompile Include="source\lv2\sys_lwmutex.cpp" />
+    <ClCompile Include="source\lv2\sys_memory.cpp" />
+    <ClCompile Include="source\lv2\sys_mmapper.cpp" />
+    <ClCompile Include="source\lv2\sys_mutex.cpp" />
+    <ClCompile Include="source\lv2\sys_ppu_thread.cpp" />
+    <ClCompile Include="source\lv2\sys_process.cpp" />
+    <ClCompile Include="source\lv2\sys_prx.cpp" />
+    <ClCompile Include="source\lv2\sys_rsx.cpp" />
+    <ClCompile Include="source\lv2\sys_rwlock.cpp" />
+    <ClCompile Include="source\lv2\sys_semaphore.cpp" />
+    <ClCompile Include="source\lv2\sys_spu.cpp" />
+    <ClCompile Include="source\lv2\sys_time.cpp" />
+    <ClCompile Include="source\lv2\sys_timer.cpp" />
+    <ClCompile Include="source\lv2\sys_trace.cpp" />
+    <ClCompile Include="source\lv2\sys_tty.cpp" />
+    <ClCompile Include="source\lv2\sys_vm.cpp" />
+    <ClCompile Include="source\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\psf.cpp" />
     <ClCompile Include="source\rsx\rsx_cache.cpp" />
     <ClCompile Include="source\rsx\rsx_methods.cpp" />
@@ -80,298 +124,211 @@
     <ClCompile Include="source\rsx\rsx_texture.cpp" />
     <ClCompile Include="source\rsx\rsx_thread.cpp" />
     <ClCompile Include="source\rsx\rsx_utils.cpp" />
+    <ClCompile Include="source\stb_image.cpp" />
+    <ClCompile Include="source\system.cpp" />
     <ClCompile Include="source\tropusr.cpp" />
     <ClCompile Include="source\trp.cpp" />
-    <ClCompile Include="Utilities\AutoPause.cpp" />
-    <ClCompile Include="Utilities\dynamic_library.cpp" />
-    <ClCompile Include="Utilities\JIT.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\unedat.cpp" />
+    <ClCompile Include="source\unpkg.cpp" />
+    <ClCompile Include="source\unself.cpp" />
+    <ClCompile Include="source\utils\utils_aes.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\Log.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_auto_pause.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\File.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_config.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\Config.cpp" />
-    <ClCompile Include="Utilities\rXml.cpp" />
-    <ClCompile Include="Utilities\Semaphore.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_crypto_utils.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\SharedMutex.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_dynamic_library.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\StrFmt.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_ec.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Utilities\Thread.cpp" />
-    <ClCompile Include="Utilities\version.cpp" />
-    <ClCompile Include="Utilities\VirtualMemory.cpp" />
-    <ClCompile Include="Cell\PPUAnalyser.cpp" />
-    <ClCompile Include="Cell\PPUTranslator.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_file.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="CPU\CPUTranslator.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_fmt.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PSP2\ARMv7Module.cpp" />
-    <ClCompile Include="Cell\lv2\lv2.cpp" />
-    <ClCompile Include="Cell\lv2\sys_cond.cpp" />
-    <ClCompile Include="Cell\lv2\sys_dbg.cpp" />
-    <ClCompile Include="Cell\lv2\sys_event.cpp" />
-    <ClCompile Include="Cell\lv2\sys_event_flag.cpp" />
-    <ClCompile Include="Cell\lv2\sys_fs.cpp" />
-    <ClCompile Include="Cell\lv2\sys_interrupt.cpp" />
-    <ClCompile Include="Cell\lv2\sys_lwcond.cpp" />
-    <ClCompile Include="Cell\lv2\sys_lwmutex.cpp" />
-    <ClCompile Include="Cell\lv2\sys_memory.cpp" />
-    <ClCompile Include="Cell\lv2\sys_mmapper.cpp" />
-    <ClCompile Include="Cell\lv2\sys_mutex.cpp" />
-    <ClCompile Include="Cell\lv2\sys_ppu_thread.cpp" />
-    <ClCompile Include="Cell\lv2\sys_process.cpp" />
-    <ClCompile Include="Cell\lv2\sys_prx.cpp" />
-    <ClCompile Include="Cell\lv2\sys_rsx.cpp" />
-    <ClCompile Include="Cell\lv2\sys_rwlock.cpp" />
-    <ClCompile Include="Cell\lv2\sys_semaphore.cpp" />
-    <ClCompile Include="Cell\lv2\sys_spu.cpp" />
-    <ClCompile Include="Cell\lv2\sys_time.cpp" />
-    <ClCompile Include="Cell\lv2\sys_timer.cpp" />
-    <ClCompile Include="Cell\lv2\sys_trace.cpp" />
-    <ClCompile Include="Cell\lv2\sys_tty.cpp" />
-    <ClCompile Include="Cell\lv2\sys_vm.cpp" />
-    <ClCompile Include="Cell\Modules\sys_libc_.cpp" />
-    <ClCompile Include="Cell\PPUModule.cpp" />
-    <ClCompile Include="Cell\Modules\cellAdec.cpp" />
-    <ClCompile Include="Cell\Modules\cellAtrac.cpp" />
-    <ClCompile Include="Cell\Modules\cellAtracMulti.cpp" />
-    <ClCompile Include="Cell\Modules\cellAudio.cpp" />
-    <ClCompile Include="Cell\Modules\cellAudioOut.cpp" />
-    <ClCompile Include="Cell\Modules\cellAvconfExt.cpp" />
-    <ClCompile Include="Cell\Modules\cellBgdl.cpp" />
-    <ClCompile Include="Cell\Modules\cellCamera.cpp" />
-    <ClCompile Include="Cell\Modules\cellCelp8Enc.cpp" />
-    <ClCompile Include="Cell\Modules\cellCelpEnc.cpp" />
-    <ClCompile Include="Cell\Modules\cellDaisy.cpp" />
-    <ClCompile Include="Cell\Modules\cellDmux.cpp" />
-    <ClCompile Include="Cell\Modules\cellFiber.cpp" />
-    <ClCompile Include="Cell\Modules\cellFont.cpp" />
-    <ClCompile Include="Cell\Modules\cellFontFT.cpp" />
-    <ClCompile Include="Cell\Modules\cellFs.cpp" />
-    <ClCompile Include="Cell\Modules\cellGame.cpp" />
-    <ClCompile Include="Cell\Modules\cellGameExec.cpp" />
-    <ClCompile Include="Cell\Modules\cellGcmSys.cpp" />
-    <ClCompile Include="Cell\Modules\cellGem.cpp" />
-    <ClCompile Include="Cell\Modules\cellGifDec.cpp" />
-    <ClCompile Include="Cell\Modules\cellHttp.cpp" />
-    <ClCompile Include="Cell\Modules\cellHttpUtil.cpp" />
-    <ClCompile Include="Cell\Modules\cellImejp.cpp" />
-    <ClCompile Include="Cell\Modules\cellJpgDec.cpp" />
-    <ClCompile Include="Cell\Modules\cellJpgEnc.cpp" />
-    <ClCompile Include="Cell\Modules\cellKb.cpp" />
-    <ClCompile Include="Cell\Modules\cellKey2char.cpp" />
-    <ClCompile Include="Cell\Modules\cellL10n.cpp" />
-    <ClCompile Include="Cell\Modules\cellMic.cpp" />
-    <ClCompile Include="Cell\Modules\cellMouse.cpp" />
-    <ClCompile Include="Cell\Modules\cellMsgDialog.cpp" />
-    <ClCompile Include="Cell\Modules\cellMusic.cpp" />
-    <ClCompile Include="Cell\Modules\cellMusicDecode.cpp" />
-    <ClCompile Include="Cell\Modules\cellMusicExport.cpp" />
-    <ClCompile Include="Cell\Modules\cellNetCtl.cpp" />
-    <ClCompile Include="Cell\Modules\cellOskDialog.cpp" />
-    <ClCompile Include="Cell\Modules\cellOvis.cpp" />
-    <ClCompile Include="Cell\Modules\cellPad.cpp" />
-    <ClCompile Include="Cell\Modules\cellPamf.cpp" />
-    <ClCompile Include="Cell\Modules\cellPhotoDecode.cpp" />
-    <ClCompile Include="Cell\Modules\cellPhotoExport.cpp" />
-    <ClCompile Include="Cell\Modules\cellPhotoImport.cpp" />
-    <ClCompile Include="Cell\Modules\cellPngDec.cpp" />
-    <ClCompile Include="Cell\Modules\cellPngEnc.cpp" />
-    <ClCompile Include="Cell\Modules\cellPrint.cpp" />
-    <ClCompile Include="Cell\Modules\cellRec.cpp" />
-    <ClCompile Include="Cell\Modules\cellRemotePlay.cpp" />
-    <ClCompile Include="Cell\Modules\cellResc.cpp" />
-    <ClCompile Include="Cell\Modules\cellRtc.cpp" />
-    <ClCompile Include="Cell\Modules\cellRudp.cpp" />
-    <ClCompile Include="Cell\Modules\cellSail.cpp" />
-    <ClCompile Include="Cell\Modules\cellSailRec.cpp" />
-    <ClCompile Include="Cell\Modules\cellSaveData.cpp" />
-    <ClCompile Include="Cell\Modules\cellScreenshot.cpp" />
-    <ClCompile Include="Cell\Modules\cellSearch.cpp" />
-    <ClCompile Include="Cell\Modules\cellSheap.cpp" />
-    <ClCompile Include="Cell\Modules\cellSpudll.cpp" />
-    <ClCompile Include="Cell\Modules\cellSpurs.cpp" />
-    <ClCompile Include="Cell\Modules\cellSpursJq.cpp" />
-    <ClCompile Include="Cell\Modules\cellSpursSpu.cpp" />
-    <ClCompile Include="Cell\Modules\cellSsl.cpp" />
-    <ClCompile Include="Cell\Modules\cellStorage.cpp" />
-    <ClCompile Include="Cell\Modules\cellSubdisplay.cpp" />
-    <ClCompile Include="Cell\Modules\cellSync.cpp" />
-    <ClCompile Include="Cell\Modules\cellSync2.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysconf.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysmodule.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysutil.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysutilAp.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysutilAvc.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysutilAvc2.cpp" />
-    <ClCompile Include="Cell\Modules\cellSysutilMisc.cpp" />
-    <ClCompile Include="Cell\Modules\cellUsbd.cpp" />
-    <ClCompile Include="Cell\Modules\cellUsbpspcm.cpp" />
-    <ClCompile Include="Cell\Modules\cellUserInfo.cpp" />
-    <ClCompile Include="Cell\Modules\cellVdec.cpp" />
-    <ClCompile Include="Cell\Modules\cellVideoExport.cpp" />
-    <ClCompile Include="Cell\Modules\cellVideoOut.cpp" />
-    <ClCompile Include="Cell\Modules\cellVideoUpload.cpp" />
-    <ClCompile Include="Cell\Modules\cellVoice.cpp" />
-    <ClCompile Include="Cell\Modules\cellVpost.cpp" />
-    <ClCompile Include="Cell\Modules\cellWebBrowser.cpp" />
-    <ClCompile Include="Cell\Modules\libmixer.cpp" />
-    <ClCompile Include="Cell\Modules\libsnd3.cpp" />
-    <ClCompile Include="Cell\Modules\libsynth2.cpp" />
-    <ClCompile Include="Cell\Modules\sceNp.cpp" />
-    <ClCompile Include="Cell\Modules\sceNp2.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpClans.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpCommerce2.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpSns.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpTrophy.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpTus.cpp" />
-    <ClCompile Include="Cell\Modules\sceNpUtil.cpp" />
-    <ClCompile Include="Cell\Modules\sysPrxForUser.cpp" />
-    <ClCompile Include="Cell\Modules\sys_game.cpp" />
-    <ClCompile Include="Cell\Modules\sys_heap.cpp" />
-    <ClCompile Include="Cell\Modules\sys_io.cpp" />
-    <ClCompile Include="Cell\Modules\sys_libc.cpp" />
-    <ClCompile Include="Cell\Modules\sys_lv2dbg.cpp" />
-    <ClCompile Include="Cell\Modules\sys_lwcond_.cpp" />
-    <ClCompile Include="Cell\Modules\sys_lwmutex_.cpp" />
-    <ClCompile Include="Cell\Modules\sys_mempool.cpp" />
-    <ClCompile Include="Cell\Modules\sys_mmapper_.cpp" />
-    <ClCompile Include="Cell\Modules\sys_net.cpp" />
-    <ClCompile Include="Cell\Modules\sys_ppu_thread_.cpp" />
-    <ClCompile Include="Cell\Modules\sys_prx_.cpp" />
-    <ClCompile Include="Cell\Modules\sys_spinlock.cpp" />
-    <ClCompile Include="Cell\Modules\sys_spu_.cpp" />
-    <ClCompile Include="Cell\PPUCallback.cpp" />
-    <ClCompile Include="Cell\PPUDisAsm.cpp" />
-    <ClCompile Include="Cell\PPUFunction.cpp" />
-    <ClCompile Include="Cell\PPUInterpreter.cpp" />
-    <ClCompile Include="Cell\SPUAnalyser.cpp" />
-    <ClCompile Include="Cell\SPUASMJITRecompiler.cpp" />
-    <ClCompile Include="Cell\SPUDisAsm.cpp" />
-    <ClCompile Include="Cell\SPUInterpreter.cpp" />
-    <ClCompile Include="IdManager.cpp" />
-    <ClCompile Include="Memory\wait_engine.cpp" />
-    <ClCompile Include="Crypto\aes.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_jit.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Crypto\ec.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_key_vault.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Crypto\key_vault.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_log.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Crypto\lz.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_lz.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Crypto\sha1.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_platform.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Crypto\unedat.cpp" />
-    <ClCompile Include="Crypto\unpkg.cpp" />
-    <ClCompile Include="Crypto\unself.cpp" />
-    <ClCompile Include="Crypto\utils.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_semaphore.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PSP2\ARMv7DisAsm.cpp" />
-    <ClCompile Include="PSP2\ARMv7Interpreter.cpp" />
-    <ClCompile Include="PSP2\ARMv7Thread.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAppMgr.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAppUtil.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAudio.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAudiodec.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAudioenc.cpp" />
-    <ClCompile Include="PSP2\Modules\sceAudioIn.cpp" />
-    <ClCompile Include="PSP2\Modules\sceCamera.cpp" />
-    <ClCompile Include="PSP2\Modules\sceCodecEngine.cpp" />
-    <ClCompile Include="PSP2\Modules\sceCommonDialog.cpp" />
-    <ClCompile Include="PSP2\Modules\sceCtrl.cpp" />
-    <ClCompile Include="PSP2\Modules\sceDbg.cpp" />
-    <ClCompile Include="PSP2\Modules\sceDeci4p.cpp" />
-    <ClCompile Include="PSP2\Modules\sceDeflt.cpp" />
-    <ClCompile Include="PSP2\Modules\sceDisplay.cpp" />
-    <ClCompile Include="PSP2\Modules\sceFiber.cpp" />
-    <ClCompile Include="PSP2\Modules\sceFios.cpp" />
-    <ClCompile Include="PSP2\Modules\sceFpu.cpp" />
-    <ClCompile Include="PSP2\Modules\sceGxm.cpp" />
-    <ClCompile Include="PSP2\Modules\sceHttp.cpp" />
-    <ClCompile Include="PSP2\Modules\sceIme.cpp" />
-    <ClCompile Include="PSP2\Modules\sceJpeg.cpp" />
-    <ClCompile Include="PSP2\Modules\sceJpegEnc.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLibKernel.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLibc.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLibm.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLibstdcxx.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLiveArea.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLocation.cpp" />
-    <ClCompile Include="PSP2\Modules\sceMd5.cpp" />
-    <ClCompile Include="PSP2\Modules\sceMotion.cpp" />
-    <ClCompile Include="PSP2\Modules\sceMt19937.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNet.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNetCtl.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNgs.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpBasic.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpCommon.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpManager.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpMatching.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpScore.cpp" />
-    <ClCompile Include="PSP2\Modules\sceNpUtility.cpp" />
-    <ClCompile Include="PSP2\Modules\scePerf.cpp" />
-    <ClCompile Include="PSP2\Modules\scePgf.cpp" />
-    <ClCompile Include="PSP2\Modules\scePhotoExport.cpp" />
-    <ClCompile Include="PSP2\Modules\sceRazorCapture.cpp" />
-    <ClCompile Include="PSP2\Modules\sceRtc.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSas.cpp" />
-    <ClCompile Include="PSP2\Modules\sceScreenShot.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSfmt.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSha.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSqlite.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSsl.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSulpha.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSysmodule.cpp" />
-    <ClCompile Include="PSP2\Modules\sceSystemGesture.cpp" />
-    <ClCompile Include="PSP2\Modules\sceTouch.cpp" />
-    <ClCompile Include="PSP2\Modules\sceUlt.cpp" />
-    <ClCompile Include="PSP2\Modules\sceVideodec.cpp" />
-    <ClCompile Include="PSP2\Modules\sceVoice.cpp" />
-    <ClCompile Include="PSP2\Modules\sceVoiceQoS.cpp" />
-    <ClCompile Include="PSP2\Modules\sceLibXml.cpp" />
-    <ClCompile Include="PSP2\ARMv7Function.cpp" />
-    <ClCompile Include="Audio\AudioDumper.cpp" />
-    <ClCompile Include="Cell\MFC.cpp" />
-    <ClCompile Include="Cell\PPUThread.cpp" />
-    <ClCompile Include="Cell\RawSPUThread.cpp" />
-    <ClCompile Include="Cell\SPURecompiler.cpp" />
-    <ClCompile Include="Cell\SPUThread.cpp" />
-    <ClCompile Include="CPU\CPUThread.cpp" />
-    <ClCompile Include="VFS.cpp" />
-    <ClCompile Include="Memory\Memory.cpp">
-      <ObjectFileName>$(IntDir)OldMemory.obj</ObjectFileName>
+    <ClCompile Include="source\utils\utils_sha1.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Memory\vm.cpp" />
-    <ClCompile Include="System.cpp" />
-    <ClCompile Include="rpcs3_api.cpp" />
-    <ClCompile Include="rpcs3_version.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
+    <ClCompile Include="source\utils\utils_shared_mutex.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\utils\utils_thread.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\utils_version.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\utils_virtual_memory.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\utils_xml.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\version.cpp" />
+    <ClCompile Include="source\vfs.cpp" />
+    <ClCompile Include="source\vm\memory.cpp" />
+    <ClCompile Include="source\vm\vm.cpp" />
+    <ClCompile Include="source\vm\wait_engine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\3rdparty\stblib\stb_image.h" />
-    <ClInclude Include="..\ps3emu_api\ps3emu_api.h" />
+    <ClInclude Include="include\rpcs3\audio\dumper.h" />
+    <ClInclude Include="include\rpcs3\audio\thread.h" />
+    <ClInclude Include="include\rpcs3\cell\common.h" />
+    <ClInclude Include="include\rpcs3\cell\disasm.h" />
+    <ClInclude Include="include\rpcs3\cell\disasm_base.h" />
+    <ClInclude Include="include\rpcs3\cell\error_codes.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\analyser.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\callback.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\function.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\module.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\opcodes.h" />
+    <ClInclude Include="include\rpcs3\cell\ppu\thread.h" />
+    <ClInclude Include="include\rpcs3\cell\raw_spu\thread.h" />
+    <ClInclude Include="include\rpcs3\cell\spu\mfc.h" />
+    <ClInclude Include="include\rpcs3\cell\spu\opcodes.h" />
+    <ClInclude Include="include\rpcs3\cell\spu\thread.h" />
+    <ClInclude Include="include\rpcs3\cell\thread.h" />
+    <ClInclude Include="include\rpcs3\dbg_command.h" />
     <ClInclude Include="include\rpcs3\elf.h" />
+    <ClInclude Include="include\rpcs3\game_info.h" />
+    <ClInclude Include="include\rpcs3\gcm.h" />
+    <ClInclude Include="include\rpcs3\id_manager.h" />
+    <ClInclude Include="include\rpcs3\ipc.h" />
     <ClInclude Include="include\rpcs3\keyboard.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_cond.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_dbg.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_event.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_event_flag.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_fs.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_interrupt.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_lwcond.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_lwmutex.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_memory.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_mmapper.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_mutex.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_ppu_thread.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_process.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_prx.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_rsx.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_rwlock.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_semaphore.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_spu.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_sync.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_time.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_timer.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_trace.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_tty.h" />
+    <ClInclude Include="include\rpcs3\lv2\sys_vm.h" />
     <ClInclude Include="include\rpcs3\mouse.h" />
     <ClInclude Include="include\rpcs3\pad.h" />
+    <ClInclude Include="include\rpcs3\pch.h" />
     <ClInclude Include="include\rpcs3\psf.h" />
     <ClInclude Include="include\rpcs3\rsx\cache.h" />
     <ClInclude Include="include\rpcs3\rsx\fragment_program.h" />
@@ -381,244 +338,58 @@
     <ClInclude Include="include\rpcs3\rsx\thread.h" />
     <ClInclude Include="include\rpcs3\rsx\utils.h" />
     <ClInclude Include="include\rpcs3\rsx\vertex_program.h" />
+    <ClInclude Include="include\rpcs3\system.h" />
     <ClInclude Include="include\rpcs3\tropusr.h" />
     <ClInclude Include="include\rpcs3\trp.h" />
-    <ClInclude Include="Utilities\Atomic.h" />
-    <ClInclude Include="Utilities\AtomicPtr.h" />
-    <ClInclude Include="Utilities\AutoPause.h" />
-    <ClInclude Include="Utilities\BEType.h" />
-    <ClInclude Include="Utilities\BitField.h" />
-    <ClInclude Include="Utilities\BitSet.h" />
-    <ClInclude Include="Utilities\dynamic_library.h" />
-    <ClInclude Include="Utilities\event.h" />
-    <ClInclude Include="Utilities\geometry.h" />
-    <ClInclude Include="Utilities\GSL.h" />
-    <ClInclude Include="Utilities\JIT.h" />
-    <ClInclude Include="Utilities\lockless.h" />
-    <ClInclude Include="Utilities\sync.h" />
-    <ClInclude Include="Utilities\Platform.h" />
-    <ClInclude Include="Utilities\Log.h" />
-    <ClInclude Include="Utilities\File.h" />
-    <ClInclude Include="Utilities\Macro.h" />
-    <ClInclude Include="Utilities\Config.h" />
-    <ClInclude Include="Utilities\rXml.h" />
-    <ClInclude Include="Utilities\Semaphore.h" />
-    <ClInclude Include="Utilities\SharedMutex.h" />
-    <ClInclude Include="Utilities\StrFmt.h" />
-    <ClInclude Include="Utilities\StrUtil.h" />
-    <ClInclude Include="Utilities\Thread.h" />
-    <ClInclude Include="Utilities\Timer.h" />
-    <ClInclude Include="Utilities\types.h" />
-    <ClInclude Include="Utilities\version.h" />
-    <ClInclude Include="Utilities\VirtualMemory.h" />
-    <ClInclude Include="Crypto\aes.h" />
-    <ClInclude Include="Crypto\ec.h" />
-    <ClInclude Include="Crypto\key_vault.h" />
-    <ClInclude Include="Crypto\lz.h" />
-    <ClInclude Include="Crypto\sha1.h" />
-    <ClInclude Include="Crypto\unedat.h" />
-    <ClInclude Include="Crypto\unpkg.h" />
-    <ClInclude Include="Crypto\unself.h" />
-    <ClInclude Include="Crypto\utils.h" />
-    <ClInclude Include="define_new_memleakdetect.h" />
-    <ClInclude Include="Cell\PPUAnalyser.h" />
-    <ClInclude Include="Cell\PPUTranslator.h" />
-    <ClInclude Include="CPU\CPUTranslator.h" />
-    <ClInclude Include="IPC.h" />
-    <ClInclude Include="PSP2\ARMv7Callback.h" />
-    <ClInclude Include="PSP2\ARMv7DisAsm.h" />
-    <ClInclude Include="PSP2\ARMv7Interpreter.h" />
-    <ClInclude Include="PSP2\ARMv7Module.h" />
-    <ClInclude Include="PSP2\ARMv7Opcodes.h" />
-    <ClInclude Include="PSP2\ARMv7Thread.h" />
-    <ClInclude Include="PSP2\ErrorCodes.h" />
-    <ClInclude Include="PSP2\Modules\Common.h" />
-    <ClInclude Include="PSP2\Modules\sceAppMgr.h" />
-    <ClInclude Include="PSP2\Modules\sceAppUtil.h" />
-    <ClInclude Include="PSP2\Modules\sceAudio.h" />
-    <ClInclude Include="PSP2\Modules\sceAudiodec.h" />
-    <ClInclude Include="PSP2\Modules\sceAudioenc.h" />
-    <ClInclude Include="PSP2\Modules\sceAudioIn.h" />
-    <ClInclude Include="PSP2\Modules\sceCamera.h" />
-    <ClInclude Include="PSP2\Modules\sceCodecEngine.h" />
-    <ClInclude Include="PSP2\Modules\sceCommonDialog.h" />
-    <ClInclude Include="PSP2\Modules\sceCtrl.h" />
-    <ClInclude Include="PSP2\Modules\sceDbg.h" />
-    <ClInclude Include="PSP2\Modules\sceDeci4p.h" />
-    <ClInclude Include="PSP2\Modules\sceDeflt.h" />
-    <ClInclude Include="PSP2\Modules\sceDisplay.h" />
-    <ClInclude Include="PSP2\Modules\sceFiber.h" />
-    <ClInclude Include="PSP2\Modules\sceFios.h" />
-    <ClInclude Include="PSP2\Modules\sceFpu.h" />
-    <ClInclude Include="PSP2\Modules\sceGxm.h" />
-    <ClInclude Include="PSP2\Modules\sceHttp.h" />
-    <ClInclude Include="PSP2\Modules\sceIme.h" />
-    <ClInclude Include="PSP2\Modules\sceJpeg.h" />
-    <ClInclude Include="PSP2\Modules\sceJpegEnc.h" />
-    <ClInclude Include="PSP2\Modules\sceLibc.h" />
-    <ClInclude Include="PSP2\Modules\sceLibKernel.h" />
-    <ClInclude Include="PSP2\Modules\sceLibm.h" />
-    <ClInclude Include="PSP2\Modules\sceLibstdcxx.h" />
-    <ClInclude Include="PSP2\Modules\sceLiveArea.h" />
-    <ClInclude Include="PSP2\Modules\sceLocation.h" />
-    <ClInclude Include="PSP2\Modules\sceMd5.h" />
-    <ClInclude Include="PSP2\Modules\sceMotion.h" />
-    <ClInclude Include="PSP2\Modules\sceMt19937.h" />
-    <ClInclude Include="PSP2\Modules\sceNet.h" />
-    <ClInclude Include="PSP2\Modules\sceNetCtl.h" />
-    <ClInclude Include="PSP2\Modules\sceNgs.h" />
-    <ClInclude Include="PSP2\Modules\sceNpBasic.h" />
-    <ClInclude Include="PSP2\Modules\sceNpCommon.h" />
-    <ClInclude Include="PSP2\Modules\sceNpManager.h" />
-    <ClInclude Include="PSP2\Modules\sceNpMatching.h" />
-    <ClInclude Include="PSP2\Modules\sceNpScore.h" />
-    <ClInclude Include="PSP2\Modules\sceNpUtility.h" />
-    <ClInclude Include="PSP2\Modules\scePerf.h" />
-    <ClInclude Include="PSP2\Modules\scePgf.h" />
-    <ClInclude Include="PSP2\Modules\scePhotoExport.h" />
-    <ClInclude Include="PSP2\Modules\sceRazorCapture.h" />
-    <ClInclude Include="PSP2\Modules\sceRtc.h" />
-    <ClInclude Include="PSP2\Modules\sceSas.h" />
-    <ClInclude Include="PSP2\Modules\sceScreenShot.h" />
-    <ClInclude Include="PSP2\Modules\sceSqlite.h" />
-    <ClInclude Include="PSP2\Modules\sceSsl.h" />
-    <ClInclude Include="PSP2\Modules\sceSulpha.h" />
-    <ClInclude Include="PSP2\Modules\sceSysmodule.h" />
-    <ClInclude Include="PSP2\Modules\sceSystemGesture.h" />
-    <ClInclude Include="PSP2\Modules\sceTouch.h" />
-    <ClInclude Include="PSP2\Modules\sceUlt.h" />
-    <ClInclude Include="PSP2\Modules\sceVideodec.h" />
-    <ClInclude Include="PSP2\Modules\sceVoice.h" />
-    <ClInclude Include="PSP2\Modules\sceVoiceQoS.h" />
-    <ClInclude Include="PSP2\Modules\sceLibXml.h" />
-    <ClInclude Include="PSP2\ARMv7Function.h" />
-    <ClInclude Include="Audio\AudioDumper.h" />
-    <ClInclude Include="Audio\AudioThread.h" />
-    <ClInclude Include="Audio\Null\NullAudioThread.h" />
-    <ClInclude Include="Cell\Common.h" />
-    <ClInclude Include="Cell\ErrorCodes.h" />
-    <ClInclude Include="Cell\lv2\sys_cond.h" />
-    <ClInclude Include="Cell\lv2\sys_dbg.h" />
-    <ClInclude Include="Cell\lv2\sys_event.h" />
-    <ClInclude Include="Cell\lv2\sys_event_flag.h" />
-    <ClInclude Include="Cell\lv2\sys_fs.h" />
-    <ClInclude Include="Cell\lv2\sys_interrupt.h" />
-    <ClInclude Include="Cell\lv2\sys_lwcond.h" />
-    <ClInclude Include="Cell\lv2\sys_lwmutex.h" />
-    <ClInclude Include="Cell\lv2\sys_memory.h" />
-    <ClInclude Include="Cell\lv2\sys_mmapper.h" />
-    <ClInclude Include="Cell\lv2\sys_mutex.h" />
-    <ClInclude Include="Cell\lv2\sys_ppu_thread.h" />
-    <ClInclude Include="Cell\lv2\sys_process.h" />
-    <ClInclude Include="Cell\lv2\sys_prx.h" />
-    <ClInclude Include="Cell\lv2\sys_rsx.h" />
-    <ClInclude Include="Cell\lv2\sys_rwlock.h" />
-    <ClInclude Include="Cell\lv2\sys_semaphore.h" />
-    <ClInclude Include="Cell\lv2\sys_spu.h" />
-    <ClInclude Include="Cell\lv2\sys_sync.h" />
-    <ClInclude Include="Cell\lv2\sys_time.h" />
-    <ClInclude Include="Cell\lv2\sys_timer.h" />
-    <ClInclude Include="Cell\lv2\sys_trace.h" />
-    <ClInclude Include="Cell\lv2\sys_tty.h" />
-    <ClInclude Include="Cell\lv2\sys_vm.h" />
-    <ClInclude Include="Cell\MFC.h" />
-    <ClInclude Include="Cell\PPUModule.h" />
-    <ClInclude Include="Cell\Modules\cellAdec.h" />
-    <ClInclude Include="Cell\Modules\cellAtrac.h" />
-    <ClInclude Include="Cell\Modules\cellAtracMulti.h" />
-    <ClInclude Include="Cell\Modules\cellAudio.h" />
-    <ClInclude Include="Cell\Modules\cellAudioIn.h" />
-    <ClInclude Include="Cell\Modules\cellAudioOut.h" />
-    <ClInclude Include="Cell\Modules\cellCamera.h" />
-    <ClInclude Include="Cell\Modules\cellDmux.h" />
-    <ClInclude Include="Cell\Modules\cellFiber.h" />
-    <ClInclude Include="Cell\Modules\cellFont.h" />
-    <ClInclude Include="Cell\Modules\cellFontFT.h" />
-    <ClInclude Include="Cell\Modules\cellFs.h" />
-    <ClInclude Include="Cell\Modules\cellGame.h" />
-    <ClInclude Include="Cell\Modules\cellGcmSys.h" />
-    <ClInclude Include="Cell\Modules\cellGem.h" />
-    <ClInclude Include="Cell\Modules\cellGifDec.h" />
-    <ClInclude Include="Cell\Modules\cellJpgDec.h" />
-    <ClInclude Include="Cell\Modules\cellKb.h" />
-    <ClInclude Include="Cell\Modules\cellL10n.h" />
-    <ClInclude Include="Cell\Modules\cellMic.h" />
-    <ClInclude Include="Cell\Modules\cellMouse.h" />
-    <ClInclude Include="Cell\Modules\cellMsgDialog.h" />
-    <ClInclude Include="Cell\Modules\cellMusic.h" />
-    <ClInclude Include="Cell\Modules\cellNetCtl.h" />
-    <ClInclude Include="Cell\Modules\cellPad.h" />
-    <ClInclude Include="Cell\Modules\cellPamf.h" />
-    <ClInclude Include="Cell\Modules\cellPng.h" />
-    <ClInclude Include="Cell\Modules\cellPngDec.h" />
-    <ClInclude Include="Cell\Modules\cellResc.h" />
-    <ClInclude Include="Cell\Modules\cellRtc.h" />
-    <ClInclude Include="Cell\Modules\cellRudp.h" />
-    <ClInclude Include="Cell\Modules\cellSail.h" />
-    <ClInclude Include="Cell\Modules\cellSaveData.h" />
-    <ClInclude Include="Cell\Modules\cellScreenshot.h" />
-    <ClInclude Include="Cell\Modules\cellSearch.h" />
-    <ClInclude Include="Cell\Modules\cellSpurs.h" />
-    <ClInclude Include="Cell\Modules\cellSpursJq.h" />
-    <ClInclude Include="Cell\Modules\cellSubdisplay.h" />
-    <ClInclude Include="Cell\Modules\cellSync.h" />
-    <ClInclude Include="Cell\Modules\cellSync2.h" />
-    <ClInclude Include="Cell\Modules\cellSysutil.h" />
-    <ClInclude Include="Cell\Modules\cellSysutilAvc2.h" />
-    <ClInclude Include="Cell\Modules\cellUsbd.h" />
-    <ClInclude Include="Cell\Modules\cellUserInfo.h" />
-    <ClInclude Include="Cell\Modules\cellVdec.h" />
-    <ClInclude Include="Cell\Modules\cellVideoOut.h" />
-    <ClInclude Include="Cell\Modules\cellVpost.h" />
-    <ClInclude Include="Cell\Modules\cellWebBrowser.h" />
-    <ClInclude Include="Cell\Modules\libmixer.h" />
-    <ClInclude Include="Cell\Modules\libsnd3.h" />
-    <ClInclude Include="Cell\Modules\libsynth2.h" />
-    <ClInclude Include="Cell\Modules\sceNp.h" />
-    <ClInclude Include="Cell\Modules\sceNp2.h" />
-    <ClInclude Include="Cell\Modules\sceNpClans.h" />
-    <ClInclude Include="Cell\Modules\sceNpCommerce2.h" />
-    <ClInclude Include="Cell\Modules\sceNpSns.h" />
-    <ClInclude Include="Cell\Modules\sceNpTrophy.h" />
-    <ClInclude Include="Cell\Modules\sceNpTus.h" />
-    <ClInclude Include="Cell\Modules\sceNpUtil.h" />
-    <ClInclude Include="Cell\Modules\sysPrxForUser.h" />
-    <ClInclude Include="Cell\Modules\sys_lv2dbg.h" />
-    <ClInclude Include="Cell\Modules\sys_net.h" />
-    <ClInclude Include="Cell\PPCDisAsm.h" />
-    <ClInclude Include="Cell\PPUCallback.h" />
-    <ClInclude Include="Cell\PPUDisAsm.h" />
-    <ClInclude Include="Cell\PPUFunction.h" />
-    <ClInclude Include="Cell\PPUInterpreter.h" />
-    <ClInclude Include="Cell\PPUOpcodes.h" />
-    <ClInclude Include="Cell\PPUThread.h" />
-    <ClInclude Include="Cell\RawSPUThread.h" />
-    <ClInclude Include="Cell\SPUAnalyser.h" />
-    <ClInclude Include="Cell\SPUASMJITRecompiler.h" />
-    <ClInclude Include="Cell\SPUDisAsm.h" />
-    <ClInclude Include="Cell\SPUInterpreter.h" />
-    <ClInclude Include="Cell\SPUOpcodes.h" />
-    <ClInclude Include="Cell\SPURecompiler.h" />
-    <ClInclude Include="Cell\SPUThread.h" />
-    <ClInclude Include="CPU\CPUDisAsm.h" />
-    <ClInclude Include="CPU\CPUThread.h" />
-    <ClInclude Include="DbgCommand.h" />
-    <ClInclude Include="Memory\wait_engine.h" />
-    <ClInclude Include="VFS.h" />
-    <ClInclude Include="GameInfo.h" />
-    <ClInclude Include="IdManager.h" />
-    <ClInclude Include="Memory\Memory.h" />
-    <ClInclude Include="Memory\MemoryBlock.h" />
-    <ClInclude Include="Memory\vm.h" />
-    <ClInclude Include="Memory\vm_ptr.h" />
-    <ClInclude Include="Memory\vm_ref.h" />
-    <ClInclude Include="Memory\vm_var.h" />
-    <ClInclude Include="System.h" />
-    <ClInclude Include="ps3emu_api_enums.h" />
-    <ClInclude Include="ps3emu_api_structs.h" />
-    <ClInclude Include="restore_new.h" />
-    <ClInclude Include="rpcs3_version.h" />
-    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="include\rpcs3\unedat.h" />
+    <ClInclude Include="include\rpcs3\unpkg.h" />
+    <ClInclude Include="include\rpcs3\unself.h" />
+    <ClInclude Include="include\rpcs3\utils\aes.h" />
+    <ClInclude Include="include\rpcs3\utils\atomic.h" />
+    <ClInclude Include="include\rpcs3\utils\atomic_ptr.h" />
+    <ClInclude Include="include\rpcs3\utils\auto_pause.h" />
+    <ClInclude Include="include\rpcs3\utils\be_t.h" />
+    <ClInclude Include="include\rpcs3\utils\bf_t.h" />
+    <ClInclude Include="include\rpcs3\utils\bitset_t.h" />
+    <ClInclude Include="include\rpcs3\utils\config.h" />
+    <ClInclude Include="include\rpcs3\utils\crypto_utils.h" />
+    <ClInclude Include="include\rpcs3\utils\dll_export.h" />
+    <ClInclude Include="include\rpcs3\utils\dynamic_library.h" />
+    <ClInclude Include="include\rpcs3\utils\ec.h" />
+    <ClInclude Include="include\rpcs3\utils\event.h" />
+    <ClInclude Include="include\rpcs3\utils\file.h" />
+    <ClInclude Include="include\rpcs3\utils\fmt.h" />
+    <ClInclude Include="include\rpcs3\utils\geometry.h" />
+    <ClInclude Include="include\rpcs3\utils\gsl.h" />
+    <ClInclude Include="include\rpcs3\utils\interval.h" />
+    <ClInclude Include="include\rpcs3\utils\jit.h" />
+    <ClInclude Include="include\rpcs3\utils\key_vault.h" />
+    <ClInclude Include="include\rpcs3\utils\lockless.h" />
+    <ClInclude Include="include\rpcs3\utils\log.h" />
+    <ClInclude Include="include\rpcs3\utils\lz.h" />
+    <ClInclude Include="include\rpcs3\utils\macro.h" />
+    <ClInclude Include="include\rpcs3\utils\platform.h" />
+    <ClInclude Include="include\rpcs3\utils\semaphore.h" />
+    <ClInclude Include="include\rpcs3\utils\sha1.h" />
+    <ClInclude Include="include\rpcs3\utils\shared_mutex.h" />
+    <ClInclude Include="include\rpcs3\utils\sleep_queue.h" />
+    <ClInclude Include="include\rpcs3\utils\strutil.h" />
+    <ClInclude Include="include\rpcs3\utils\sync.h" />
+    <ClInclude Include="include\rpcs3\utils\thread.h" />
+    <ClInclude Include="include\rpcs3\utils\timer.h" />
+    <ClInclude Include="include\rpcs3\utils\types.h" />
+    <ClInclude Include="include\rpcs3\utils\version.h" />
+    <ClInclude Include="include\rpcs3\utils\virtual_memory.h" />
+    <ClInclude Include="include\rpcs3\utils\xml.h" />
+    <ClInclude Include="include\rpcs3\version.h" />
+    <ClInclude Include="include\rpcs3\vfs.h" />
+    <ClInclude Include="include\rpcs3\vm\memory.h" />
+    <ClInclude Include="include\rpcs3\vm\memory_block.h" />
+    <ClInclude Include="include\rpcs3\vm\ptr.h" />
+    <ClInclude Include="include\rpcs3\vm\ref.h" />
+    <ClInclude Include="include\rpcs3\vm\var.h" />
+    <ClInclude Include="include\rpcs3\vm\vm.h" />
+    <ClInclude Include="include\rpcs3\vm\wait_engine.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\3rdparty\libpng\projects\vstudio\libpng\libpng.vcxproj">

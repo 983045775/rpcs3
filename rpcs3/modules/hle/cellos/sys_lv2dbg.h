@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Cell/lv2/sys_mutex.h"
-#include "Cell/lv2/sys_cond.h"
-#include "Cell/lv2/sys_rwlock.h"
-#include "Cell/lv2/sys_event.h"
-#include "Cell/lv2/sys_semaphore.h"
-#include "Cell/lv2/sys_lwmutex.h"
-#include "Cell/lv2/sys_lwcond.h"
-#include "Cell/lv2/sys_event_flag.h"
+#include "lv2/rpcs3/lv2/sys_mutex.h"
+#include "lv2/sys_cond.h"
+#include "lv2/sys_rwlock.h"
+#include "lv2/sys_event.h"
+#include "lv2/sys_semaphore.h"
+#include "lv2/sys_lwmutex.h"
+#include "lv2/sys_lwcond.h"
+#include "lv2/sys_event_flag.h"
 
 namespace vm { using namespace ps3; }
 

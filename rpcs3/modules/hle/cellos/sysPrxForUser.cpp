@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
-#include "Cell/lv2/sys_interrupt.h"
-#include "Cell/lv2/sys_process.h"
+#include "lv2/sys_interrupt.h"
+#include "lv2/sys_process.h"
 #include "sysPrxForUser.h"
 
 logs::channel sysPrxForUser("sysPrxForUser", logs::level::notice);

@@ -1,12 +1,12 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_fs.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_fs.h"
 
-#include "Utilities/StrUtil.h"
+#include "rpcs3/utils/strutil.h"
 #include <cerrno>
 
 logs::channel sys_fs("sys_fs", logs::level::notice);

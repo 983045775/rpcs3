@@ -1,10 +1,10 @@
-#include "stdafx.h"
-#include "System.h"
-#include "vm.h"
-#include "wait_engine.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/system.h"
+#include "rpcs3/vm/vm.h"
+#include "rpcs3/vm/wait_engine.h"
 
-#include "Utilities/Thread.h"
-#include "Utilities/SharedMutex.h"
+#include "rpcs3/utils/thread.h"
+#include "rpcs3/utils/shared_mutex.h"
 
 #include <unordered_set>
 

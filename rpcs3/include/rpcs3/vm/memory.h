@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MemoryBlock.h"
+#include "memory_block.h"
 
 extern VirtualMemoryBlock RSXIOMem;
 

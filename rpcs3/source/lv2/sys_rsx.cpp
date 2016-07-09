@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_rsx.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_rsx.h"
 
 logs::channel sys_rsx("sys_rsx", logs::level::notice);
 

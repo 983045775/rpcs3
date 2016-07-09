@@ -1,11 +1,11 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Memory/Memory.h"
+#include <rpcs3/pch.h>
+#include <rpcs3/utils/config.h>
 #include "GLGSRender.h"
 #include "rsx_gl_cache.h"
-#include "../rsx_methods.h"
+#include <rpcs3/rsx/methods.h>
+#include <rpcs3/rsx/utils.h>
+#include <rpcs3/gcm.h>
 #include "../Common/BufferUtils.h"
-#include "../rsx_utils.h"
 
 extern cfg::bool_entry g_cfg_rsx_debug_output;
 extern cfg::bool_entry g_cfg_rsx_overlay;

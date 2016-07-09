@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utilities/SharedMutex.h"
+#include "rpcs3/utils/shared_mutex.h"
 
 #include <set>
 

@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 std::mutex g_mutex_avcodec_open2;
 
@@ -9,7 +9,7 @@ extern "C"
 {
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"
-#include "libavutil/imgutils.h"
+#include "libavutil/imgrpcs3/utils/crypto_utils.h"
 #include "libswscale/swscale.h"
 }
 

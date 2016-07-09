@@ -1,6 +1,6 @@
 #pragma once
 
-#include "PPUThread.h"
+#include "thread.h"
 
 using ppu_function_t = void(*)(PPUThread&);
 

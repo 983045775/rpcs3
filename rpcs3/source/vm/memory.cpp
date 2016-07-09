@@ -1,5 +1,6 @@
-#include "stdafx.h"
-#include "Memory.h"
+#include "rpcs3/pch.h"
+#include <rpcs3/vm/memory_block.h>
+#include <rpcs3/vm/memory.h>
 
 VirtualMemoryBlock RSXIOMem;
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 
 #include "FragmentProgramDecompiler.h"
 

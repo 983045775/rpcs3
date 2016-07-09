@@ -1,6 +1,6 @@
-#include "stdafx.h"
+#include "rpcs3/pch.h"
 #include "rpcs3/rsx/cache.h"
-#include "System.h"
+#include "rpcs3/system.h"
 
 namespace rsx
 {

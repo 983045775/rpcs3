@@ -1,5 +1,5 @@
 #pragma once
-#include <Utilities/types.h>
+#include <rpcs3/utils/types.h>
 
 struct SaveDataEntry
 {

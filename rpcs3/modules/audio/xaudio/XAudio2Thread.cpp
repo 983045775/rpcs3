@@ -1,8 +1,8 @@
 #ifdef _WIN32
-#include "Utilities/Log.h"
-#include "Utilities/StrFmt.h"
-#include "Utilities/Config.h"
-#include "System.h"
+#include <rpcs3/utils/log.h>
+#include <rpcs3/utils/fmt.h>
+#include <rpcs3/utils/config.h>
+#include <rpcs3/system.h>
 
 #include "XAudio2Thread.h"
 

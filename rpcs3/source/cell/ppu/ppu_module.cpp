@@ -1,16 +1,16 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Utilities/AutoPause.h"
-#include "Crypto/sha1.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/utils/auto_pause.h"
+#include "rpcs3/utils/sha1.h"
 #include "rpcs3/elf.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/PPUOpcodes.h"
-#include "Cell/PPUModule.h"
-#include "Cell/PPUAnalyser.h"
+#include "rpcs3/cell/ppu/opcodes.h"
+#include "rpcs3/cell/ppu/module.h"
+#include "rpcs3/cell/ppu/analyser.h"
 
-#include "Cell/lv2/sys_prx.h"
+#include "rpcs3/lv2/sys_prx.h"
 
 #include <unordered_set>
 #include <algorithm>

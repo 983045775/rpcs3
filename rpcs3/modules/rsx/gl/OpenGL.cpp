@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "OpenGL.h"
 
 void gl::init()

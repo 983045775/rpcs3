@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "Utilities/rXml.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/xml.h"
+#include "rpcs3/system.h"
 #include <rpcs3/tropusr.h>
 
 bool TROPUSRLoader::Load(const std::string& filepath, const std::string& configpath)

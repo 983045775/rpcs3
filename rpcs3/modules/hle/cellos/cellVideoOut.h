@@ -2,7 +2,7 @@
 
 namespace vm { using namespace ps3; }
 
-#include "Cell/ErrorCodes.h"
+#include "rpcs3/cell/error_codes.h"
 
 // Video Out Error Codes
 enum CellVideoOutError : s32

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Memory/vm.h"
+#include "rpcs3/vm/vm.h"
 
 enum
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Common.h"
-#include "../CPU/CPUThread.h"
-#include "../Memory/vm.h"
+#include "rpcs3/cell/common.h"
+#include "rpcs3/cell/thread.h"
+#include "rpcs3/vm/vm.h"
 
 class PPUThread final : public cpu_thread
 {

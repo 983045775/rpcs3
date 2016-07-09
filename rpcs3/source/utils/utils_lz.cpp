@@ -2,7 +2,7 @@
 // Licensed under the terms of the GNU GPL, version 3
 // http://www.gnu.org/licenses/gpl-3.0.txt
 
-#include "lz.h"
+#include "rpcs3/utils/lz.h"
 
 void decode_range(unsigned int *range, unsigned int *code, unsigned char **src)
 {

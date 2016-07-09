@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cell/PPUThread.h"
+#include "rpcs3/cell/ppu/thread.h"
 
 namespace ppu_cb_detail
 {

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rpcs3/pch.h"
 #include "rpcs3/rsx/utils.h"
 #include "rpcs3/rsx/methods.h"
 #include "rpcs3/gcm.h"

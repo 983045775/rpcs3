@@ -1,10 +1,10 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 #include "rpcs3/elf.h"
 
-#include "Cell/RawSPUThread.h"
+#include "rpcs3/cell/raw_spu/thread.h"
 
 // Originally, SPU MFC registers are accessed externally in a concurrent manner (don't mix with channels, SPU MFC channels are isolated)
 thread_local spu_mfc_arg_t raw_spu_mfc[8] = {};

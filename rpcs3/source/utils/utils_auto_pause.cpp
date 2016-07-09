@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "Config.h"
-#include "System.h"
-#include "AutoPause.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/system.h"
+#include "rpcs3/utils/auto_pause.h"
 
 cfg::bool_entry g_cfg_debug_autopause_syscall(cfg::root.misc, "Auto Pause at System Call");
 cfg::bool_entry g_cfg_debug_autopause_func_call(cfg::root.misc, "Auto Pause at Function Call");

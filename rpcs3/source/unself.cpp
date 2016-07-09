@@ -1,8 +1,7 @@
-#include "stdafx.h"
-#include "aes.h"
-#include "sha1.h"
-#include "utils.h"
-#include "unself.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/aes.h"
+#include "rpcs3/utils/crypto_utils.h"
+#include "rpcs3/unself.h"
 #include <zlib.h>
 
 force_inline u8 Read8(const fs::file& f)

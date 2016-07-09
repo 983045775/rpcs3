@@ -1,6 +1,6 @@
 #pragma once
 #include "ShaderParam.h"
-#include "RSX/RSXFragmentProgram.h"
+#include <rpcs3/rsx/fragment_program.h>
 #include <sstream>
 
 /**

@@ -1,7 +1,11 @@
 #pragma once
 
-#include "VFS.h"
-#include "DbgCommand.h"
+#include "vfs.h"
+#include "dbg_command.h"
+#include <functional>
+#include <memory>
+#include <rpcs3/utils/types.h>
+#include <rpcs3/utils/atomic.h>
 
 enum class frame_type;
 

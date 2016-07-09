@@ -1,6 +1,6 @@
-#include "utils.h"
-#include "aes.h"
-#include "key_vault.h"
+#include "rpcs3/utils/crypto_utils.h"
+#include "rpcs3/utils/aes.h"
+#include "rpcs3/utils/key_vault.h"
 
 SELF_KEY::SELF_KEY(u64 ver, u16 rev, u32 type, const std::string& e, const std::string& r, const std::string& pb, const std::string& pr, u32 ct)
 {

@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
-#include "Cell/RawSPUThread.h"
-#include "Cell/lv2/sys_spu.h"
+#include "rpcs3/cell/raw_spu/thread.h"
+#include "lv2/sys_spu.h"
 #include "Crypto/unself.h"
 #include "sysPrxForUser.h"
 

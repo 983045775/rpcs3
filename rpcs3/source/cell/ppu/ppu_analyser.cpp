@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "PPUOpcodes.h"
-#include "PPUModule.h"
-#include "PPUAnalyser.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/cell/ppu/opcodes.h"
+#include "rpcs3/cell/ppu/module.h"
+#include "rpcs3/cell/ppu/analyser.h"
 
 #include <unordered_set>
 

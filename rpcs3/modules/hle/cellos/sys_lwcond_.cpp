@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "IdManager.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
-#include "Cell/lv2/sys_lwmutex.h"
-#include "Cell/lv2/sys_lwcond.h"
+#include "lv2/sys_lwmutex.h"
+#include "lv2/sys_lwcond.h"
 #include "sysPrxForUser.h"
 
 extern logs::channel sysPrxForUser;

@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "System.h"
+#include <rpcs3/utils/config.h>
+#include <rpcs3/system.h>
+#include <rpcs3/utils/log.h>
 
 #include "OpenALThread.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Utilities/Thread.h"
-#include "Utilities/BitSet.h"
+#include "rpcs3/utils/thread.h"
+#include "rpcs3/utils/bitset_t.h"
 
 // CPU Thread Type
 enum class cpu_type : u8

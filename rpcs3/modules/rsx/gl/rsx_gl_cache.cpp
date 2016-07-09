@@ -1,7 +1,6 @@
-#include "stdafx.h"
 #include "rsx_gl_cache.h"
 #include "gl_helpers.h"
-#include "../GCM.h"
+#include "rpcs3/gcm.h"
 
 static void insert_texture_fetch_function(std::string &dst, const rsx::decompiled_shader &shader, const rsx::program_state &state)
 {

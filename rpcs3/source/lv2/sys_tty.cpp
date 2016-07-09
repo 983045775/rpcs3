@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_tty.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_tty.h"
 
 logs::channel sys_tty("sys_tty", logs::level::notice);
 

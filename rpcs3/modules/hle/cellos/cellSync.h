@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utilities/BitField.h"
+#include "rpcs3/utils/bf_t.h"
 
 namespace vm { using namespace ps3; }
 

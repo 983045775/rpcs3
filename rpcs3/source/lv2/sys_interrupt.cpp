@@ -1,11 +1,11 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/ErrorCodes.h"
-#include "Cell/PPUThread.h"
-#include "sys_interrupt.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/lv2/sys_interrupt.h"
 
 logs::channel sys_interrupt("sys_interrupt", logs::level::notice);
 

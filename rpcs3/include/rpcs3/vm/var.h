@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vm_ptr.h"
+#include "ptr.h"
 
 namespace vm
 {

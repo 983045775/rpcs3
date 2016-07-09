@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Utilities/types.h"
-#include "Utilities/Macro.h"
+#include "rpcs3/utils/types.h"
+#include "rpcs3/utils/macro.h"
 
 class thread_ctrl;
 

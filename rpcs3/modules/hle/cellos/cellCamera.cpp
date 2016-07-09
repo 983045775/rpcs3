@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "Utilities/Config.h"
-#include "IdManager.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 #include "cellCamera.h"
 

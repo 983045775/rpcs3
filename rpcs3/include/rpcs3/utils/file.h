@@ -6,7 +6,7 @@
 #include <type_traits>
 
 #include "types.h"
-#include "BitSet.h"
+#include "bitset_t.h"
 
 namespace fs
 {

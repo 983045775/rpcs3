@@ -21,9 +21,9 @@
 #pragma warning(pop)
 #endif
 
-#include "Utilities/types.h"
+#include "rpcs3/utils/types.h"
 #include "Utilities/StrFmt.h"
-#include "Utilities/Macro.h"
+#include "rpcs3/utils/macro.h"
 #include "Utilities/BEType.h"
 
 template<typename T, typename = void>

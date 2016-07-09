@@ -1,6 +1,5 @@
-#include "stdafx.h"
-#include "Utilities/Log.h"
-#include "VirtualMemory.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/virtual_memory.h"
 #ifdef _WIN32
 #include <Windows.h>
 #else

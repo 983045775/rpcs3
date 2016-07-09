@@ -1,7 +1,8 @@
-#include "File.h"
-#include "StrFmt.h"
-#include "Macro.h"
-#include "SharedMutex.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/file.h"
+#include "rpcs3/utils/fmt.h"
+#include "rpcs3/utils/macro.h"
+#include "rpcs3/utils/shared_mutex.h"
 
 #include <unordered_map>
 #include <algorithm>

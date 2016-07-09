@@ -1,12 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
-
-#include "PPUThread.h"
-#include "PPUCallback.h"
-
-#include <condition_variable>
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/cell/ppu/callback.h"
 
 void CallbackManager::Register(check_cb_t func)
 {

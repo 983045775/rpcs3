@@ -1,11 +1,11 @@
-#include "stdafx.h"
+#include "rpcs3/pch.h"
 #include "Memory.h"
-#include "System.h"
-#include "Utilities/Thread.h"
-#include "CPU/CPUThread.h"
-#include "Cell/PPUThread.h"
-#include "Cell/SPUThread.h"
-#include "PSP2/ARMv7Thread.h"
+#include "rpcs3/system.h"
+#include "rpcs3/utils/thread.h"
+#include "rpcs3/cell/thread.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/cell/spu/thread.h"
+//#include "PSP2/ARMv7Thread.h"
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -22,7 +22,7 @@
 #endif
 #endif
 
-#include "wait_engine.h"
+#include "rpcs3/vm/wait_engine.h"
 
 namespace vm
 {
@@ -856,6 +856,7 @@ namespace vm
 
 		case cpu_type::arm:
 		{
+			/*
 			ARMv7Thread& context = static_cast<ARMv7Thread&>(*cpu);
 
 			const u32 old_pos = context.SP;
@@ -871,6 +872,7 @@ namespace vm
 				vm::psv::_ref<nse_t<u32>>(context.SP + size) = old_pos;
 				return context.SP;
 			}
+			*/
 		}
 
 		default:
@@ -916,6 +918,7 @@ namespace vm
 
 		case cpu_type::arm:
 		{
+			/*
 			ARMv7Thread& context = static_cast<ARMv7Thread&>(*cpu);
 
 			if (context.SP != addr)
@@ -926,6 +929,7 @@ namespace vm
 
 			context.SP = vm::psv::_ref<nse_t<u32>>(context.SP + size);
 			return;
+			*/
 		}
 		}
 	}

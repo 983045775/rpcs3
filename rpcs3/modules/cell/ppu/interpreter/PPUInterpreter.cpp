@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "System.h"
-#include "PPUThread.h"
+#include "rpcs3/system.h"
+#include "rpcs3/cell/ppu/thread.h"
 #include "PPUInterpreter.h"
 
 #include <cmath>

@@ -1,15 +1,15 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Crypto/unself.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/unself.h"
 #include "rpcs3/elf.h"
 
-#include "Cell/ErrorCodes.h"
-#include "Cell/RawSPUThread.h"
-#include "sys_interrupt.h"
-#include "sys_event.h"
-#include "sys_spu.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/cell/raw_spu/thread.h"
+#include "rpcs3/lv2/sys_interrupt.h"
+#include "rpcs3/lv2/sys_event.h"
+#include "rpcs3/lv2/sys_spu.h"
 
 logs::channel sys_spu("sys_spu", logs::level::notice);
 

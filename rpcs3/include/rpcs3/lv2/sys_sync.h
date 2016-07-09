@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utilities/SleepQueue.h"
+#include "rpcs3/utils/sleep_queue.h"
 #include <mutex>
 #include <condition_variable>
 

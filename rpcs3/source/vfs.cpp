@@ -1,10 +1,10 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/system.h"
 
-#include "VFS.h"
+#include "rpcs3/vfs.h"
 
-#include "Utilities/StrUtil.h"
+#include "rpcs3/utils/strutil.h"
 
 cfg::string_entry g_cfg_vfs_emulator_dir(cfg::root.vfs, "$(EmulatorDir)"); // Default (empty): taken from fs::get_executable_dir()
 cfg::string_entry g_cfg_vfs_dev_hdd0(cfg::root.vfs, "/dev_hdd0/", "$(EmulatorDir)dev_hdd0/");

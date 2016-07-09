@@ -1,7 +1,7 @@
 #pragma once
 #include "../Common/VertexProgramDecompiler.h"
-#include "RSX/RSXVertexProgram.h"
-#include "Utilities/Thread.h"
+#include "rpcs3/rsx/vertex_program.h"
+#include "rpcs3/utils/thread.h"
 #include "OpenGL.h"
 
 struct GLVertexDecompilerThread : public VertexProgramDecompiler

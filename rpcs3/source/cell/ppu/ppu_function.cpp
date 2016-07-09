@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "PPUModule.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/cell/ppu/module.h"
 
 extern std::string ppu_get_syscall_name(u64 code)
 {

@@ -2,9 +2,9 @@
 
 #ifdef _WIN32
 
-#include "Audio/AudioThread.h"
+#include "rpcs3/audio/thread.h"
 
-#include "3rdparty/XAudio2_7/XAudio2.h"
+#include "XAudio2.h"
 
 class XAudio2Thread : public AudioThread
 {

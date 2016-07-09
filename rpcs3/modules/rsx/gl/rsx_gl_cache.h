@@ -1,5 +1,5 @@
 #pragma once
-#include "../rsx_cache.h"
+#include <rpcs3/rsx/cache.h>
 
 struct alignas(4) glsl_shader_matrix_buffer
 {

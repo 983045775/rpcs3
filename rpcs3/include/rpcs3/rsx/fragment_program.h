@@ -1,6 +1,8 @@
 #pragma once
 #include <rpcs3/gcm.h>
 #include <rpcs3/rsx/texture.h>
+#include <rpcs3/utils/types.h>
+#include <array>
 
 enum register_type
 {

@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "System.h"
+#include <rpcs3/system.h>
+#include <rpcs3/utils/log.h>
 
 #include "GLVertexProgram.h"
 #include "GLCommonDecompiler.h"

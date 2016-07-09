@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "rpcs3/pch.h"
 #include "rpcs3/gcm.h"
 
 namespace

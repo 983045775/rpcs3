@@ -1,12 +1,12 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Crypto/unself.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/unself.h"
 #include "rpcs3/elf.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_prx.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_prx.h"
 
 logs::channel sys_prx("sys_prx", logs::level::notice);
 

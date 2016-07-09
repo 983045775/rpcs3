@@ -1,5 +1,5 @@
 #pragma once
-#include "RSX/RSXVertexProgram.h"
+#include "rpcs3/rsx/vertex_program.h"
 #include <vector>
 #include <set>
 #include <sstream>

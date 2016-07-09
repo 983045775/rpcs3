@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "Utilities/rXml.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/xml.h"
 
 rXmlNode::rXmlNode() : handle()
 {

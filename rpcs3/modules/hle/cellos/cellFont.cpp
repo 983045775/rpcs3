@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 // Defines STB_TRUETYPE_IMPLEMENTATION *once* before including stb_truetype.h (as noted in stb_truetype.h's comments)
 #define STB_TRUETYPE_IMPLEMENTATION

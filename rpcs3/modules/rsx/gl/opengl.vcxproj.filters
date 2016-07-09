@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="RSX\GL\rsx_gl_texture.cpp" />
-    <ClCompile Include="RSX\GL\gl_helpers.cpp" />
-    <ClCompile Include="RSX\GL\GLCommonDecompiler.cpp" />
-    <ClCompile Include="RSX\GL\GLFragmentProgram.cpp" />
-    <ClCompile Include="RSX\GL\GLGSRender.cpp" />
-    <ClCompile Include="RSX\GL\GLVertexProgram.cpp" />
-    <ClCompile Include="RSX\GL\OpenGL.cpp" />
-    <ClCompile Include="RSX\GL\gl_render_targets.cpp" />
-    <ClCompile Include="RSX\GL\vertex_buffer.cpp" />
-    <ClCompile Include="RSX\GL\rsx_gl_cache.cpp" />
+    <ClCompile Include="GLCommonDecompiler.cpp" />
+    <ClCompile Include="GLFragmentProgram.cpp" />
+    <ClCompile Include="GLGSRender.cpp" />
+    <ClCompile Include="GLVertexProgram.cpp" />
+    <ClCompile Include="gl_helpers.cpp" />
+    <ClCompile Include="gl_render_targets.cpp" />
+    <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="rsx_gl_cache.cpp" />
+    <ClCompile Include="rsx_gl_texture.cpp" />
+    <ClCompile Include="vertex_buffer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RSX\GL\rsx_gl_texture.h" />
-    <ClInclude Include="RSX\GL\gl_helpers.h" />
-    <ClInclude Include="RSX\GL\GLCommonDecompiler.h" />
-    <ClInclude Include="RSX\GL\GLFragmentProgram.h" />
-    <ClInclude Include="RSX\GL\GLGSRender.h" />
-    <ClInclude Include="RSX\GL\GLProcTable.h" />
-    <ClInclude Include="RSX\GL\GLProgramBuffer.h" />
-    <ClInclude Include="RSX\GL\GLVertexProgram.h" />
-    <ClInclude Include="RSX\GL\OpenGL.h" />
-    <ClInclude Include="RSX\GL\gl_texture_cache.h" />
-    <ClInclude Include="RSX\GL\gl_render_targets.h" />
-    <ClInclude Include="RSX\GL\rsx_gl_cache.h" />
+    <ClInclude Include="GLCommonDecompiler.h" />
+    <ClInclude Include="GLFragmentProgram.h" />
+    <ClInclude Include="GLGSRender.h" />
+    <ClInclude Include="GLProcTable.h" />
+    <ClInclude Include="GLProgramBuffer.h" />
+    <ClInclude Include="GLVertexProgram.h" />
+    <ClInclude Include="gl_helpers.h" />
+    <ClInclude Include="gl_render_targets.h" />
+    <ClInclude Include="gl_texture_cache.h" />
+    <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="rsx_gl_cache.h" />
+    <ClInclude Include="rsx_gl_texture.h" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "utils.h"
+#include "rpcs3/utils/crypto_utils.h"
 
 #define SDAT_FLAG 0x01000000
 #define EDAT_COMPRESSED_FLAG 0x00000001

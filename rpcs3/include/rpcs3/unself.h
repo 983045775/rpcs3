@@ -1,6 +1,6 @@
 #pragma once
 
-#include "key_vault.h"
+#include "rpcs3/utils/key_vault.h"
 
 struct AppInfo 
 {

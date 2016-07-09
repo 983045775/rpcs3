@@ -2,7 +2,7 @@
 
 #include <map>
 
-#include "Utilities/BitSet.h"
+#include "rpcs3/utils/bitset_t.h"
 
 // PPU Function Attributes
 enum class ppu_attr : u32

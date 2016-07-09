@@ -2,6 +2,9 @@
 
 #include <map>
 #include <mutex>
+#include <rpcs3/utils/atomic.h>
+#include <rpcs3/utils/fmt.h>
+#include <rpcs3/utils/be_t.h>
 
 class thread_ctrl;
 
@@ -370,4 +373,4 @@ namespace vm
 	extern thread_local u64 g_tls_fault_count;
 }
 
-#include "vm_var.h"
+#include "var.h"

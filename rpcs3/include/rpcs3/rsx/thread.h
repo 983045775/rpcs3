@@ -1,18 +1,20 @@
 #pragma once
 
-#include <stack>
-#include <deque>
-#include <set>
-#include <mutex>
 #include <rpcs3/gcm.h>
 #include <rpcs3/rsx/cache.h>
 #include <rpcs3/rsx/texture.h>
 #include <rpcs3/rsx/vertex_program.h>
 #include <rpcs3/rsx/fragment_program.h>
+#include <rpcs3/utils/thread.h>
+#include <rpcs3/utils/timer.h>
+#include <rpcs3/utils/geometry.h>
 
-#include "Utilities/Thread.h"
-#include "Utilities/Timer.h"
-#include "Utilities/geometry.h"
+#include <stack>
+#include <deque>
+#include <set>
+#include <mutex>
+#include <vector>
+#include <array>
 
 extern u64 get_system_time();
 

@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "dynamic_library.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/dynamic_library.h"
 
 #ifdef _WIN32
 	#include <Windows.h>

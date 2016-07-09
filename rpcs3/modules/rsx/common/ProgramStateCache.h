@@ -1,10 +1,10 @@
 #pragma once
 
-#include "RSX/RSXFragmentProgram.h"
-#include "RSX/RSXVertexProgram.h"
-#include "Memory/vm.h"
+#include <rpcs3/rsx/fragment_program.h>
+#include <rpcs3/rsx/vertex_program.h>
+#include <rpcs3/vm/vm.h>
 
-#include "Utilities/GSL.h"
+#include <rpcs3/utils/gsl.h>
 
 enum class SHADER_TYPE
 {

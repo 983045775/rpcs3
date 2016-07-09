@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 #include "cellMic.h"
 

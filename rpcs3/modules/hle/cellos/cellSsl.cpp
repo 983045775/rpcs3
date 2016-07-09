@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Cell/PPUModule.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 logs::channel cellSsl("cellSsl", logs::level::notice);
 

@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "version.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/version.h"
 
 namespace utils
 {

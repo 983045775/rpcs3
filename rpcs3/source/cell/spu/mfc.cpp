@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "MFC.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/cell/spu/mfc.h"
 
 const char* get_mfc_cmd_name(u32 cmd)
 {

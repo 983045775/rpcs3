@@ -4,6 +4,8 @@
 #endif
 
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
 #include <Windows.h>
 #include "GL/gl.h"
 #include <glext.h>
@@ -24,6 +26,8 @@ typedef BOOL (WINAPI* PFNWGLSWAPINTERVALEXTPROC) (int interval);
 #include <GL/glx.h>
 #include <GL/glxext.h>
 #endif
+
+#include <rpcs3/utils/log.h>
 
 #ifndef GL_TEXTURE_BUFFER_BINDING
 //During spec release, this enum was removed during upgrade from ARB equivalent

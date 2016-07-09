@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstddef>
 #include <immintrin.h>
 #include <emmintrin.h>
 

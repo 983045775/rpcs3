@@ -28,7 +28,7 @@
  *  http://www.itl.nist.gov/fipspubs/fip180-1.htm
  */
  
-#include "sha1.h"
+#include "rpcs3/utils/sha1.h"
 
 /*
  * 32-bit integer manipulation macros (big endian)

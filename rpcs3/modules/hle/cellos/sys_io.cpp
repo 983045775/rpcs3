@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Cell/PPUModule.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 logs::channel sys_io("sys_io", logs::level::notice);
 

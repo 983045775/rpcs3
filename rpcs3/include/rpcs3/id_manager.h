@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Utilities/types.h"
-#include "Utilities/Macro.h"
-#include "Utilities/Platform.h"
-#include "Utilities/SharedMutex.h"
+#include "rpcs3/utils/types.h"
+#include "rpcs3/utils/macro.h"
+#include "rpcs3/utils/platform.h"
+#include "rpcs3/utils/shared_mutex.h"
 
 #include <memory>
 #include <vector>

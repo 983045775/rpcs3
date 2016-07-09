@@ -1,22 +1,18 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 
-#include "IdManager.h"
-#include "Cell/PPUThread.h"
-#include "Cell/ErrorCodes.h"
-#include "Cell/lv2/sys_spu.h"
-#include "Cell/lv2/sys_event_flag.h"
-#include "Cell/lv2/sys_event.h"
-#include "Cell/lv2/sys_interrupt.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_spu.h"
+#include "rpcs3/lv2/sys_event_flag.h"
+#include "rpcs3/lv2/sys_event.h"
+#include "rpcs3/lv2/sys_interrupt.h"
+#include "rpcs3/cell/spu/thread.h"
 
-#include "Cell/SPUDisAsm.h"
-#include "Cell/SPUThread.h"
-#include "Cell/SPUInterpreter.h"
-#include "Cell/SPURecompiler.h"
-
-#include "Memory/wait_engine.h"
+#include "rpcs3/vm/wait_engine.h"
 
 #include <cmath>
 #include <cfenv>
@@ -42,8 +38,10 @@ cfg::map_entry<spu_decoder_type> g_cfg_spu_decoder(cfg::root.core, "SPU Decoder"
 	{ "Recompiler (LLVM)", spu_decoder_type::llvm },
 });
 
+/*
 const spu_decoder<spu_interpreter_precise> s_spu_interpreter_precise;
 const spu_decoder<spu_interpreter_fast> s_spu_interpreter_fast;
+*/
 
 void spu_int_ctrl_t::set(u64 ints)
 {
@@ -192,11 +190,13 @@ void SPUThread::cpu_task()
 		return custom_task(*this);
 	}
 
+	/*
 	if (g_cfg_spu_decoder.get() == spu_decoder_type::asmjit)
 	{
 		if (!spu_db) spu_db = fxm::get_always<SPUDatabase>();
 		return spu_recompiler_base::enter(*this);
 	}
+	*/
 
 	g_tls_log_prefix = []
 	{
@@ -205,6 +205,7 @@ void SPUThread::cpu_task()
 		return fmt::format("%s [0x%05x]", cpu->get_name(), cpu->pc);
 	};
 
+	/*
 	// Select opcode table
 	const auto& table = *(
 		g_cfg_spu_decoder.get() == spu_decoder_type::precise ? &s_spu_interpreter_precise.get_table() :
@@ -231,6 +232,7 @@ void SPUThread::cpu_task()
 
 		if (check_status()) return;
 	}
+	*/
 }
 
 SPUThread::~SPUThread()
@@ -572,7 +574,7 @@ void SPUThread::set_interrupt_status(bool enable)
 
 u32 SPUThread::get_ch_count(u32 ch)
 {
-	LOG_TRACE(SPU, "get_ch_count(ch=%d [%s])", ch, ch < 128 ? spu_ch_name[ch] : "???");
+	//LOG_TRACE(SPU, "get_ch_count(ch=%d [%s])", ch, ch < 128 ? spu_ch_name[ch] : "???");
 
 	switch (ch)
 	{
@@ -591,12 +593,12 @@ u32 SPUThread::get_ch_count(u32 ch)
 	case SPU_RdEventStat:     return get_events() ? 1 : 0; break;
 	}
 
-	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s])", ch, ch < 128 ? spu_ch_name[ch] : "???");
+	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s])", ch, /*ch < 128 ? spu_ch_name[ch] :*/ "???");
 }
 
 bool SPUThread::get_ch_value(u32 ch, u32& out)
 {
-	LOG_TRACE(SPU, "get_ch_value(ch=%d [%s])", ch, ch < 128 ? spu_ch_name[ch] : "???");
+	LOG_TRACE(SPU, "get_ch_value(ch=%d [%s])", ch, /*ch < 128 ? spu_ch_name[ch] :*/ "???");
 
 	auto read_channel = [&](spu_channel_t& channel)
 	{
@@ -740,12 +742,12 @@ bool SPUThread::get_ch_value(u32 ch, u32& out)
 	}
 	}
 
-	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s])", ch, ch < 128 ? spu_ch_name[ch] : "???");
+	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s])", ch, /*ch < 128 ? spu_ch_name[ch] :*/ "???");
 }
 
 bool SPUThread::set_ch_value(u32 ch, u32 value)
 {
-	LOG_TRACE(SPU, "set_ch_value(ch=%d [%s], value=0x%x)", ch, ch < 128 ? spu_ch_name[ch] : "???", value);
+	LOG_TRACE(SPU, "set_ch_value(ch=%d [%s], value=0x%x)", ch, /*ch < 128 ? spu_ch_name[ch] :*/ "???", value);
 
 	switch (ch)
 	{
@@ -1122,7 +1124,7 @@ bool SPUThread::set_ch_value(u32 ch, u32 value)
 	}
 	}
 
-	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s], value=0x%x)", ch, ch < 128 ? spu_ch_name[ch] : "???", value);
+	throw EXCEPTION("Unknown/illegal channel (ch=%d [%s], value=0x%x)", ch, /*ch < 128 ? spu_ch_name[ch] :*/ "???", value);
 }
 
 bool SPUThread::stop_and_signal(u32 code)

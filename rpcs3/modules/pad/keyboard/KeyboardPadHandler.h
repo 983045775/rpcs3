@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utilities/Config.h"
+#include "rpcs3/utils/config.h"
 #include "Io/PadHandler.h"
 
 struct KeyboardPadConfig final : cfg::node

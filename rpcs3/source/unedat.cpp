@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "key_vault.h"
-#include "unedat.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/key_vault.h"
+#include "rpcs3/unedat.h"
 
 void generate_key(int crypto_mode, int version, unsigned char *key_final, unsigned char *iv_final, unsigned char *key, unsigned char *iv)
 {

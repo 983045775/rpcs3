@@ -1,12 +1,12 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_event.h"
-#include "sys_process.h"
-#include "sys_timer.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_event.h"
+#include "rpcs3/lv2/sys_process.h"
+#include "rpcs3/lv2/sys_timer.h"
 
 #include <thread>
 

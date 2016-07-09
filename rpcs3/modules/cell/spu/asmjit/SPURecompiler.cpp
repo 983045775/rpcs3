@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "IdManager.h"
-#include "Memory/Memory.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/vm/memory.h"
 
 #include "SPUThread.h"
 #include "SPURecompiler.h"

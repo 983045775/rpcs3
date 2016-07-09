@@ -1,6 +1,5 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "../rsx_methods.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/rsx/methods.h"
 #include "GLGSRender.h"
 
 extern cfg::bool_entry g_cfg_rsx_write_color_buffers;

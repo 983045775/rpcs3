@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "rpcs3/elf.h"
-#include "System.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
-#include "Cell/SPUThread.h"
-#include "Cell/lv2/sys_lwmutex.h"
-#include "Cell/lv2/sys_lwcond.h"
-#include "Cell/lv2/sys_spu.h"
+#include "rpcs3/cell/spu/thread.h"
+#include "lv2/sys_lwmutex.h"
+#include "lv2/sys_lwcond.h"
+#include "lv2/sys_spu.h"
 #include "cellSpurs.h"
 
 #include <thread>

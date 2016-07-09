@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Audio/AudioThread.h"
-#include "3rdparty/OpenAL/include/alext.h"
+#include <rpcs3/audio/thread.h>
+#include "alext.h"
 
 class OpenALThread : public AudioThread
 {

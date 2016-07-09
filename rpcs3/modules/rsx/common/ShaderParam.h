@@ -3,7 +3,10 @@
 #include <string>
 #include <vector>
 
-#include "Utilities/StrUtil.h"
+#include <rpcs3/utils/strutil.h>
+#include <rpcs3/utils/macro.h>
+#include <rpcs3/utils/types.h>
+#include <unordered_map>
 
 enum class FUNCTION {
 	FUNCTION_DP2,

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "vm_ref.h"
+#include "ref.h"
+#include <rpcs3/utils/macro.h>
 
 class PPUThread;
 class ARMv7Thread;

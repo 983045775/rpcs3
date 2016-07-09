@@ -1,27 +1,27 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Utilities/AutoPause.h"
-#include "Utilities/event.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/utils/auto_pause.h"
+#include "rpcs3/utils/event.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 
-#include "Cell/PPUThread.h"
-#include "Cell/PPUCallback.h"
-#include "Cell/PPUOpcodes.h"
-#include "Cell/SPUThread.h"
-#include "Cell/RawSPUThread.h"
-#include "Cell/lv2/sys_sync.h"
-#include "PSP2/ARMv7Thread.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/cell/ppu/callback.h"
+#include "rpcs3/cell/ppu/opcodes.h"
+#include "rpcs3/cell/spu/thread.h"
+#include "rpcs3/cell/raw_spu/thread.h"
+#include "rpcs3/lv2/sys_sync.h"
+//#include "PSP2/ARMv7Thread.h"
 
-#include "IdManager.h"
-#include "RSX/GSRender.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/rsx/render.h"
 
 #include "rpcs3/psf.h"
 #include "rpcs3/elf.h"
 
-#include "Utilities/StrUtil.h"
+#include "rpcs3/utils/strutil.h"
 
-#include "Crypto/unself.h"
+#include "rpcs3/unself.h"
 
 #include <thread>
 

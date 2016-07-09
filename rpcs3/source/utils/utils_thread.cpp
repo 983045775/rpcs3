@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Cell/RawSPUThread.h"
-#include "Thread.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/cell/raw_spu/thread.h"
+#include "rpcs3/utils/thread.h"
 
 #ifdef _WIN32
 #include <windows.h>

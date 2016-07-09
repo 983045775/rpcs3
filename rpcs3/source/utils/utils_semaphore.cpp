@@ -1,4 +1,4 @@
-#include "Utilities/Semaphore.h"
+#include "rpcs3/utils/semaphore.h"
 
 #include <mutex>
 #include <condition_variable>

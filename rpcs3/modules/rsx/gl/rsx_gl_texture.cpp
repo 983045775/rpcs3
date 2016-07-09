@@ -1,10 +1,9 @@
-#include "stdafx.h"
 #include "rsx_gl_texture.h"
 #include "gl_helpers.h"
-#include "../GCM.h"
-#include "../RSXThread.h"
-#include "../RSXTexture.h"
-#include "../rsx_utils.h"
+#include "rpcs3/gcm.h"
+#include "rpcs3/rsx/thread.h"
+#include "rpcs3/rsx/texture.h"
+#include "rpcs3/rsx/utils.h"
 #include "../Common/TextureUtils.h"
 
 namespace

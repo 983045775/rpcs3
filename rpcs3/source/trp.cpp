@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include <rpcs3/system.h>
 #include <rpcs3/trp.h>
 
 TRPLoader::TRPLoader(const fs::file& f)

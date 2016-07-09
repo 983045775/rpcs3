@@ -1,4 +1,4 @@
-#include "SharedMutex.h"
+#include "rpcs3/utils/shared_mutex.h"
 
 #include <mutex>
 #include <condition_variable>

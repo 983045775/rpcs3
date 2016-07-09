@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SPUThread.h"
+#include "rpcs3/cell/spu/thread.h"
 
 class RawSPUThread final : public SPUThread
 {

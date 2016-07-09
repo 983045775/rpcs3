@@ -1,4 +1,7 @@
 #pragma once
+#include <rpcs3/utils/types.h>
+#include <rpcs3/utils/log.h>
+#include <vector>
 
 struct MemInfo
 {

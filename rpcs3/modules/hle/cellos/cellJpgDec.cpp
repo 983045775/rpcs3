@@ -1,12 +1,12 @@
 #include "stdafx.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 // STB_IMAGE_IMPLEMENTATION is already defined in stb_image.cpp
 #include <stb_image.h>
 
-#include "Cell/lv2/sys_fs.h"
+#include "lv2/sys_fs.h"
 #include "cellJpgDec.h"
 
 logs::channel cellJpgDec("cellJpgDec", logs::level::notice);

@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Cell/Common.h"
-#include "CPU/CPUThread.h"
-#include "Cell/SPUInterpreter.h"
-#include "MFC.h"
+#include "rpcs3/cell/common.h"
+#include "rpcs3/cell/thread.h"
+#include "rpcs3/cell/spu/mfc.h"
 
 class lv2_event_queue_t;
 struct lv2_spu_group_t;

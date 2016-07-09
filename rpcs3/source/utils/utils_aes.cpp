@@ -29,7 +29,8 @@
  *  http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
  */
 
-#include "aes.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/aes.h"
 
 /*
  * 32-bit integer manipulation macros (little endian)

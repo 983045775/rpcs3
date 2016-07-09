@@ -1,15 +1,15 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 #include <rpcs3/rsx/thread.h>
 
-#include "Cell/PPUCallback.h"
+#include "rpcs3/cell/ppu/callback.h"
 
 #include <rpcs3/rsx/methods.h>
 
-#include "Utilities/GSL.h"
-#include "Utilities/StrUtil.h"
+#include "rpcs3/utils/gsl.h"
+#include "rpcs3/utils/strutil.h"
 
 #include <thread>
 

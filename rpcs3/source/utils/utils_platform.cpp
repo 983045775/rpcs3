@@ -1,4 +1,4 @@
-#include "Platform.h"
+#include "rpcs3/utils/platform.h"
 
 #ifdef __APPLE__
 #include <sys/types.h>

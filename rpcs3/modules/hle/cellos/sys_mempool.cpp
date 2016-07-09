@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "System.h"
-#include "IdManager.h"
-#include "Cell/PPUModule.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
 
 #include "sysPrxForUser.h"
 

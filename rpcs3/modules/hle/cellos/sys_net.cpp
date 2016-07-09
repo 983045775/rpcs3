@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "Cell/PPUModule.h"
-#include "IdManager.h"
+#include "Cell/rpcs3/cell/ppu/module.h"
+#include "rpcs3/id_manager.h"
 
 #include "sys_net.h"
 

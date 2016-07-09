@@ -1,9 +1,8 @@
-#include "stdafx.h"
-#include "System.h"
-#include "CPUThread.h"
-
+#include "rpcs3/pch.h"
 #include <mutex>
 #include <condition_variable>
+#include <rpcs3/cell/thread.h>
+#include <rpcs3/system.h>
 
 thread_local cpu_thread* g_tls_current_cpu_thread = nullptr;
 

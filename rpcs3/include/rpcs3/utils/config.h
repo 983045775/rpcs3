@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Utilities/types.h"
-#include "Utilities/Atomic.h"
+#include "types.h"
+#include "atomic.h"
 
 #include <initializer_list>
 #include <exception>

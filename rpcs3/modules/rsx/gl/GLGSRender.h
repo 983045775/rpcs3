@@ -1,5 +1,5 @@
 #pragma once
-#include "RSX/GSRender.h"
+#include "rpcs3/rsx/render.h"
 #include "gl_helpers.h"
 #include "rsx_gl_texture.h"
 #include "gl_texture_cache.h"

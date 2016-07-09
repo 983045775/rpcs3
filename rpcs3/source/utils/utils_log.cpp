@@ -1,6 +1,6 @@
-﻿#include "Log.h"
-#include "File.h"
-#include "StrFmt.h"
+﻿#include "rpcs3/utils/log.h"
+#include "rpcs3/utils/file.h"
+#include "rpcs3/utils/fmt.h"
 
 #include <cstdarg>
 #include <string>

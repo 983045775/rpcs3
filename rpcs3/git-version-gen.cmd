@@ -17,7 +17,8 @@ rem // https://github.com/RPCS3/rpcs3 and http://rpcs3.net/.
 
 setlocal ENABLEDELAYEDEXPANSION
 
-set GIT_VERSION_FILE=%~p0\git-version.h
+set GIT_VERSION_FILE=%~p0\include\rpcs3\git-version.h
+
 if not defined GIT (
 	set GIT="git"
 )

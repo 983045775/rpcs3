@@ -1,5 +1,5 @@
 #include "OpenGL.h"
-#include "../GCM.h"
+#include "rpcs3/gcm.h"
 
 namespace rsx
 {

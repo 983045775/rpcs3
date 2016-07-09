@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../RSXTexture.h"
+#include "rpcs3/rsx/texture.h"
 
 #include <vector>
-#include "Utilities/GSL.h"
+#include "rpcs3/utils/gsl.h"
 
 struct rsx_subresource_layout
 {

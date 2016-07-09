@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cell/ErrorCodes.h"
+#include "rpcs3/cell/error_codes.h"
 
 namespace vm { using namespace ps3; }
 

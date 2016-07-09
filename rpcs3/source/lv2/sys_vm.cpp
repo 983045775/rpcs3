@@ -1,11 +1,11 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_memory.h"
-#include "sys_vm.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_memory.h"
+#include "rpcs3/lv2/sys_vm.h"
 
 logs::channel sys_vm("sys_vm", logs::level::notice);
 

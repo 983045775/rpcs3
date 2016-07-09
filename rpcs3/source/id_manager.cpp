@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/id_manager.h"
 
 DECLARE(idm::g_map);
 DECLARE(idm::g_id);

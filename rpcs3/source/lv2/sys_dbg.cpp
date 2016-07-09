@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
 
-#include "Cell/ErrorCodes.h"
-#include "sys_dbg.h"
+#include "rpcs3/cell/error_codes.h"
+#include "rpcs3/lv2/sys_dbg.h"
 
 logs::channel sys_dbg("sys_dbg", logs::level::notice);

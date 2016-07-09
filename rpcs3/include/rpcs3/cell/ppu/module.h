@@ -1,8 +1,8 @@
 #pragma once
 
-#include "PPUFunction.h"
-#include "PPUCallback.h"
-#include "ErrorCodes.h"
+#include "rpcs3/cell/ppu/function.h"
+#include "rpcs3/cell/ppu/callback.h"
+#include "rpcs3/cell/error_codes.h"
 
 namespace vm { using namespace ps3; }
 

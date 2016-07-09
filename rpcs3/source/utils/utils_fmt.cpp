@@ -1,6 +1,6 @@
-#include "StrFmt.h"
-#include "BEType.h"
-#include "StrUtil.h"
+#include "rpcs3/utils/fmt.h"
+#include "rpcs3/utils/be_t.h"
+#include "rpcs3/utils/strutil.h"
 
 #include <cassert>
 #include <array>

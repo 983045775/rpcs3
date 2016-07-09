@@ -1,8 +1,7 @@
 #pragma once
 #include "../Common/surface_store.h"
 #include "gl_helpers.h"
-#include "stdafx.h"
-#include "../RSXThread.h"
+#include "rpcs3/rsx/thread.h"
 
 struct color_swizzle
 {

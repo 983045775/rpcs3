@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "AudioDumper.h"
+#include "rpcs3/pch.h"
+#include <rpcs3/audio/dumper.h>
 
 AudioDumper::AudioDumper(u16 ch)
 	: m_header(ch)

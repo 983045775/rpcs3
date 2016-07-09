@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utilities/Thread.h"
+#include "rpcs3/utils/thread.h"
 
 #include <mutex>
 #include <condition_variable>

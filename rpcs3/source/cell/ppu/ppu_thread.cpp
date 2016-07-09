@@ -1,13 +1,13 @@
-#include "stdafx.h"
-#include "Utilities/Config.h"
-#include "Utilities/VirtualMemory.h"
-#include "Memory/Memory.h"
-#include "System.h"
-#include "IdManager.h"
-#include "PPUThread.h"
-#include "PPUInterpreter.h"
-#include "PPUAnalyser.h"
-#include "PPUModule.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/config.h"
+#include "rpcs3/utils/virtual_memory.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
+#include "rpcs3/id_manager.h"
+#include "rpcs3/cell/ppu/thread.h"
+#include "rpcs3/cell/ppu/analyser.h"
+#include "rpcs3/cell/ppu/module.h"
+#include <rpcs3/cell/ppu/opcodes.h>
 
 #ifdef LLVM_AVAILABLE
 #ifdef _MSC_VER
@@ -46,7 +46,7 @@ enum class ppu_decoder_type
 	fast,
 	llvm,
 };
-
+/*
 cfg::map_entry<ppu_decoder_type> g_cfg_ppu_decoder(cfg::root.core, "PPU Decoder", 1,
 {
 	{ "Interpreter (precise)", ppu_decoder_type::precise },
@@ -56,16 +56,19 @@ cfg::map_entry<ppu_decoder_type> g_cfg_ppu_decoder(cfg::root.core, "PPU Decoder"
 
 const ppu_decoder<ppu_interpreter_precise> s_ppu_interpreter_precise;
 const ppu_decoder<ppu_interpreter_fast> s_ppu_interpreter_fast;
+*/
 
 const auto s_ppu_compiled = static_cast<ppu_function_t*>(memory_helper::reserve_memory(0x200000000));
 
 extern void ppu_register_function_at(u32 addr, ppu_function_t ptr)
 {
+	/*
 	if (g_cfg_ppu_decoder.get() == ppu_decoder_type::llvm)
 	{
 		memory_helper::commit_page_memory(s_ppu_compiled + addr / 4, sizeof(ppu_function_t));
 		s_ppu_compiled[addr / 4] = ptr;
 	}
+	*/
 }
 
 std::string PPUThread::get_name() const
@@ -132,6 +135,7 @@ void PPUThread::cpu_task()
 
 void PPUThread::cpu_task_main()
 {
+	/*
 	if (g_cfg_ppu_decoder.get() == ppu_decoder_type::llvm)
 	{
 		return s_ppu_compiled[pc / 4](*this);
@@ -200,6 +204,7 @@ void PPUThread::cpu_task_main()
 			break;
 		}
 	}
+	*/
 }
 
 constexpr auto stop_state = make_bitset(cpu_state::stop, cpu_state::exit, cpu_state::suspend);
@@ -362,7 +367,7 @@ void PPUThread::fast_call(u32 addr, u32 rtoc)
 	//}
 }
 
-const ppu_decoder<ppu_itype> s_ppu_itype;
+//const ppu_decoder<ppu_itype> s_ppu_itype;
 
 extern u64 get_timebased_time();
 extern void ppu_execute_syscall(PPUThread& ppu, u64 code);
@@ -457,7 +462,7 @@ static bool adde_carry(u64 a, u64 b, bool c)
 }
 
 // Interpreter call for simple vector instructions
-static __m128i ppu_vec3op(decltype(&ppu_interpreter::UNK) func, __m128i _a, __m128i _b, __m128i _c)
+static __m128i ppu_vec3op(void (*func)(PPUThread &ppu_thread, ppu_opcode_t& op), __m128i _a, __m128i _b, __m128i _c)
 {
 	PPUThread& ppu = static_cast<PPUThread&>(*get_current_cpu_thread());
 	ppu.VR[21].vi = _a;
@@ -476,6 +481,7 @@ static __m128i ppu_vec3op(decltype(&ppu_interpreter::UNK) func, __m128i _a, __m1
 
 extern void ppu_initialize(const std::string& name, const std::vector<ppu_function>& funcs, u32 entry)
 {
+	/*
 	if (g_cfg_ppu_decoder.get() != ppu_decoder_type::llvm || funcs.empty())
 	{
 		if (!Emu.GetCPUThreadStop())
@@ -686,4 +692,5 @@ extern void ppu_initialize(const std::string& name, const std::vector<ppu_functi
 
 	LOG_SUCCESS(PPU, "LLVM: Compilation finished (%s)", sys::getHostCPUName().data());
 #endif
+ */
 }

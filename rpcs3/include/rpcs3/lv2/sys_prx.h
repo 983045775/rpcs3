@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Cell/PPUAnalyser.h"
+#include "rpcs3/cell/ppu/analyser.h"
 
 namespace vm { using namespace ps3; }
 

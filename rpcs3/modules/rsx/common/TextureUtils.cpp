@@ -2,7 +2,7 @@
 #include "Memory/vm.h"
 #include "TextureUtils.h"
 #include "../RSXThread.h"
-#include "../rsx_utils.h"
+#include "../rsx_rpcs3/utils/crypto_utils.h"
 
 
 namespace

@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "Utilities/GSL.h"
-#include "Memory/vm.h"
-#include "../RSXThread.h"
+#include <rpcs3/utils/gsl.h>
+#include <rpcs3/vm/vm.h>
+#include <rpcs3/rsx/thread.h>
 
 /**
  * Write count vertex attributes from src_ptr starting at first.

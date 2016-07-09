@@ -1,16 +1,17 @@
 #pragma once
 
+#include "OpenGL.h"
+#include <rpcs3/gcm.h>
+#include <rpcs3/utils/log.h>
+#include <rpcs3/utils/geometry.h>
+#include <rpcs3/pch.h>
+
 #include <exception>
 #include <string>
 #include <functional>
 #include <vector>
 #include <memory>
 #include <unordered_map>
-
-#include "OpenGL.h"
-#include "../GCM.h"
-
-#include "Utilities/geometry.h"
 
 namespace gl
 {

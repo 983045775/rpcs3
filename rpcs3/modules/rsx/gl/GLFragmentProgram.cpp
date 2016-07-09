@@ -1,10 +1,9 @@
-#include "stdafx.h"
-#include "Memory/Memory.h"
-#include "System.h"
+#include "rpcs3/vm/memory.h"
+#include "rpcs3/system.h"
 #include "GLFragmentProgram.h"
 
 #include "GLCommonDecompiler.h"
-#include "../GCM.h"
+#include "rpcs3/gcm.h"
 
 std::string GLFragmentDecompilerThread::getFloatTypeName(size_t elementCount)
 {

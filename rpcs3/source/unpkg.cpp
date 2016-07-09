@@ -1,9 +1,9 @@
-#include "stdafx.h"
-#include "utils.h"
-#include "aes.h"
-#include "sha1.h"
-#include "key_vault.h"
-#include "unpkg.h"
+#include "rpcs3/pch.h"
+#include "rpcs3/utils/crypto_utils.h"
+#include "rpcs3/utils/aes.h"
+#include "rpcs3/utils/sha1.h"
+#include "rpcs3/utils/key_vault.h"
+#include "rpcs3/unpkg.h"
 
 bool pkg_install(const fs::file& pkg_f, const std::string& dir, atomic_t<double>& sync)
 {

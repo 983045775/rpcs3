@@ -1,7 +1,7 @@
 #ifdef LLVM_AVAILABLE
 
 #include "PPUTranslator.h"
-#include "PPUThread.h"
+#include "rpcs3/cell/ppu/thread.h"
 #include "PPUInterpreter.h"
 
 #include "Utilities/Log.h"

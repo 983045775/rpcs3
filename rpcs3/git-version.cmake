@@ -1,4 +1,4 @@
-set(GIT_VERSION_FILE "${SOURCE_DIR}/git-version.h")
+set(GIT_VERSION_FILE "${SOURCE_DIR}/rpcs3/include/git-version.h")
 set(GIT_VERSION "unknown")
 set(GIT_VERSION_UPDATE "1")
 

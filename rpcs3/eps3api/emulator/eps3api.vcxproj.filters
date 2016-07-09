@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="southbound api">
+      <UniqueIdentifier>{b1735e2c-a089-43e4-a088-affc5bfbcb5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nourthbound api">
+      <UniqueIdentifier>{f534f83c-297f-4b90-add8-01cad3a56cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nourthbound api\include">
+      <UniqueIdentifier>{7e368150-c17a-4b91-a6ca-26586e798d2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="nourthbound api\source">
+      <UniqueIdentifier>{3068865f-5358-4808-ba4d-c77d824b012c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="southbound api\include">
+      <UniqueIdentifier>{5416a941-c559-4d31-af84-0b13adf6de4d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="northbound_api\include\eps3\enums.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="northbound_api\include\eps3\executable.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="northbound_api\include\eps3\module.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="northbound_api\include\eps3\thread.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="northbound_api\include\eps3\types.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="northbound_api\include\eps3\emulator.h">
+      <Filter>nourthbound api\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="northbound_api\source\thread.c">
+      <Filter>nourthbound api\source</Filter>
+    </ClCompile>
+    <ClCompile Include="northbound_api\source\emulator.c">
+      <Filter>nourthbound api\source</Filter>
+    </ClCompile>
+    <ClCompile Include="northbound_api\source\executable.c">
+      <Filter>nourthbound api\source</Filter>
+    </ClCompile>
+    <ClCompile Include="northbound_api\source\module.c">
+      <Filter>nourthbound api\source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

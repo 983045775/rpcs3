@@ -101,6 +101,7 @@ public:
 		info.align = ALIGN_32(typename T::type);
 	}
 
+	/*
 	static const ppu_static_module cellAdec;
 	static const ppu_static_module cellAtrac;
 	static const ppu_static_module cellAtracMulti;
@@ -193,6 +194,7 @@ public:
 	static const ppu_static_module sysPrxForUser;
 	static const ppu_static_module sys_libc;
 	static const ppu_static_module sys_lv2dbg;
+	*/
 };
 
 // Call specified function directly if LLE is not available, call LLE equivalent in callback style otherwise

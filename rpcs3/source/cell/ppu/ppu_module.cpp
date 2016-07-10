@@ -14,7 +14,7 @@
 
 #include <unordered_set>
 #include <algorithm>
-
+/*
 LOG_CHANNEL(cellAdec);
 LOG_CHANNEL(cellAtrac);
 LOG_CHANNEL(cellAtracMulti);
@@ -105,6 +105,7 @@ LOG_CHANNEL(sys_libc);
 LOG_CHANNEL(sys_lv2dbg);
 LOG_CHANNEL(libnet);
 LOG_CHANNEL(sysPrxForUser);
+*/
 
 cfg::bool_entry g_cfg_hook_ppu_funcs(cfg::root.core, "Hook static functions");
 cfg::bool_entry g_cfg_load_liblv2(cfg::root.core, "Load liblv2.sprx only");
@@ -222,6 +223,7 @@ static void ppu_initialize_modules()
 {
 	const std::initializer_list<const ppu_static_module*> registered
 	{
+		/*
 		&ppu_module_manager::cellAdec,
 		&ppu_module_manager::cellAtrac,
 		&ppu_module_manager::cellAtracMulti,
@@ -314,6 +316,7 @@ static void ppu_initialize_modules()
 		&ppu_module_manager::sysPrxForUser,
 		&ppu_module_manager::sys_libc,
 		&ppu_module_manager::sys_lv2dbg,
+		*/
 	};
 
 	// Reinitialize function cache

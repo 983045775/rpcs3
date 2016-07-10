@@ -175,8 +175,8 @@ void Emulator::Load()
 		const fs::file elf_file(m_path);
 		ppu_exec_loader ppu_exec;
 		ppu_prx_loader ppu_prx;
-		spu_exec_loader spu_exec;
-		arm_exec_loader arm_exec;
+		//spu_exec_loader spu_exec;
+		//arm_exec_loader arm_exec;
 
 		if (!elf_file)
 		{
@@ -243,7 +243,7 @@ void Emulator::Load()
 			ppu_prx.load();
 			GetCallbackManager().Init();
 		}
-		else if (spu_exec.open(elf_file) == elf_error::ok)
+		/*else if (spu_exec.open(elf_file) == elf_error::ok)
 		{
 			// SPU executable (experimental)
 			m_status = Ready;
@@ -257,14 +257,15 @@ void Emulator::Load()
 			vm::psv::init();
 			arm_exec.load();
 		}
+		*/
 		else
 		{
 			LOG_ERROR(LOADER, "Invalid or unsupported file format: %s", m_path);
 
 			LOG_WARNING(LOADER, "** ppu_exec_loader -> %s", ppu_exec.get_error());
 			LOG_WARNING(LOADER, "** ppu_prx_loader -> %s", ppu_prx.get_error());
-			LOG_WARNING(LOADER, "** spu_exec_loader -> %s", spu_exec.get_error());
-			LOG_WARNING(LOADER, "** arm_exec_loader -> %s", arm_exec.get_error());
+			//LOG_WARNING(LOADER, "** spu_exec_loader -> %s", spu_exec.get_error());
+			//LOG_WARNING(LOADER, "** arm_exec_loader -> %s", arm_exec.get_error());
 			return;
 		}
 

@@ -5,7 +5,8 @@ typedef enum Eps3ErrorCode_e
 {
 	eps3ErrorOk,
 	eps3ErrorInvalidValue,
-	eps3ErrorNotImplemented
+	eps3ErrorNotImplemented,
+	eps3ErrorBadArgument
 } Eps3ErrorCode;
 
 typedef enum Eps3State_e

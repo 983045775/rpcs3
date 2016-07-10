@@ -23,12 +23,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\include\eps3\enums.h" />
+    <ClInclude Include="common\include\eps3\types.h" />
     <ClInclude Include="northbound_api\include\eps3\emulator.h" />
-    <ClInclude Include="northbound_api\include\eps3\enums.h" />
     <ClInclude Include="northbound_api\include\eps3\executable.h" />
     <ClInclude Include="northbound_api\include\eps3\module.h" />
     <ClInclude Include="northbound_api\include\eps3\thread.h" />
-    <ClInclude Include="northbound_api\include\eps3\types.h" />
     <ClInclude Include="southbound_api\include\eps3\southbound-emulator-api.h" />
     <ClInclude Include="southbound_api\include\eps3\southbound-executable-api.h" />
     <ClInclude Include="southbound_api\include\eps3\southbound-module-api.h" />

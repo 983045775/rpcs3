@@ -16,11 +16,11 @@
     <Filter Include="southbound api\include">
       <UniqueIdentifier>{5416a941-c559-4d31-af84-0b13adf6de4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{95556814-0deb-410d-90bc-b75958edee00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="northbound_api\include\eps3\enums.h">
-      <Filter>nourthbound api\include</Filter>
-    </ClInclude>
     <ClInclude Include="northbound_api\include\eps3\executable.h">
       <Filter>nourthbound api\include</Filter>
     </ClInclude>
@@ -28,9 +28,6 @@
       <Filter>nourthbound api\include</Filter>
     </ClInclude>
     <ClInclude Include="northbound_api\include\eps3\thread.h">
-      <Filter>nourthbound api\include</Filter>
-    </ClInclude>
-    <ClInclude Include="northbound_api\include\eps3\types.h">
       <Filter>nourthbound api\include</Filter>
     </ClInclude>
     <ClInclude Include="northbound_api\include\eps3\emulator.h">
@@ -47,6 +44,12 @@
     </ClInclude>
     <ClInclude Include="southbound_api\include\eps3\southbound-thread-api.h">
       <Filter>southbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="common\include\eps3\enums.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\include\eps3\types.h">
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
-#ifndef _EPS3API_EMULATOR_
-#define _EPS3API_EMULATOR_
+#ifndef _EPS3API_THREAD_
+#define _EPS3API_THREAD_
 
 #include "eps3/dll_export.h"
 #include <eps3/types.h>
@@ -16,4 +16,4 @@ EPS3API_DLL_EXPORT Eps3ErrorCode eps3ThreadGetRegister(Eps3Thread thread, int ty
 }
 #endif
 
-#endif /* _EPS3API_EMULATOR_ */
+#endif /* _EPS3API_THREAD_ */

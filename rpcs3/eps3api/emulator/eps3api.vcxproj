@@ -29,6 +29,10 @@
     <ClInclude Include="northbound_api\include\eps3\module.h" />
     <ClInclude Include="northbound_api\include\eps3\thread.h" />
     <ClInclude Include="northbound_api\include\eps3\types.h" />
+    <ClInclude Include="southbound_api\include\eps3\southbound-emulator-api.h" />
+    <ClInclude Include="southbound_api\include\eps3\southbound-executable-api.h" />
+    <ClInclude Include="southbound_api\include\eps3\southbound-module-api.h" />
+    <ClInclude Include="southbound_api\include\eps3\southbound-thread-api.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="northbound_api\source\emulator.c" />
@@ -77,19 +81,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">
-    <IncludePath>$(ProjectDir)common\include;$(ProjectDir)northbound_api\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">
-    <IncludePath>$(ProjectDir)common\include;$(ProjectDir)northbound_api\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)common\include;$(ProjectDir)northbound_api\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)common\include;$(ProjectDir)northbound_api\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">
-    <IncludePath>$(ProjectDir)common\include;$(ProjectDir)northbound_api\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

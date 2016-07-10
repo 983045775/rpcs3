@@ -36,6 +36,18 @@
     <ClInclude Include="northbound_api\include\eps3\emulator.h">
       <Filter>nourthbound api\include</Filter>
     </ClInclude>
+    <ClInclude Include="southbound_api\include\eps3\southbound-emulator-api.h">
+      <Filter>southbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="southbound_api\include\eps3\southbound-executable-api.h">
+      <Filter>southbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="southbound_api\include\eps3\southbound-module-api.h">
+      <Filter>southbound api\include</Filter>
+    </ClInclude>
+    <ClInclude Include="southbound_api\include\eps3\southbound-thread-api.h">
+      <Filter>southbound api\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="northbound_api\source\thread.c">

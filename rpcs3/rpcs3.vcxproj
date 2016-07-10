@@ -61,13 +61,22 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)eps3api\emulator\common\include;$(ProjectDir)eps3api\emulator\southbound_api\include;$(ProjectDir)eps3api\module\common\include;$(ProjectDir)eps3api\module\southbound_api\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">true</WholeProgramOptimization>
     </ClCompile>
     <PreBuildEvent>
       <Command>%windir%\sysnative\cmd.exe /c "$(ProjectDir)git-version-gen.cmd"</Command>
@@ -120,6 +129,9 @@
     <ClCompile Include="source\cell\raw_spu\raw_spu_thread.cpp" />
     <ClCompile Include="source\cell\spu\mfc.cpp" />
     <ClCompile Include="source\cell\spu\spu_thread.cpp" />
+    <ClCompile Include="source\eapi\eapi_emulator.cpp" />
+    <ClCompile Include="source\eapi\eapi_executable.cpp" />
+    <ClCompile Include="source\eapi\eapi_thread.cpp" />
     <ClCompile Include="source\gcm.cpp" />
     <ClCompile Include="source\id_manager.cpp" />
     <ClCompile Include="source\lv2\lv2.cpp" />

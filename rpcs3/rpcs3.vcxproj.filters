@@ -63,8 +63,8 @@
     <Filter Include="source\cell\raw_spu">
       <UniqueIdentifier>{93166023-2426-4f8d-9ff5-60616be9130b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\api">
-      <UniqueIdentifier>{df9ed636-fff6-410d-974e-0f494c90d16e}</UniqueIdentifier>
+    <Filter Include="source\eapi">
+      <UniqueIdentifier>{120d2417-3968-4b99-b11b-7865271fda9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +295,15 @@
     </ClCompile>
     <ClCompile Include="source\cell\spu\mfc.cpp">
       <Filter>source\cell\spu</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eapi\eapi_thread.cpp">
+      <Filter>source\eapi</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eapi\eapi_emulator.cpp">
+      <Filter>source\eapi</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eapi\eapi_executable.cpp">
+      <Filter>source\eapi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -23,22 +23,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\include\eps3\enums.h" />
-    <ClInclude Include="common\include\eps3\types.h" />
-    <ClInclude Include="northbound_api\include\eps3\emulator.h" />
-    <ClInclude Include="northbound_api\include\eps3\executable.h" />
-    <ClInclude Include="northbound_api\include\eps3\module.h" />
-    <ClInclude Include="northbound_api\include\eps3\thread.h" />
-    <ClInclude Include="southbound_api\include\eps3\southbound-emulator-api.h" />
-    <ClInclude Include="southbound_api\include\eps3\southbound-executable-api.h" />
-    <ClInclude Include="southbound_api\include\eps3\southbound-module-api.h" />
-    <ClInclude Include="southbound_api\include\eps3\southbound-thread-api.h" />
+    <ClCompile Include="api\eps3-api.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="source\eps3-emulator-api.c" />
+    <ClCompile Include="source\eps3-executable-api.c" />
+    <ClCompile Include="source\eps3-module-api.c" />
+    <ClCompile Include="source\eps3-thread-api.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="northbound_api\source\emulator.c" />
-    <ClCompile Include="northbound_api\source\executable.c" />
-    <ClCompile Include="northbound_api\source\module.c" />
-    <ClCompile Include="northbound_api\source\thread.c" />
+    <ClInclude Include="include\eps3\emulator-api.h" />
+    <ClInclude Include="include\eps3\enums.h" />
+    <ClInclude Include="include\eps3\executable-api.h" />
+    <ClInclude Include="include\eps3\module-api.h" />
+    <ClInclude Include="include\eps3\thread-api.h" />
+    <ClInclude Include="include\eps3\types.h" />
+    <ClInclude Include="source\functions.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7A2E4C6D-5DD6-44CC-84E2-0641590F4BAB}</ProjectGuid>
@@ -81,24 +85,36 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">
-    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">
-    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">
-    <IncludePath>$(ProjectDir)southbound_api\include;$(ProjectDir)northbound_api\include;$(ProjectDir)common\include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)..\common\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdparty\OpenAL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Lib>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">
+      </ModuleDefinitionFile>
+    </Lib>
+    <Lib>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ModuleDefinitionFile>
+    </Lib>
+    <Lib>
+      <ModuleDefinitionFile Condition="'$(Configuration)|$(Platform)'=='Debug - LLVM|x64'">
+      </ModuleDefinitionFile>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

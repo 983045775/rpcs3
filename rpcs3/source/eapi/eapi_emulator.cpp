@@ -1,5 +1,5 @@
 #include "rpcs3/pch.h"
-#include <eps3/southbound-emulator-api.h>
+#include <eps3/emulator-api.h>
 #include <eps3/enums.h>
 
 Eps3ErrorCode eps3EmulatorCreateImpl(Eps3Emulator *handle)

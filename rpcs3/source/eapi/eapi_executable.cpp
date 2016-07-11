@@ -1,5 +1,5 @@
 #include "rpcs3/pch.h"
-#include <eps3/southbound-executable-api.h>
+#include <eps3/executable-api.h>
 #include <eps3/enums.h>
 
 Eps3ErrorCode eps3ExecutableLoadImpl(Eps3Executable *executable, const char *path)

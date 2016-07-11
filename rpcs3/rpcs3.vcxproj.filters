@@ -305,6 +305,9 @@
     <ClCompile Include="source\eapi\eapi_executable.cpp">
       <Filter>source\eapi</Filter>
     </ClCompile>
+    <ClCompile Include="..\eps3api\emulator\api\eps3-api.c">
+      <Filter>source\eapi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\rpcs3\rsx\fragment_program.h">

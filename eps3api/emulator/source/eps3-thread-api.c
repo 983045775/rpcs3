@@ -1,8 +1,8 @@
-#include "eps3/thread.h"
+#include "functions.h"
 #include "eps3/enums.h"
-#include "eps3/southbound-thread-api.h"
+#include "eps3/thread-api.h"
 
-Eps3ErrorCode eps3ThreadGetInfo(Eps3Thread thread, Eps3ThreadInfo *info)
+Eps3ErrorCode _eps3ThreadGetInfo(Eps3Thread thread, Eps3ThreadInfo *info)
 {
 	if (!info)
 	{
@@ -12,7 +12,7 @@ Eps3ErrorCode eps3ThreadGetInfo(Eps3Thread thread, Eps3ThreadInfo *info)
 	return eps3ThreadGetInfoImpl(thread, info);
 }
 
-Eps3ErrorCode eps3ThreadGetRegister(Eps3Thread thread, int type, int index, void **destRegister)
+Eps3ErrorCode _eps3ThreadGetRegister(Eps3Thread thread, int type, int index, void **destRegister)
 {
 	if (type < 0 || index < 0)
 	{

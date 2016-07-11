@@ -1,5 +1,5 @@
 #include "rpcs3/pch.h"
-#include <eps3/southbound-thread-api.h>
+#include <eps3/thread-api.h>
 #include <eps3/enums.h>
 
 Eps3ErrorCode eps3ThreadGetInfoImpl(Eps3Thread thread, Eps3ThreadInfo *info)

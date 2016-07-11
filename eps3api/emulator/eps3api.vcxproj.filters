@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{2de2c9f8-23d7-4888-87ea-cf582f0f2fb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{a2eef3e9-2318-42fc-8347-52937942d775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="api">
+      <UniqueIdentifier>{a8f4476a-5c94-49d0-831b-13536c19f290}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="api\eps3-api.c">
+      <Filter>api</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eps3-emulator-api.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eps3-executable-api.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eps3-module-api.c">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="source\eps3-thread-api.c">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\functions.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\enums.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\executable-api.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\module-api.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\thread-api.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eps3\emulator-api.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

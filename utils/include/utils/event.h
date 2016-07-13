@@ -34,37 +34,14 @@ namespace utils
 			event& m_event;
 
 		public:
-			binder(event_binder& event_binder_, event& event_)
-				: m_event_binder(event_binder_)
-				, m_event(event_)
-			{
-			}
+			binder(event_binder& event_binder_, event& event_);
 
-			binder& operator +=(const event::function &function_)
-			{
-				bind(function_);
-				return *this;
-			}
-
-			event::iterator bind(event::function function_)
-			{
-				return m_event_binder.bind(m_event, function_);
-			}
+			binder& operator +=(const event::function &function_);
+			event::iterator bind(event::function function_) const;
 		};
 
 	public:
-		event::iterator bind(event& event_, event::function function)
-		{
-			event::iterator result = event_.bind(function);
-
-			m_binded_events.push_back(result);
-
-			return result;
-		}
-
-		binder operator()(event& event_)
-		{
-			return{ *this, event_ };
-		}
+		event::iterator bind(event& event_, event::function function);
+		binder operator()(event& event_);
 	};
 }

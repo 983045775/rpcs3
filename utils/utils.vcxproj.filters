@@ -18,6 +18,12 @@
     <ClInclude Include="include\utils\string_ref.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="include\utils\state_machine.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils\event_def.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\event.cpp">

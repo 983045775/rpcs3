@@ -1682,10 +1682,10 @@ const bool s_exception_handler_set = []() -> bool
 		std::abort();
 	}
 
-	if (!SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)exception_filter))
+	//if (!SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)exception_filter))
 	{
-		report_fatal_error("SetUnhandledExceptionFilter() failed.");
-		std::abort();
+	//	report_fatal_error("SetUnhandledExceptionFilter() failed.");
+	//	std::abort();
 	}
 
 	return true;

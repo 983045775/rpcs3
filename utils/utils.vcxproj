@@ -130,7 +130,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\utils\event.h" />
+    <ClInclude Include="include\utils\event_def.h" />
     <ClInclude Include="include\utils\hashers.h" />
+    <ClInclude Include="include\utils\state_machine.h" />
     <ClInclude Include="include\utils\string_ref.h" />
   </ItemGroup>
   <ItemGroup>

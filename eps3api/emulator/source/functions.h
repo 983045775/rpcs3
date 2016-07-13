@@ -1,14 +1,14 @@
 #include "eps3/types.h"
 
-Eps3ErrorCode _eps3EmulatorCreate(Eps3Emulator *handle);
-Eps3ErrorCode _eps3EmulatorDestroy(Eps3Emulator handle);
-Eps3ErrorCode _eps3EmulatorAddModule(Eps3Emulator handle, Eps3Module module);
-Eps3ErrorCode _eps3EmulatorLoad(Eps3Emulator handle, Eps3Executable executable);
-Eps3ErrorCode _eps3EmulatorStart(Eps3Emulator handle);
-Eps3ErrorCode _eps3EmulatorStop(Eps3Emulator handle);
-Eps3ErrorCode _eps3EmulatorPause(Eps3Emulator handle);
-Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3Emulator handle, Eps3OnStateChangeCallback callback);
-Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Emulator handle, Eps3Thread *threadsList, int maxCount, int *count);
+Eps3ErrorCode _eps3EmulatorCreate();
+Eps3ErrorCode _eps3EmulatorDestroy();
+Eps3ErrorCode _eps3EmulatorAddModule(Eps3Module module);
+Eps3ErrorCode _eps3EmulatorLoad(Eps3Executable executable);
+Eps3ErrorCode _eps3EmulatorStart();
+Eps3ErrorCode _eps3EmulatorStop();
+Eps3ErrorCode _eps3EmulatorPause();
+Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3OnStateChangeCallback callback);
+Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count);
 
 //executable
 Eps3ErrorCode _eps3ExecutableLoad(Eps3Executable *executable, const char *path);

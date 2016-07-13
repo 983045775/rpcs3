@@ -308,6 +308,9 @@
     <ClCompile Include="..\eps3api\emulator\api\eps3-api.c">
       <Filter>source\eapi</Filter>
     </ClCompile>
+    <ClCompile Include="source\emulator.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\rpcs3\rsx\fragment_program.h">
@@ -645,6 +648,9 @@
     </ClInclude>
     <ClInclude Include="include\rpcs3\vm\wait_engine.h">
       <Filter>include\vm</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rpcs3\emulator.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

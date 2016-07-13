@@ -2,49 +2,49 @@
 #include <eps3/dll_export.h>
 
 //emulator
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorCreate(Eps3Emulator *handle)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorCreate()
 {
-	return _eps3EmulatorCreate(handle);
+	return _eps3EmulatorCreate();
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorDestroy(Eps3Emulator handle)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorDestroy()
 {
-	return _eps3EmulatorDestroy(handle);
+	return _eps3EmulatorDestroy();
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorAddModule(Eps3Emulator handle, Eps3Module module)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorAddModule(Eps3Module module)
 {
-	return _eps3EmulatorAddModule(handle, module);
+	return _eps3EmulatorAddModule(module);
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorLoad(Eps3Emulator handle, Eps3Executable executable)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorLoad(Eps3Executable executable)
 {
-	return _eps3EmulatorLoad(handle, executable);
+	return _eps3EmulatorLoad(executable);
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorStart(Eps3Emulator handle)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorStart()
 {
-	return _eps3EmulatorStart(handle);
+	return _eps3EmulatorStart();
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorStop(Eps3Emulator handle)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorStop()
 {
-	return _eps3EmulatorStop(handle);
+	return _eps3EmulatorStop();
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorPause(Eps3Emulator handle)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorPause()
 {
-	return _eps3EmulatorPause(handle);
+	return _eps3EmulatorPause();
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorOnStateChange(Eps3Emulator handle, Eps3OnStateChangeCallback callback)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorOnStateChange(Eps3OnStateChangeCallback callback)
 {
-	return _eps3EmulatorOnStateChange(handle, callback);
+	return _eps3EmulatorOnStateChange(callback);
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetThreadsList(Eps3Emulator handle, Eps3Thread *threadsList, int maxCount, int *count)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count)
 {
-	return _eps3EmulatorGetThreadsList(handle, threadsList, maxCount, count);
+	return _eps3EmulatorGetThreadsList(threadsList, maxCount, count);
 }
 
 //executable

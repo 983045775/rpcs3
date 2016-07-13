@@ -9,6 +9,11 @@ typedef enum Eps3ModuleType_e Eps3ModuleType;
 typedef enum Eps3ThreadType_e Eps3ThreadType;
 typedef enum Eps3ExecutableType_e Eps3ExecutableType;
 
+typedef struct Eps3Executable_s *Eps3Executable;
+typedef struct Eps3Module_s *Eps3Module;
+typedef struct Eps3Thread_s *Eps3Thread;
+typedef void(*Eps3OnStateChangeCallback)(Eps3State newState);
+
 #pragma pack(push, 8)
 typedef struct
 {
@@ -27,11 +32,5 @@ typedef struct
 	uint32_t number;
 } Eps3Version;
 #pragma pack(pop)
-
-typedef struct Eps3Emulator_s *Eps3Emulator;
-typedef struct Eps3Executable_s *Eps3Executable;
-typedef struct Eps3Module_s *Eps3Module;
-typedef struct Eps3Thread_s *Eps3Thread;
-typedef void(*Eps3OnStateChangeCallback)(Eps3State newState);
 
 #endif /*_EPS3API_TYPES_ */

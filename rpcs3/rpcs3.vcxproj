@@ -148,6 +148,7 @@
     <ClCompile Include="source\eapi\eapi_emulator.cpp" />
     <ClCompile Include="source\eapi\eapi_executable.cpp" />
     <ClCompile Include="source\eapi\eapi_thread.cpp" />
+    <ClCompile Include="source\emulator.cpp" />
     <ClCompile Include="source\gcm.cpp" />
     <ClCompile Include="source\id_manager.cpp" />
     <ClCompile Include="source\lv2\lv2.cpp" />
@@ -361,6 +362,7 @@
     <ClInclude Include="include\rpcs3\cell\thread.h" />
     <ClInclude Include="include\rpcs3\dbg_command.h" />
     <ClInclude Include="include\rpcs3\elf.h" />
+    <ClInclude Include="include\rpcs3\emulator.h" />
     <ClInclude Include="include\rpcs3\game_info.h" />
     <ClInclude Include="include\rpcs3\gcm.h" />
     <ClInclude Include="include\rpcs3\id_manager.h" />

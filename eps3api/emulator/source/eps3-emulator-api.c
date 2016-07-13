@@ -2,57 +2,57 @@
 #include "eps3/enums.h"
 #include "eps3/emulator-api.h"
 
-Eps3ErrorCode _eps3EmulatorCreate(Eps3Emulator *handle)
+Eps3ErrorCode _eps3EmulatorCreate()
 {
-	return eps3EmulatorCreateImpl(handle);
+	return eps3EmulatorCreateImpl();
 }
 
-Eps3ErrorCode _eps3EmulatorDestroy(Eps3Emulator handle)
+Eps3ErrorCode _eps3EmulatorDestroy()
 {
-	return eps3EmulatorDestroyImpl(handle);
+	return eps3EmulatorDestroyImpl();
 }
 
-Eps3ErrorCode _eps3EmulatorAddModule(Eps3Emulator handle, Eps3Module module)
+Eps3ErrorCode _eps3EmulatorAddModule(Eps3Module module)
 {
 	if (!module)
 	{
 		return eps3ErrorBadArgument;
 	}
 
-	return eps3EmulatorAddModuleImpl(handle, module);
+	return eps3EmulatorAddModuleImpl(module);
 }
 
-Eps3ErrorCode _eps3EmulatorLoad(Eps3Emulator handle, Eps3Executable executable)
+Eps3ErrorCode _eps3EmulatorLoad(Eps3Executable executable)
 {
 	if (!executable || _eps3ExecutableGetType(executable) == eps3ExecutableTypeUnknown)
 	{
 		return eps3ErrorBadArgument;
 	}
 
-	return eps3EmulatorLoadImpl(handle, executable);
+	return eps3EmulatorLoadImpl(executable);
 }
 
-Eps3ErrorCode _eps3EmulatorStart(Eps3Emulator handle)
+Eps3ErrorCode _eps3EmulatorStart()
 {
-	return eps3EmulatorStartImpl(handle);
+	return eps3EmulatorStartImpl();
 }
 
-Eps3ErrorCode _eps3EmulatorStop(Eps3Emulator handle)
+Eps3ErrorCode _eps3EmulatorStop()
 {
-	return eps3EmulatorStopImpl(handle);
+	return eps3EmulatorStopImpl();
 }
 
-Eps3ErrorCode _eps3EmulatorPause(Eps3Emulator handle)
+Eps3ErrorCode _eps3EmulatorPause()
 {
-	return eps3EmulatorPauseImpl(handle);
+	return eps3EmulatorPauseImpl();
 }
 
-Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3Emulator handle, Eps3OnStateChangeCallback callback)
+Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3OnStateChangeCallback callback)
 {
-	return eps3EmulatorOnStateChangeImpl(handle, callback);
+	return eps3EmulatorOnStateChangeImpl(callback);
 }
 
-Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Emulator handle, Eps3Thread *threadsList, int maxCount, int *count)
+Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count)
 {
 	if (maxCount < 0)
 	{
@@ -64,5 +64,5 @@ Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Emulator handle, Eps3Thread *threa
 		return eps3ErrorBadArgument;
 	}
 
-	return eps3EmulatorGetThreadsListImpl(handle, threadsList, maxCount, count);
+	return eps3EmulatorGetThreadsListImpl(threadsList, maxCount, count);
 }

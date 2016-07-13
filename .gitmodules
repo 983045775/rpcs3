@@ -1,14 +1,6 @@
 [submodule "rpcs3-ffmpeg"]
 	path = 3rdparty/ffmpeg
 	url = https://github.com/hrydgard/ppsspp-ffmpeg
-[submodule "asmjit"]
-	path = asmjit
-	url = https://github.com/kobalicek/asmjit
-	ignore = dirty
-[submodule "llvm"]
-	path = llvm
-	url = https://github.com/llvm-mirror/llvm
-	branch = release_36
 [submodule "rsx_program_decompiler"]
 	path = rsx_program_decompiler
 	url = https://github.com/DHrpcs3/rsx_program_decompiler

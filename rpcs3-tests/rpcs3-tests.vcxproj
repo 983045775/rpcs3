@@ -91,9 +91,6 @@
     <ClCompile Include="ps3_syscall.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\asmjitsrc\asmjit.vcxproj">
-      <Project>{ac40ff01-426e-4838-a317-66354cefae88}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\rpcs3\PPULLVMRecompiler.vcxproj">
       <Project>{304a6e8b-a311-4ec5-8045-bfa8d08175ce}</Project>
     </ProjectReference>

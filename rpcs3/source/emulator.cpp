@@ -1,17 +1,9 @@
 #include "rpcs3/pch.h"
 #include "rpcs3/emulator.h"
 #include <utils/event.h>
-#include <utils/state_machine.h>
 
 namespace rpcs3
 {
-	enum class emulator_state
-	{
-		idle,
-		start
-		//TODO
-	};
-
 	utils::state_machine<emulator_state> state_machine;
 
 	utils::event on_start;
@@ -22,9 +14,23 @@ namespace rpcs3
 	bool create()
 	{
 		state_machine.register_state(emulator_state::idle);
-		state_machine.register_state(emulator_state::start);
+		state_machine.register_state(emulator_state::runnable);
+		state_machine.register_state(emulator_state::onproc);
+		state_machine.register_state(emulator_state::sleep);
+		state_machine.register_state(emulator_state::stop);
+		state_machine.register_state(emulator_state::zombie);
+		state_machine.register_state(emulator_state::dead);
 
-		state_machine.register_state_change(emulator_state::idle, emulator_state::start, on_start);
+		state_machine.register_state_change(emulator_state::idle, emulator_state::runnable); //TODO: loader
+		state_machine.register_state_change(emulator_state::runnable, emulator_state::onproc, on_start);
+		state_machine.register_state_change(emulator_state::onproc, emulator_state::sleep, on_pause);
+		state_machine.register_state_change(emulator_state::sleep, emulator_state::onproc, on_resume);
+
+		state_machine.register_state_change(emulator_state::runnable, emulator_state::stop, on_stop);
+		state_machine.register_state_change(emulator_state::onproc, emulator_state::stop, on_stop);
+		state_machine.register_state_change(emulator_state::sleep, emulator_state::stop, on_stop);
+		state_machine.register_state_change(emulator_state::stop, emulator_state::zombie);
+		state_machine.register_state_change(emulator_state::zombie, emulator_state::dead);
 
 		//TODO
 		return true;
@@ -34,5 +40,20 @@ namespace rpcs3
 	{
 		printf("rpcs3: Bye!\n");
 		//TODO
+	}
+
+	void start()
+	{
+		state_machine.set_state(emulator_state::runnable);
+	}
+
+	void stop()
+	{
+		state_machine.set_state(emulator_state::stop);
+	}
+
+	void pause()
+	{
+		state_machine.set_state(emulator_state::sleep);
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include <atomic>
+#include "event.h"
 
 namespace utils
 {
@@ -13,13 +14,15 @@ namespace utils
 	private:
 		struct entry
 		{
-			std::unordered_map<type, std::function<void()>> on_switch;
+			std::unordered_map<type, std::function<bool()>> on_switch;
 		};
 
 		std::atomic<type> m_current_state;
 		std::unordered_map<type, entry> m_states;
 
 	public:
+		event on_change;
+
 		void set_default_state(type state)
 		{
 			register_state(state);
@@ -31,9 +34,14 @@ namespace utils
 			m_states[state];
 		}
 
-		void register_state_change(type from_state, type to_state, std::function<void()> on_switch = nullptr)
+		void register_state_change(type from_state, type to_state, std::function<bool()> on_switch = nullptr)
 		{
 			m_states.at(from_state).on_switch[to_state] = on_switch;
+		}
+
+		void register_state_change(type from_state, type to_state, std::function<void()> on_switch)
+		{
+			m_states.at(from_state).on_switch[to_state] = [=] { on_switch(); return true; };
 		}
 
 		bool set_state(type state)
@@ -53,10 +61,14 @@ namespace utils
 
 			if (const auto &on_switch = found->second)
 			{
-				on_switch();
+				if (!on_switch())
+				{
+					return false;
+				}
 			}
 
 			m_current_state = state;
+			on_change();
 			return true;
 		}
 

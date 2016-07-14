@@ -31,22 +31,26 @@ Eps3ErrorCode eps3EmulatorLoadImpl(Eps3Executable executable)
 
 Eps3ErrorCode eps3EmulatorStartImpl()
 {
-	return eps3ErrorNotImplemented;
+	rpcs3::start();
+	return eps3ErrorOk;
 }
 
 Eps3ErrorCode eps3EmulatorStopImpl()
 {
-	return eps3ErrorNotImplemented;
+	rpcs3::stop();
+	return eps3ErrorOk;
 }
 
 Eps3ErrorCode eps3EmulatorPauseImpl()
 {
-	return eps3ErrorNotImplemented;
+	rpcs3::pause();
+	return eps3ErrorOk;
 }
 
 Eps3ErrorCode eps3EmulatorOnStateChangeImpl(Eps3OnStateChangeCallback callback)
 {
-	return eps3ErrorNotImplemented;
+	rpcs3::state_machine.on_change += [&, callback] { callback(static_cast<Eps3State>(rpcs3::state_machine.state())); };
+	return eps3ErrorOk;
 }
 
 Eps3ErrorCode eps3EmulatorGetThreadsListImpl(Eps3Thread *threadsList, int maxCount, int *count)

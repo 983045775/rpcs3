@@ -1,6 +1,7 @@
 #include "rpcs3/pch.h"
 #include "rpcs3/emulator.h"
 #include <utils/event.h>
+#include <thread>
 
 namespace rpcs3
 {
@@ -55,5 +56,42 @@ namespace rpcs3
 	void pause()
 	{
 		state_machine.set_state(emulator_state::sleep);
+	}
+
+	inline bool loop_default_condition()
+	{
+		return state_machine.state() != emulator_state::stop;
+	}
+
+	void loop(std::function<void()> callback)
+	{
+		while (loop_default_condition())
+		{
+			callback();
+			std::this_thread::yield();
+		}
+	}
+
+	void loop_until(std::function<void()> callback, std::function<bool()> condition)
+	{
+		while (loop_default_condition() && condition())
+		{
+			callback();
+			std::this_thread::yield();
+		}
+	}
+
+	void loop_until(std::function<bool()> condition)
+	{
+		while (loop_default_condition() && condition())
+		{
+			std::this_thread::yield();
+		}
+	}
+
+	const char *name()
+	{
+		//TODO: rename project?
+		return "RPCS3";
 	}
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <cstdint>
-#include <Utilities/version.h>
+#include <rpcs3/utils/version.h>
 
 namespace rpcs3
 {

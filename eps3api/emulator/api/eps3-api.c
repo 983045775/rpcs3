@@ -1,6 +1,12 @@
 #include "../source/functions.h"
 #include <eps3/dll_export.h>
 
+
+EPS3API_DLL_EXPORT uint32_t eps3GetVersion()
+{
+	return 1;
+}
+
 //emulator
 EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorCreate()
 {
@@ -42,9 +48,24 @@ EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorOnStateChange(Eps3OnStateChangeCall
 	return _eps3EmulatorOnStateChange(callback);
 }
 
-EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count)
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetThreadsList(Eps3Thread *threadsList, uint32_t maxCount, uint32_t *count)
 {
 	return _eps3EmulatorGetThreadsList(threadsList, maxCount, count);
+}
+
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetVersion(uint32_t *major, uint32_t *minor, uint32_t *version)
+{
+	return _eps3EmulatorGetVersion(major, minor, version);
+}
+
+EPS3API_DLL_EXPORT Eps3ErrorCode eps3EmulatorGetVersionString(char *destination, uint32_t limit)
+{
+	return _eps3EmulatorGetVersionString(destination, limit);
+}
+
+EPS3API_DLL_EXPORT const char *eps3EmulatorGetName()
+{
+	return _eps3EmulatorGetName();
 }
 
 //executable

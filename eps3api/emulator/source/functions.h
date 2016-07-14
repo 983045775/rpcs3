@@ -8,7 +8,10 @@ Eps3ErrorCode _eps3EmulatorStart();
 Eps3ErrorCode _eps3EmulatorStop();
 Eps3ErrorCode _eps3EmulatorPause();
 Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3OnStateChangeCallback callback);
-Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count);
+Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, uint32_t maxCount, uint32_t *count);
+Eps3ErrorCode _eps3EmulatorGetVersion(uint32_t *major, uint32_t *minor, uint32_t *version);
+Eps3ErrorCode _eps3EmulatorGetVersionString(char *destination, uint32_t limit);
+const char * _eps3EmulatorGetName();
 
 //executable
 Eps3ErrorCode _eps3ExecutableLoad(Eps3Executable *executable, const char *path);

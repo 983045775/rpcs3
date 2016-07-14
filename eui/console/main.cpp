@@ -8,6 +8,7 @@
 #include <utils/string_ref.h>
 #include <eps3/enums.h>
 #include <eps3/types.h>
+#include <eps3/emulator-api.h>
 
 class console_commands
 {
@@ -246,7 +247,16 @@ struct dynamic_library
 	}
 };
 
-using eps3EmulatorCreate_t = Eps3ErrorCode (*)();
+using eps3EmulatorCreate_t = decltype(&eps3EmulatorCreateImpl);
+using eps3EmulatorDestroy_t = decltype(&eps3EmulatorDestroyImpl);
+using eps3EmulatorLoad_t = decltype(&eps3EmulatorLoadImpl);
+using eps3EmulatorStart_t = decltype(&eps3EmulatorStartImpl);
+using eps3EmulatorStop_t = decltype(&eps3EmulatorStopImpl);
+using eps3EmulatorPause_t = decltype(&eps3EmulatorPauseImpl);
+using eps3EmulatorOnStateChange_t = decltype(&eps3EmulatorOnStateChangeImpl);
+using eps3EmulatorGetVersion_t = decltype(&eps3EmulatorGetVersionImpl);
+using eps3EmulatorGetVersionString_t = decltype(&eps3EmulatorGetVersionStringImpl);
+using eps3EmulatorGetName_t = decltype(&eps3EmulatorGetNameImpl);
 
 class eps3api_library : dynamic_library
 {
@@ -259,10 +269,30 @@ class eps3api_library : dynamic_library
 	}
 
 public:
-	eps3EmulatorCreate_t create = nullptr;
-	eps3EmulatorCreate_t destroy = nullptr;
+	struct
+	{
+		eps3EmulatorCreate_t create = nullptr;
+		eps3EmulatorDestroy_t destroy = nullptr;
+		eps3EmulatorLoad_t load = nullptr;
+		eps3EmulatorStart_t start = nullptr;
+		eps3EmulatorStop_t stop = nullptr;
+		eps3EmulatorPause_t pause = nullptr;
+		eps3EmulatorOnStateChange_t on_state_change = nullptr;
+		eps3EmulatorGetVersion_t get_version = nullptr;
+		eps3EmulatorGetVersionString_t get_version_string = nullptr;
+		eps3EmulatorGetName_t get_name = nullptr;
+
+	} emulator;
 
 	eps3api_library() = default;
+
+	~eps3api_library()
+	{
+		if (emulator.destroy)
+		{
+			emulator.destroy();
+		}
+	}
 
 	eps3api_library(const std::string &path) : dynamic_library(path)
 	{
@@ -273,8 +303,17 @@ public:
 
 		bool no_errors = true;
 
-		no_errors = no_errors && load(create, "eps3EmulatorCreate");
-		no_errors = no_errors && load(destroy, "eps3EmulatorDestroy");
+		no_errors = no_errors && load(emulator.create, "eps3EmulatorCreate");
+		no_errors = no_errors && load(emulator.destroy, "eps3EmulatorDestroy");
+
+		no_errors = no_errors && load(emulator.load, "eps3EmulatorLoad");
+		no_errors = no_errors && load(emulator.start, "eps3EmulatorStart");
+		no_errors = no_errors && load(emulator.stop, "eps3EmulatorStop");
+		no_errors = no_errors && load(emulator.pause, "eps3EmulatorPause");
+		no_errors = no_errors && load(emulator.on_state_change, "eps3EmulatorOnStateChange");
+		no_errors = no_errors && load(emulator.get_version, "eps3EmulatorGetVersion");
+		no_errors = no_errors && load(emulator.get_version_string, "eps3EmulatorGetVersionString");
+		no_errors = no_errors && load(emulator.get_name, "eps3EmulatorGetName");
 
 		//no_errors = true;
 
@@ -380,7 +419,7 @@ int main(int argc, char *argv[])
 			return;
 		}
 
-		Eps3ErrorCode error_code = library.create();
+		Eps3ErrorCode error_code = library.emulator.create();
 
 		if (error_code != eps3ErrorOk)
 		{
@@ -388,6 +427,16 @@ int main(int argc, char *argv[])
 			std::cout << "emulator creation error: " << error_code << std::endl;
 			return;
 		}
+
+		std::cout << library.emulator.get_name();
+
+		char version[32];
+		if (library.emulator.get_version_string(version, sizeof(version)) == eps3ErrorOk)
+		{
+			std::cout << " v" << version;
+		}
+
+		std::cout << std::endl;
 
 		std::cout << "emulator with id " << id << " created" << std::endl;
 	});
@@ -415,7 +464,7 @@ int main(int argc, char *argv[])
 			return;
 		}
 
-		Eps3ErrorCode error_code = found->second.destroy();
+		Eps3ErrorCode error_code = found->second.emulator.destroy();
 
 		if (error_code != eps3ErrorOk)
 		{

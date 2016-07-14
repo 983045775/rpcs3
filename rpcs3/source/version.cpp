@@ -1,5 +1,5 @@
 #include "rpcs3/pch.h"
-#include "rpcs3/utils/version.h"
+#include "rpcs3/version.h"
 #include "rpcs3/git-version.h"
 
 namespace rpcs3

@@ -52,7 +52,7 @@ Eps3ErrorCode _eps3EmulatorOnStateChange(Eps3OnStateChangeCallback callback)
 	return eps3EmulatorOnStateChangeImpl(callback);
 }
 
-Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount, int *count)
+Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, uint32_t maxCount, uint32_t *count)
 {
 	if (maxCount < 0)
 	{
@@ -65,4 +65,34 @@ Eps3ErrorCode _eps3EmulatorGetThreadsList(Eps3Thread *threadsList, int maxCount,
 	}
 
 	return eps3EmulatorGetThreadsListImpl(threadsList, maxCount, count);
+}
+
+Eps3ErrorCode _eps3EmulatorGetVersion(uint32_t *major, uint32_t *minor, uint32_t *version)
+{
+	if (!major || !minor || !version)
+	{
+		return eps3ErrorBadArgument;
+	}
+
+	return eps3EmulatorGetVersionImpl(major, minor, version);
+}
+
+Eps3ErrorCode _eps3EmulatorGetVersionString(char *destination, uint32_t limit)
+{
+	if (!destination)
+	{
+		return eps3ErrorBadArgument;
+	}
+
+	if (limit < 2)
+	{
+		return eps3ErrorInvalidValue;
+	}
+
+	return eps3EmulatorGetVersionStringImpl(destination, limit);
+}
+
+const char *_eps3EmulatorGetName()
+{
+	return eps3EmulatorGetNameImpl();
 }

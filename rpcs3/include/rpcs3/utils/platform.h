@@ -89,18 +89,12 @@ inline std::uint64_t cntlz64(std::uint64_t arg)
 #endif
 }
 
-// Helper function, used by ""_u16, ""_u32, ""_u64
-constexpr std::uint8_t to_u8(char c)
-{
-	return static_cast<std::uint8_t>(c);
-}
-
 // Convert 2-byte string to u16 value like reinterpret_cast does
 constexpr std::uint16_t operator""_u16(const char* s, std::size_t length)
 {
 	return length != 2 ? throw s :
 #if IS_LE_MACHINE == 1
-		to_u8(s[1]) << 8 | to_u8(s[0]);
+		std::uint16_t(s[1]) << 8 | std::uint16_t(s[0]);
 #endif
 }
 
@@ -109,7 +103,7 @@ constexpr std::uint32_t operator""_u32(const char* s, std::size_t length)
 {
 	return length != 4 ? throw s :
 #if IS_LE_MACHINE == 1
-		to_u8(s[3]) << 24 | to_u8(s[2]) << 16 | to_u8(s[1]) << 8 | to_u8(s[0]);
+		std::uint32_t(s[3]) << 24 | std::uint32_t(s[2]) << 16 | std::uint32_t(s[1]) << 8 | std::uint32_t(s[0]);
 #endif
 }
 
@@ -118,6 +112,7 @@ constexpr std::uint64_t operator""_u64(const char* s, std::size_t length)
 {
 	return length != 8 ? throw s :
 #if IS_LE_MACHINE == 1
-		static_cast<std::uint64_t>(to_u8(s[7]) << 24 | to_u8(s[6]) << 16 | to_u8(s[5]) << 8 | to_u8(s[4])) << 32 | to_u8(s[3]) << 24 | to_u8(s[2]) << 16 | to_u8(s[1]) << 8 | to_u8(s[0]);
+		std::uint64_t(s[7]) << 56 | std::uint64_t(s[6]) << 48 | std::uint64_t(s[5]) << 40 | std::uint64_t(s[4]) << 32 |
+		std::uint64_t(s[3]) << 24 | std::uint64_t(s[2]) << 16 | std::uint64_t(s[1]) << 8 | std::uint64_t(s[0]);
 #endif
 }

@@ -9,14 +9,23 @@
 #include <eps3/enums.h>
 #include <eps3/types.h>
 #include <eps3/emulator-api.h>
+#include <conio.h>
 
 class console_commands
 {
-	using commands_t = std::unordered_map<utils::string_ref, std::function<void(int argc, char *argv[])>>;
+	struct command_info
+	{
+		std::function<void(int argc, char *argv[])> callback;
+		std::unordered_map<utils::string_ref, command_info> subcommands;
+	};
 
-	commands_t m_commands;
+	command_info m_commands;
+	command_info *m_root = &m_commands;
 	std::string m_input_namespace;
 	bool m_exit = false;
+	std::string m_commands_buffer[32];
+	std::string m_raw_command;
+	std::size_t m_raw_command_offset;
 
 public:
 	void exit(bool force = false)
@@ -27,6 +36,7 @@ public:
 		}
 		else
 		{
+			m_root = &m_commands;
 			m_input_namespace.clear();
 		}
 	}
@@ -38,13 +48,167 @@ public:
 
 	void add(const utils::string_ref &name, std::function<void(int argc, char *argv[])> callback)
 	{
-		m_commands[name] = callback;
+		auto name_blocks = name.split();
+
+		command_info *info = &m_commands;
+
+		for (std::size_t i = 0; i < name_blocks.size(); ++i)
+		{
+			info = &info->subcommands[name_blocks[i]];
+
+			if (info->callback)
+			{
+				std::cout << "registration '" << name.to_string() << "' failed. commands overlaps" << std::endl;
+				return;
+			}
+		}
+
+		info->callback = callback;
+	}
+
+	void backspace(std::size_t count = 1)
+	{
+		if (count > m_raw_command_offset)
+		{
+			count = m_raw_command_offset;
+		}
+
+		for (std::size_t i = 0; i < count; ++i)
+		{
+			std::cout << "\b \b";
+		}
+
+		if (count == m_raw_command.size())
+		{
+			m_raw_command.clear();
+		}
+		else if (m_raw_command_offset == m_raw_command.size())
+		{
+			m_raw_command = m_raw_command.substr(0, m_raw_command_offset - count);
+		}
+		else
+		{
+			m_raw_command = m_raw_command.substr(0, m_raw_command_offset - count) + m_raw_command.substr(m_raw_command_offset);
+		}
+
+		m_raw_command_offset -= count;
+	}
+
+	void left()
+	{
+		if (m_raw_command_offset)
+		{
+			std::cout << '\b';
+			--m_raw_command_offset;
+		}
+	}
+
+	void right()
+	{
+		if (m_raw_command_offset < m_raw_command.size())
+		{
+			std::cout << m_raw_command[m_raw_command_offset++];
+		}
+	}
+
+	void home()
+	{
+		while (m_raw_command_offset)
+		{
+			std::cout << '\b';
+			--m_raw_command_offset;
+		}
+	}
+
+	void end()
+	{
+		while (m_raw_command_offset < m_raw_command.size())
+		{
+			std::cout << m_raw_command[m_raw_command_offset++];
+		}
+	}
+
+	void set_command(utils::string_ref new_command)
+	{
+		end();
+
+		backspace(m_raw_command.size());
+		m_raw_command = new_command.to_string();
+		m_raw_command_offset = m_raw_command.size();
+		std::cout << m_raw_command;
+	}
+
+	std::string complete(utils::string_ref string)
+	{
+		if (string.empty())
+		{
+			return string.to_string();
+		}
+
+		auto command_blocks = string.rtrim().split();
+
+		utils::string_ref complete;
+		std::size_t count = 0;
+
+		command_info *info = m_root;
+
+		for (std::size_t i = 0; i < command_blocks.size() - 1; ++i)
+		{
+			auto found = info->subcommands.find(command_blocks[i]);
+
+			if (found == info->subcommands.end())
+			{
+				//TODO: load files list
+				/*
+				if (info->callback)
+				{
+					command_blocks.back();
+				}
+				*/
+
+				return string.to_string();
+			}
+
+			info = &found->second;
+		}
+
+		for (auto &entry : info->subcommands)
+		{
+			if (entry.first.starts_with(command_blocks.back()))
+			{
+				utils::string_ref new_complete = entry.first;
+
+				if (count == 0 || new_complete != complete)
+				{
+					if (++count > 1)
+					{
+						return string.to_string();
+					}
+
+					complete = new_complete;
+				}
+			}
+		}
+
+		if (count == 1)
+		{
+			string = string.rtrim();
+			string = string.substr(0, string.size() - command_blocks.back().size());
+
+			std::string final_command = complete.to_string() + " ";
+			return string.to_string() + final_command;
+		}
+
+		return string.to_string();
 	}
 
 	void loop()
 	{
 		std::vector<char> command_args;
 		std::vector<char*> command_argv;
+
+		int currend_command_buffer = 0;
+		int command_buffer_count = 0;
 
 		while (!m_exit)
 		{
@@ -60,16 +224,159 @@ public:
 			command_args.reserve(20);
 
 			std::cout << m_input_namespace + ">";
-			std::string raw_command;
 
-			if (!std::getline(std::cin, raw_command))
+			currend_command_buffer = command_buffer_count;
+			m_raw_command_offset = 0;
+			m_raw_command.clear();
+
+			while (int c = _getch())
 			{
-				m_exit = true;
-				continue;
+				if (c == EOF)
+				{
+					m_exit = true;
+					continue;
+				}
+
+				if (c == 224)
+				{
+					c = _getch();
+
+					switch (c)
+					{
+					case 72:
+						if (currend_command_buffer)
+						{
+							set_command(m_commands_buffer[--currend_command_buffer]);
+						}
+						break;
+
+					case 80:
+						if (currend_command_buffer >= command_buffer_count)
+						{
+							set_command("");
+						}
+						else
+						{
+							set_command(m_commands_buffer[++currend_command_buffer]);
+						}
+						break;
+
+					case 75:
+						left();
+						break;
+
+					case 77:
+						right();
+						break;
+
+					case 71:
+						home();
+						break;
+
+					case 79:
+						end();
+						break;
+
+					case 115:
+					{
+						if (m_raw_command_offset)
+						{
+							m_raw_command_offset--;
+							std::cout << '\b';
+						}
+
+						while (m_raw_command_offset)
+						{
+							m_raw_command_offset--;
+
+							if (m_raw_command[m_raw_command_offset] == ' ')
+							{
+								m_raw_command_offset++;
+								break;
+							}
+
+							std::cout << '\b';
+						}
+
+						break;
+					}
+
+					default:
+						continue;
+					}
+
+					continue;
+				}
+
+				if (c == '\t')
+				{
+					std::string command = complete(m_raw_command);
+					set_command(command);
+				}
+				else if (c == '\b')
+				{
+					backspace();
+
+					for (size_t i = m_raw_command_offset; i < m_raw_command.size(); ++i)
+					{
+						_putch(m_raw_command[i]);
+					}
+
+					_putch(' ');
+
+					for (size_t i = m_raw_command_offset; i <= m_raw_command.size(); ++i)
+					{
+						std::cout << '\b';
+					}
+				}
+				else if (c >= 20 || c == '\n')
+				{
+					if (m_raw_command_offset >= m_raw_command.size())
+					{
+						m_raw_command += (char)c;
+						m_raw_command_offset++;
+						_putch(c);
+					}
+					else
+					{
+						m_raw_command.insert(m_raw_command_offset, 1, c);
+						for (size_t i = m_raw_command_offset; i < m_raw_command.size(); ++i)
+						{
+							_putch(m_raw_command[i]);
+						}
+
+						m_raw_command_offset++;
+
+						for (size_t i = m_raw_command_offset; i < m_raw_command.size(); ++i)
+						{
+							std::cout << '\b';
+						}
+					}
+				}
+				else if (c == 0xd)
+				{
+					std::cout << std::endl;
+					break;
+				}
+			}
+
+			if (!command_buffer_count || m_commands_buffer[command_buffer_count - 1] != m_raw_command)
+			{
+				if (command_buffer_count == std::size(m_commands_buffer))
+				{
+					for (std::size_t i = 0; i < command_buffer_count - 1; ++i)
+					{
+						m_commands_buffer[i] = m_commands_buffer[i + 1];
+					}
+
+					command_buffer_count--;
+				}
+
+				m_commands_buffer[command_buffer_count++] = m_raw_command;
 			}
 
 			std::string command_storage;
-			for (const auto &string : utils::string_ref(raw_command).split())
+			for (const auto &string : utils::string_ref(m_raw_command).split())
 			{
 				command_storage += string.to_string() + " ";
 			}
@@ -85,7 +392,7 @@ public:
 
 			if (command == "help" || command == "?")
 			{
-				show_help_for(m_input_namespace);
+				show_help_for(m_root);
 
 				continue;
 			}
@@ -97,13 +404,6 @@ public:
 				continue;
 			}
 
-			if (!m_input_namespace.empty())
-			{
-				command_storage = m_input_namespace + " " + command.to_string();
-
-				command = utils::string_ref(command_storage).trim();
-			}
-
 			bool is_show_help = false;
 
 			if (command.ends_with("?"))
@@ -113,71 +413,86 @@ public:
 				command = command.substr(0, command.length() - 1).trim();
 			}
 
-			commands_t::const_iterator found = m_commands.end();
-			std::size_t found_count = 0;
+			command_info *info = m_root;
+			auto command_blocks = command.split();
 
-			for (auto it = m_commands.begin(); it != m_commands.end(); ++it)
+			std::size_t index;
+
+			for (index = 0; index < command_blocks.size(); ++index)
 			{
-				if (command.starts_with(it->first))
-				{
-					found = it;
-					found_count++;
-				}
-				else if (it->first.starts_with(command))
-				{
-					found_count++;
-				}
+				auto found = info->subcommands.find(command_blocks[index]);
 
-				if (found_count > 1)
+				if (found == info->subcommands.end() || info->callback)
 				{
 					break;
 				}
+
+				info = &found->second;
 			}
 
 			if (is_show_help)
 			{
-				show_help_for(command);
+				show_help_for(info);
 				continue;
 			}
 
-			if (found_count > 1)
+			if (info->callback)
 			{
-				m_input_namespace = command.to_string();
+				for (std::size_t i = index; i < command_blocks.size(); ++i)
+				{
+					command_argv.push_back(command_args.data() + command_blocks[i].to_vector(command_args));
+				}
+
+				info->callback((int)command_argv.size(), command_argv.data());
+				std::cout << std::endl;
 				continue;
 			}
 
-			if (found == m_commands.end())
+			if (info->subcommands.empty())
 			{
-				std::cout << "unknown command '" << command.to_string() << "'" << std::endl;
+				std::cout << "unimplemented command '" << command.to_string() << "'" << std::endl;
 				continue;
 			}
 
-			for (const auto &string : command.substr(found->first.length()).split())
+			if (info->subcommands.size() == 1)
 			{
-				command_argv.push_back(command_args.data() + string.to_vector(command_args));
+				std::cout << "bad command. did you mean '" << command.to_string() << " " << info->subcommands.begin()->first.to_string() << "'?" << std::endl;
+				continue;
 			}
 
-			found->second((int)command_argv.size(), command_argv.data());
+			if (index < command_blocks.size())
+			{
+				std::cout << "bad word '" << command_blocks[index].to_string() << "'" << std::endl;
+				continue;
+			}
+
+			m_input_namespace.clear();
+			m_root = info;
+
+			for (size_t i = 0; i < command_blocks.size(); ++i)
+			{
+				m_input_namespace += command_blocks[i].to_string();
+				
+				if (i != command_blocks.size() - 1)
+				{
+					m_input_namespace += " ";
+				}
+			}
+
 			std::cout << std::endl;
 		}
 	}
 
 private:
-	void show_help_for(const utils::string_ref& input_namespace)
+	void show_help_for(command_info* info)
 	{
-		std::cout << "?" << std::endl;
-		std::cout << "help" << std::endl;
-
-		for (auto &command_info : m_commands)
+		for (auto &command_info : info->subcommands)
 		{
-			if (command_info.first.starts_with(input_namespace))
-			{
-				std::cout << command_info.first.substr(input_namespace.length()).trim().to_string() << std::endl;
-			}
+			std::cout << command_info.first.to_string() << std::endl;
 		}
 
-		std::cout << "exit" << std::endl;
-	};
+		std::cout << std::endl;
+	}
 };
 
 void usage(const char *process_name)
@@ -464,15 +779,28 @@ int main(int argc, char *argv[])
 			return;
 		}
 
+		/*
 		Eps3ErrorCode error_code = found->second.emulator.destroy();
 
 		if (error_code != eps3ErrorOk)
 		{
 			std::cout << "emulator destroing error: " << error_code << std::endl;
 		}
+		*/
 
 		emulators.erase(found);
 	});
+
+	commands.add("executable load", [](int argc, char *argv[])
+	{
+
+	});
+
+	commands.add("executable unload", [](int argc, char *argv[])
+	{
+
+	});
+
 	commands.loop();
 
 	return 0;

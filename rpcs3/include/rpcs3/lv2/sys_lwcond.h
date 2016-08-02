@@ -4,6 +4,10 @@
 
 namespace vm { using namespace ps3; }
 
+// Aux
+class PPUThread;
+class cpu_thread;
+
 struct sys_lwmutex_t;
 
 struct sys_lwcond_attribute_t
@@ -30,9 +34,6 @@ struct lv2_lwcond_t
 
 	void notify(lv2_lock_t, cpu_thread* thread, const std::shared_ptr<lv2_lwmutex_t>& mutex, bool mode2);
 };
-
-// Aux
-class PPUThread;
 
 // SysCalls
 s32 _sys_lwcond_create(vm::ptr<u32> lwcond_id, u32 lwmutex_id, vm::ptr<sys_lwcond_t> control, u64 name, u32 arg5);

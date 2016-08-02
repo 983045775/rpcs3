@@ -207,85 +207,11 @@ void PPUThread::cpu_task_main()
 	*/
 }
 
-constexpr auto stop_state = make_bitset(cpu_state::stop, cpu_state::exit, cpu_state::suspend);
-
 atomic_t<u32> g_ppu_core[2]{};
 
 bool PPUThread::handle_interrupt()
 {
 	// Reschedule and wake up a new thread, possibly this one as well.
-	return false;
-
-	// Check virtual core allocation
-	if (g_ppu_core[0] != id && g_ppu_core[1] != id)
-	{
-		auto cpu0 = idm::get<PPUThread>(g_ppu_core[0]);
-		auto cpu1 = idm::get<PPUThread>(g_ppu_core[1]);
-
-		if (cpu0 && cpu1)
-		{
-			if (cpu1->prio > cpu0->prio)
-			{
-				cpu0 = std::move(cpu1);
-			}
-
-			// Preempt thread with the lowest priority
-			if (prio < cpu0->prio)
-			{
-				cpu0->state += cpu_state::interrupt;
-			}
-		}
-		else
-		{
-			// Try to obtain a virtual core in optimistic way
-			if (g_ppu_core[0].compare_and_swap_test(0, id) || g_ppu_core[1].compare_and_swap_test(0, id))
-			{
-				state -= cpu_state::interrupt;
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	// Select appropriate thread
-	u32 top_prio = -1;
-	u32 selected = -1;
-
-	idm::select<PPUThread>([&](u32 id, PPUThread& ppu)
-	{
-		// Exclude suspended and low-priority threads
-		if (!ppu.state.test(stop_state) && ppu.prio < top_prio /*&& (!ppu.is_sleep() || ppu.state & cpu_state::signal)*/)
-		{
-			top_prio = ppu.prio;
-			selected = id;
-		}
-	});
-
-	// If current thread selected
-	if (selected == id)
-	{
-		state -= cpu_state::interrupt;
-		VERIFY(g_ppu_core[0] == id || g_ppu_core[1] == id);
-		return true;
-	}
-
-	// If another thread selected
-	const auto thread = idm::get<PPUThread>(selected);
-
-	// Lend virtual core to another thread
-	if (thread && thread->state.test_and_reset(cpu_state::interrupt))
-	{
-		g_ppu_core[0].compare_and_swap(id, thread->id);
-		g_ppu_core[1].compare_and_swap(id, thread->id);
-		(*thread)->lock_notify();
-	}
-	else
-	{
-		g_ppu_core[0].compare_and_swap(id, 0);
-		g_ppu_core[1].compare_and_swap(id, 0);
-	}
-
 	return false;
 }
 
@@ -320,7 +246,8 @@ void PPUThread::fast_call(u32 addr, u32 rtoc)
 
 	pc = addr;
 	GPR[2] = rtoc;
-	LR = Emu.GetCPUThreadStop();
+	//TODO: Implement native code injection
+	//LR = Emu.GetCPUThreadStop();
 	custom_task = nullptr;
 	last_function = nullptr;
 
@@ -337,12 +264,6 @@ void PPUThread::fast_call(u32 addr, u32 rtoc)
 	{
 		state += _s;
 		if (_s != cpu_state::ret) throw;
-	}
-	catch (EmulationStopped)
-	{
-		if (last_function) LOG_WARNING(PPU, "'%s' aborted", last_function);
-		last_function = old_func;
-		throw;
 	}
 	catch (...)
 	{

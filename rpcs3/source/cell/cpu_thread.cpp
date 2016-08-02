@@ -15,15 +15,13 @@ void cpu_thread::on_task()
 
 	g_tls_current_cpu_thread = this;
 
-	Emu.SendDbgCommand(DID_CREATE_THREAD, this);
+	//Emu.SendDbgCommand(DID_CREATE_THREAD, this);
 
 	std::unique_lock<std::mutex> lock(get_current_thread_mutex());
 
 	// Check thread status
-	while (!(state & cpu_state::exit))
+	rpcs3::loop_until([&] { return !(state & cpu_state::exit); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		// check stop status
 		if (!(state & cpu_state::stop))
 		{
@@ -44,17 +42,17 @@ void cpu_thread::on_task()
 			}
 
 			state -= cpu_state::ret;
-			continue;
+			return;
 		}
 
 		if (!lock)
 		{
 			lock.lock();
-			continue;
+			return;
 		}
 
 		get_current_thread_cv().wait(lock);
-	}
+	});
 }
 
 void cpu_thread::on_stop()
@@ -76,32 +74,31 @@ bool cpu_thread::check_status()
 {
 	std::unique_lock<std::mutex> lock(get_current_thread_mutex(), std::defer_lock);
 
-	while (true)
+	rpcs3::wait_until([&]
 	{
-		CHECK_EMU_STATUS; // check at least once
-
-		if (state & cpu_state::exit)
-		{
-			return true;
-		}
-
 		if (!state.test(cpu_state_pause) && !state.test(cpu_state::interrupt))
 		{
-			break;
+			return false;
 		}
 
 		if (!lock)
 		{
 			lock.lock();
-			continue;
+			return true;
 		}
 
 		if (!state.test(cpu_state_pause) && state & cpu_state::interrupt && handle_interrupt())
 		{
-			continue;
+			return true;
 		}
 
 		get_current_thread_cv().wait(lock);
+		return true;
+	});
+
+	if (state & cpu_state::exit)
+	{
+		return true;
 	}
 
 	const auto state_ = state.load();

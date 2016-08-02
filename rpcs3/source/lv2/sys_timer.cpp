@@ -20,10 +20,8 @@ void lv2_timer_t::on_task()
 {
 	std::unique_lock<std::mutex> lock(get_current_thread_mutex());
 
-	while (state <= SYS_TIMER_STATE_RUN)
+	rpcs3::loop_until([&] { return state <= SYS_TIMER_STATE_RUN; }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (state == SYS_TIMER_STATE_RUN)
 		{
 			LV2_LOCK;
@@ -51,11 +49,11 @@ void lv2_timer_t::on_task()
 				}
 			}
 
-			continue;
+			return;
 		}
 
 		get_current_thread_cv().wait_for(lock, 1ms);
-	}
+	});
 }
 
 std::string lv2_timer_t::get_name() const
@@ -259,19 +257,13 @@ s32 sys_timer_sleep(u32 sleep_time)
 
 	u64 passed;
 
-	while (useconds > (passed = get_system_time() - start_time) + 1000)
-	{
-		CHECK_EMU_STATUS;
-
-		std::this_thread::sleep_for(1ms);
-	}
+	rpcs3::loop_until([&] { return useconds > (passed = get_system_time() - start_time) + 1000; }, [&] { std::this_thread::sleep_for(50ms); });
 	
 	if (useconds > passed)
 	{
 		std::this_thread::sleep_for(std::chrono::microseconds(useconds - passed));
 	}
 
-	CHECK_EMU_STATUS;
 	return CELL_OK;
 }
 
@@ -283,18 +275,12 @@ s32 sys_timer_usleep(const u64 sleep_time)
 
 	u64 passed;
 
-	while (sleep_time > (passed = get_system_time() - start_time) + 1000)
-	{
-		CHECK_EMU_STATUS;
-
-		std::this_thread::sleep_for(1ms);
-	}
+	rpcs3::loop_until([&] { return sleep_time > (passed = get_system_time() - start_time) + 1000; }, [&] { std::this_thread::sleep_for(50ms); });
 
 	if (sleep_time > passed)
 	{
 		std::this_thread::sleep_for(std::chrono::microseconds(sleep_time - passed));
 	}
 
-	CHECK_EMU_STATUS;
 	return CELL_OK;
 }

@@ -52,7 +52,7 @@ bool debug::autopause::pause_syscall(u64 code)
 {
 	if (g_cfg_debug_autopause_syscall && get_instance().m_pause_syscall.count(code) != 0)
 	{
-		Emu.Pause();
+		rpcs3::on_pause();
 		LOG_SUCCESS(HLE, "Autopause triggered at syscall %lld", code);
 		return true;
 	}
@@ -64,7 +64,7 @@ bool debug::autopause::pause_function(u32 code)
 {
 	if (g_cfg_debug_autopause_func_call && get_instance().m_pause_function.count(code) != 0)
 	{
-		Emu.Pause();
+		rpcs3::on_pause();
 		LOG_SUCCESS(HLE, "Autopause triggered at function 0x%08x", code);
 		return true;
 	}

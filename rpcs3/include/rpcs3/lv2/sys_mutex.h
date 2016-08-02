@@ -2,6 +2,9 @@
 
 #include "sys_sync.h"
 
+class PPUThread;
+class cpu_thread;
+
 struct sys_mutex_attribute_t
 {
 	be_t<u32> protocol; // SYS_SYNC_FIFO, SYS_SYNC_PRIORITY or SYS_SYNC_PRIORITY_INHERIT
@@ -40,8 +43,6 @@ struct lv2_mutex_t
 
 	void unlock(lv2_lock_t);
 };
-
-class PPUThread;
 
 // SysCalls
 s32 sys_mutex_create(vm::ptr<u32> mutex_id, vm::ptr<sys_mutex_attribute_t> attr);

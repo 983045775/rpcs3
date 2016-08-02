@@ -198,10 +198,9 @@ s32 sys_cond_wait(PPUThread& ppu, u32 cond_id, u64 timeout)
 	// potential mutex waiter (not added immediately)
 	sleep_entry<cpu_thread> mutex_waiter(cond->mutex->sq, ppu, defer_sleep);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	bool is_timeout = false;
+	rpcs3::loop_until([&] { return !is_timeout && !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		// timeout is ignored if waiting on the cond var is already dropped
 		if (timeout && waiter)
 		{
@@ -213,13 +212,14 @@ s32 sys_cond_wait(PPUThread& ppu, u32 cond_id, u64 timeout)
 				if (!cond->mutex->owner)
 				{
 					cond->mutex->owner = std::static_pointer_cast<cpu_thread>(ppu.shared_from_this());
-					break;
+					is_timeout = true;
+					return;
 				}
 
 				// drop condition variable and start waiting on the mutex queue
 				mutex_waiter.enter();
 				waiter.leave();
-				continue;
+				return;
 			}
 
 			get_current_thread_cv().wait_for(lv2_lock, std::chrono::microseconds(timeout - passed));
@@ -228,7 +228,7 @@ s32 sys_cond_wait(PPUThread& ppu, u32 cond_id, u64 timeout)
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	// mutex owner is restored after notification or unlocking
 	if (cond->mutex->owner.get() != &ppu)

@@ -180,10 +180,8 @@ s32 _sys_lwcond_queue_wait(PPUThread& ppu, u32 lwcond_id, u32 lwmutex_id, u64 ti
 	// potential mutex waiter (not added immediately)
 	sleep_entry<cpu_thread> mutex_waiter(cond->sq, ppu, defer_sleep);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout && waiter)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -209,7 +207,7 @@ s32 _sys_lwcond_queue_wait(PPUThread& ppu, u32 lwcond_id, u32 lwmutex_id, u64 ti
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	// return cause
 	return ppu.GPR[3] ? CELL_EBUSY : CELL_OK;

@@ -2,6 +2,7 @@
 #include "rpcs3/vm/memory.h"
 #include "rpcs3/system.h"
 #include "rpcs3/id_manager.h"
+#include "rpcs3/game_info.h"
 
 #include "rpcs3/cell/error_codes.h"
 #include "rpcs3/lv2/sys_lwmutex.h"
@@ -49,21 +50,9 @@ s32 sys_process_exit(s32 status)
 
 	LV2_LOCK;
 
-	CHECK_EMU_STATUS;
-	
 	sys_process.success("Process finished");
 
-	Emu.CallAfter([]()
-	{
-		Emu.Stop();
-	});
-
-	while (true)
-	{
-		CHECK_EMU_STATUS;
-
-		std::this_thread::sleep_for(1ms);
-	}
+	rpcs3::state_machine.set_state(rpcs3::emulator_state::zombie);
 
 	return CELL_OK;
 }
@@ -180,13 +169,15 @@ s32 _sys_process_get_paramsfo(vm::ptr<char> buffer)
 {
 	sys_process.warning("_sys_process_get_paramsfo(buffer=0x%x)", buffer);
 
-	if (!Emu.GetTitleID().length())
+	const std::string &title_id = rpcs3::game_info::current().title_id;
+
+	if (!title_id.length())
 	{
 		return CELL_ENOENT;
 	}
 
 	memset(buffer.get_ptr(), 0, 0x40);
-	memcpy(buffer.get_ptr() + 1, Emu.GetTitleID().c_str(), std::min<size_t>(Emu.GetTitleID().length(), 9));
+	memcpy(buffer.get_ptr() + 1, title_id.c_str(), std::min<size_t>(title_id.length(), 9));
 
 	return CELL_OK;
 }
@@ -194,7 +185,7 @@ s32 _sys_process_get_paramsfo(vm::ptr<char> buffer)
 s32 process_get_sdk_version(u32 pid, s32& ver)
 {
 	// get correct SDK version for selected pid
-	ver = Emu.GetSDKVersion();
+	ver = rpcs3::game_info::current().sdk_version;
 
 	return CELL_OK;
 }

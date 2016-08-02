@@ -1,6 +1,6 @@
 #include "rpcs3/pch.h"
 #include "rpcs3/rsx/cache.h"
-#include "rpcs3/system.h"
+#include "rpcs3/game_info.h"
 
 namespace rsx
 {
@@ -91,7 +91,7 @@ namespace rsx
 	programs_cache::programs_cache()
 	{
 		std::string path{ fs::get_executable_dir() + "data/cache/" };
-		std::string title = Emu.GetTitleID();
+		std::string title = rpcs3::game_info::current().title_id;
 
 		if (title.empty())
 		{

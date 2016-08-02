@@ -1,4 +1,5 @@
 #include "rpcs3/pch.h"
+#if 0
 #include "rpcs3/utils/config.h"
 #include "rpcs3/utils/auto_pause.h"
 #include "rpcs3/utils/event.h"
@@ -437,3 +438,4 @@ void Emulator::Stop()
 }
 
 Emulator Emu;
+#endif

@@ -957,13 +957,16 @@ void ppu_exec_loader::load() const
 
 		case 0x00000007: //TLS
 		{
+			//TODO
 			const u32 addr = vm::cast(prog.p_vaddr, HERE);
 			const u32 filesz = fmt::narrow<u32>("Invalid p_filesz (0x%llx)" HERE, prog.p_filesz);
 			const u32 memsz = fmt::narrow<u32>("Invalid p_memsz (0x%llx)" HERE, prog.p_memsz);
+			/*
 			Emu.SetTLSData(addr, filesz, memsz);
 			LOG_NOTICE(LOADER, "*** TLS segment addr: 0x%08x", Emu.GetTLSAddr());
 			LOG_NOTICE(LOADER, "*** TLS segment size: 0x%08x", Emu.GetTLSFilesz());
 			LOG_NOTICE(LOADER, "*** TLS memory size: 0x%08x", Emu.GetTLSMemsz());
+			*/
 			break;
 		}
 
@@ -1003,7 +1006,8 @@ void ppu_exec_loader::load() const
 					LOG_NOTICE(LOADER, "*** ppc seg: 0x%x", info.ppc_seg);
 					//LOG_NOTICE(LOADER, "*** crash dump param addr: 0x%x", info.crash_dump_param_addr);
 
-					Emu.SetParams(info.sdk_version, info.malloc_pagesize, std::max<u32>(info.primary_stacksize, 0x4000), info.primary_prio);
+					//TODO
+					//Emu.SetParams(info.sdk_version, info.malloc_pagesize, std::max<u32>(info.primary_stacksize, 0x4000), info.primary_prio);
 				}
 			}
 			break;
@@ -1223,6 +1227,7 @@ void ppu_exec_loader::load() const
 		}
 	}
 
+	/*
 	// Analyse executable
 	const auto funcs = ppu_analyse(segments, sections, static_cast<u32>(header.e_entry), 0);
 
@@ -1232,6 +1237,7 @@ void ppu_exec_loader::load() const
 	{
 		exec_set.emplace_back(pair);
 	}
+	*/
 
 	// TODO: adjust for liblv2 loading option
 	using namespace ppu_instructions;
@@ -1304,15 +1310,16 @@ void ppu_exec_loader::load() const
 	auto ppu = idm::make_ptr<PPUThread>("main_thread");
 
 	ppu->pc = entry.addr() & -0x1000;
-	ppu->stack_size = Emu.GetPrimaryStackSize();
-	ppu->prio = Emu.GetPrimaryPrio();
+	//TODO
+	//ppu->stack_size = Emu.GetPrimaryStackSize();
+	//ppu->prio = Emu.GetPrimaryPrio();
 	ppu->cpu_init();
 
 	ppu->GPR[2] = 0xdeadbeef; // rtoc
 	ppu->GPR[11] = 0xabadcafe; // OPD ???
-	ppu->GPR[12] = Emu.GetMallocPageSize();
+	//ppu->GPR[12] = Emu.GetMallocPageSize();
 
-	std::initializer_list<std::string> args = { Emu.GetPath()/*, "-emu"s*/ };
+	std::initializer_list<std::string> args = { /*Emu.GetPath()/*, "-emu"s*/ };
 
 	auto argv = vm::ptr<u64>::make(vm::alloc(SIZE_32(u64) * ::size32(args), vm::main));
 	auto envp = vm::ptr<u64>::make(vm::alloc(::align(SIZE_32(u64), 0x10), vm::main));
@@ -1335,9 +1342,9 @@ void ppu_exec_loader::load() const
 
 	// Arguments for sys_initialize_tls()
 	ppu->GPR[7] = ppu->id;
-	ppu->GPR[8] = Emu.GetTLSAddr();
-	ppu->GPR[9] = Emu.GetTLSFilesz();
-	ppu->GPR[10] = Emu.GetTLSMemsz();
+	//ppu->GPR[8] = Emu.GetTLSAddr();
+	//ppu->GPR[9] = Emu.GetTLSFilesz();
+	//ppu->GPR[10] = Emu.GetTLSMemsz();
 
 	//ppu->state += cpu_state::interrupt;
 

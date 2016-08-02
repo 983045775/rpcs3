@@ -135,10 +135,8 @@ s32 sys_mutex_lock(PPUThread& ppu, u32 mutex_id, u64 timeout)
 	// add waiter; protocol is ignored in current implementation
 	sleep_entry<cpu_thread> waiter(mutex->sq, ppu);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -154,7 +152,7 @@ s32 sys_mutex_lock(PPUThread& ppu, u32 mutex_id, u64 timeout)
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	// new owner must be set when unlocked
 	if (mutex->owner.get() != &ppu)

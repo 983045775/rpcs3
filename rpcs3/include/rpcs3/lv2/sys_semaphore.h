@@ -2,6 +2,10 @@
 
 #include "sys_sync.h"
 
+// Aux
+class PPUThread;
+class cpu_thread;
+
 struct sys_semaphore_attribute_t
 {
 	be_t<u32> protocol;
@@ -35,9 +39,6 @@ struct lv2_sema_t
 	{
 	}
 };
-
-// Aux
-class PPUThread;
 
 // SysCalls
 s32 sys_semaphore_create(vm::ptr<u32> sem_id, vm::ptr<sys_semaphore_attribute_t> attr, s32 initial_val, s32 max_val);

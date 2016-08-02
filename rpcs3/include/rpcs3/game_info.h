@@ -1,41 +1,16 @@
 #pragma once
+#include <string>
 
-struct GameInfo
+namespace rpcs3
 {
-	std::string root;
-
-	std::string icon_path;
-	std::string name;
-	std::string serial;
-	std::string app_ver;
-	std::string category;
-	std::string fw;
-
-	u32 attr;
-	u32 bootable;
-	u32 parental_lvl;
-	u32 sound_format;
-	u32 resolution;
-
-	GameInfo()
+	struct game_info
 	{
-		Reset();
-	}
+		std::string root;
+		std::string title;
+		std::string title_id;
+		std::uint32_t sdk_version;
 
-	void Reset()
-	{
-		root = "";
-
-		name = "Unknown";
-		serial = "Unknown";
-		app_ver = "Unknown";
-		category = "Unknown";
-		fw = "Unknown";
-
-		attr = 0;
-		bootable = 0;
-		parental_lvl = 0;
-		sound_format = 0;
-		resolution = 0;
-	}
-};
+		static const game_info& current();
+		static void set_current(const game_info &info);
+	};
+}

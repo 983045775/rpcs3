@@ -41,15 +41,7 @@ namespace rsx
 		{
 			vm::ps3::ptr<rsx::semaphore_t> semaphore = vm::cast(get_address_dma(method_registers[NV406E_SEMAPHORE_OFFSET], method_registers[NV406E_SET_CONTEXT_DMA_SEMAPHORE]));
 
-			while (semaphore->value != arg)
-			{
-				if (Emu.IsStopped())
-				{
-					break;
-				}
-
-				std::this_thread::yield();
-			}
+			rpcs3::wait_until([&] { return semaphore->value != arg; });
 		}
 
 		force_inline void semaphore_release(thread* rsx, u32 arg)
@@ -731,7 +723,7 @@ namespace rsx
 		else if (rsx->capture_current_frame)
 		{
 			rsx->capture_current_frame = false;
-			Emu.Pause();
+			rpcs3::pause();
 		}
 
 		rsx->flip(arg);
@@ -745,10 +737,12 @@ namespace rsx
 
 		if (state.flip_handler)
 		{
+			/*
 			Emu.GetCallbackManager().Async([func = state.flip_handler](PPUThread& ppu)
 			{
 				func(ppu, 1);
 			});
+			*/
 		}
 
 		if (double limit = g_cfg_rsx_frame_limit.get())
@@ -765,10 +759,12 @@ namespace rsx
 	{
 		if (state.user_handler)
 		{
+			/*
 			Emu.GetCallbackManager().Async([func = state.user_handler, arg](PPUThread& ppu)
 			{
 				func(ppu, arg);
 			});
+			*/
 		}
 		else
 		{

@@ -19,7 +19,7 @@ XAudio2Thread::XAudio2Thread()
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : CoInitializeEx() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 		return;
 	}
 
@@ -27,7 +27,7 @@ XAudio2Thread::XAudio2Thread()
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : XAudio2Create() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 		return;
 	}
 
@@ -36,7 +36,7 @@ XAudio2Thread::XAudio2Thread()
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : CreateMasteringVoice() failed(0x%08x)", (u32)hr);
 		m_xaudio2_instance->Release();
-		Emu.Pause();
+		//Emu.Pause();
 	}
 }
 
@@ -68,7 +68,7 @@ void XAudio2Thread::Play()
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : Start() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 	}
 }
 
@@ -79,7 +79,7 @@ void XAudio2Thread::Close()
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : FlushSourceBuffers() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 	}
 }
 
@@ -89,7 +89,7 @@ void XAudio2Thread::Stop()
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : Stop() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 	}
 }
 
@@ -113,7 +113,7 @@ void XAudio2Thread::Open(const void* src, int size)
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : CreateSourceVoice() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 		return;
 	}
 
@@ -141,7 +141,7 @@ void XAudio2Thread::AddData(const void* src, int size)
 	if (FAILED(hr))
 	{
 		LOG_ERROR(GENERAL, "XAudio2Thread : AddData() failed(0x%08x)", (u32)hr);
-		Emu.Pause();
+		//Emu.Pause();
 	}
 }
 

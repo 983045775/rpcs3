@@ -7,15 +7,12 @@
 
 logs::channel sys_tty("sys_tty", logs::level::notice);
 
-extern fs::file g_tty;
-
 s32 sys_tty_read(s32 ch, vm::ptr<char> buf, u32 len, vm::ptr<u32> preadlen)
 {
 	sys_tty.todo("sys_tty_read(ch=%d, buf=*0x%x, len=%d, preadlen=*0x%x)", ch, buf, len, preadlen);
 
 	// We currently do not support reading from the Console
 	*preadlen = 0;
-	Emu.Pause();
 	return CELL_OK;
 }
 
@@ -35,10 +32,13 @@ s32 sys_tty_write(s32 ch, vm::cptr<char> buf, u32 len, vm::ptr<u32> pwritelen)
 		return CELL_OK;
 	}
 
+	//TODO
+	/*
 	if (g_tty)
 	{
 		g_tty.write(buf.get_ptr(), len);
 	}
+	*/
 
 	*pwritelen = len;
 

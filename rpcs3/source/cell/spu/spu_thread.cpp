@@ -621,7 +621,10 @@ bool SPUThread::get_ch_value(u32 ch, u32& out)
 	{
 		std::unique_lock<std::mutex> lock(get_current_thread_mutex(), std::defer_lock);
 
-		while (true)
+		bool result;
+		bool result_recieved = false;
+
+		rpcs3::loop_until([&] { return !result_recieved; }, [&]
 		{
 			if (const uint old_count = ch_in_mbox.try_pop(out))
 			{
@@ -630,24 +633,26 @@ bool SPUThread::get_ch_value(u32 ch, u32& out)
 					int_ctrl[2].set(SPU_INT2_STAT_SPU_MAILBOX_THRESHOLD_INT);
 				}
 
-				return true;
+				result_recieved = true;
+				result = true;
+				return;
 			}
-
-			CHECK_EMU_STATUS;
 
 			if (state & cpu_state::stop)
 			{
-				return false;
+				result_recieved = true;
+				result = false;
+				return;
 			}
 
 			if (!lock)
 			{
 				lock.lock();
-				continue;
+				return;
 			}
 
 			get_current_thread_cv().wait(lock);
-		}
+		});
 	}
 
 	case MFC_RdTagStat:
@@ -714,12 +719,10 @@ bool SPUThread::get_ch_value(u32 ch, u32& out)
 			lock.lock();
 
 			// simple waiting loop otherwise
-			while (!get_events(true) && !(state & cpu_state::stop))
+			rpcs3::loop_until([&] { return !get_events(true) && !(state & cpu_state::stop); }, [&]
 			{
-				CHECK_EMU_STATUS;
-
 				get_current_thread_cv().wait(lock);
-			}
+			});
 		}
 
 		ch_event_stat &= ~SPU_EVENT_WAITING;
@@ -760,22 +763,20 @@ bool SPUThread::set_ch_value(u32 ch, u32 value)
 		{
 			std::unique_lock<std::mutex> lock(get_current_thread_mutex(), std::defer_lock);
 
-			while (!ch_out_intr_mbox.try_push(value))
+			rpcs3::loop_until([&] { return !ch_out_intr_mbox.try_push(value); }, [&]
 			{
-				CHECK_EMU_STATUS;
-
-				if (state & cpu_state::stop)
-				{
-					return false;
-				}
-
 				if (!lock)
 				{
 					lock.lock();
-					continue;
+					return;
 				}
 
 				get_current_thread_cv().wait(lock);
+			});
+
+			if (state & cpu_state::stop)
+			{
+				return false;
 			}
 
 			int_ctrl[2].set(SPU_INT2_STAT_MAILBOX_INT);
@@ -967,22 +968,21 @@ bool SPUThread::set_ch_value(u32 ch, u32 value)
 	{
 		std::unique_lock<std::mutex> lock(get_current_thread_mutex(), std::defer_lock);
 
-		while (!ch_out_mbox.try_push(value))
+		rpcs3::loop_until([&] { return !ch_out_mbox.try_push(value); }, [&]
 		{
-			CHECK_EMU_STATUS;
-
-			if (state & cpu_state::stop)
-			{
-				return false;
-			}
-
 			if (!lock)
 			{
 				lock.lock();
-				continue;
 			}
+			else
+			{
+				get_current_thread_cv().wait(lock);
+			}
+		});
 
-			get_current_thread_cv().wait(lock);
+		if (state & cpu_state::stop)
+		{
+			return false;
 		}
 
 		return true;
@@ -1232,16 +1232,14 @@ bool SPUThread::stop_and_signal(u32 code)
 		}
 
 		// check thread group status
-		while (group->state >= SPU_THREAD_GROUP_STATUS_WAITING && group->state <= SPU_THREAD_GROUP_STATUS_SUSPENDED)
+		rpcs3::loop_until([&] { return group->state >= SPU_THREAD_GROUP_STATUS_WAITING && group->state <= SPU_THREAD_GROUP_STATUS_SUSPENDED; }, [&]
 		{
-			CHECK_EMU_STATUS;
-
-			if (state & cpu_state::stop)
-			{
-				return false;
-			}
-
 			group->cv.wait_for(lv2_lock, 1ms);
+		});
+
+		if (state & cpu_state::stop)
+		{
+			return false;
 		}
 
 		// change group status
@@ -1273,16 +1271,14 @@ bool SPUThread::stop_and_signal(u32 code)
 			sleep_entry<cpu_thread> waiter(queue->thread_queue(lv2_lock), *this);
 
 			// wait on the event queue
-			while (!state.test_and_reset(cpu_state::signal))
+			rpcs3::loop_until([&] { return !state.test_and_reset(cpu_state::signal); }, [&]
 			{
-				CHECK_EMU_STATUS;
-
-				if (state & cpu_state::stop)
-				{
-					return false;
-				}
-
 				get_current_thread_cv().wait(lv2_lock);
+			});
+
+			if (state & cpu_state::stop)
+			{
+				return false;
 			}
 
 			// event data must be set by push()

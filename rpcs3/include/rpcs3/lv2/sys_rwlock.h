@@ -1,6 +1,9 @@
 #pragma once
 
 #include "sys_sync.h"
+// Aux
+class PPUThread;
+class cpu_thread;
 
 struct sys_rwlock_attribute_t
 {
@@ -36,9 +39,6 @@ struct lv2_rwlock_t
 
 	void notify_all(lv2_lock_t);
 };
-
-// Aux
-class PPUThread;
 
 // SysCalls
 s32 sys_rwlock_create(vm::ptr<u32> rw_lock_id, vm::ptr<sys_rwlock_attribute_t> attr);

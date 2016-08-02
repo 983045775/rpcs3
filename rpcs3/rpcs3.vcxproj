@@ -61,7 +61,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)eps3api\common\include;$(SolutionDir)eps3api\emulator\include;$(SolutionDir)eps3api\module\include;$(SolutionDir)utils\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)eps3api\common\include;$(SolutionDir)eps3api\emulator\include;$(SolutionDir)eps3api\module\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - MemLeak|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - LLVM|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rpcs3/pch.h</PrecompiledHeaderFile>
@@ -149,6 +149,7 @@
     <ClCompile Include="source\eapi\eapi_executable.cpp" />
     <ClCompile Include="source\eapi\eapi_thread.cpp" />
     <ClCompile Include="source\emulator.cpp" />
+    <ClCompile Include="source\game_info.cpp" />
     <ClCompile Include="source\gcm.cpp" />
     <ClCompile Include="source\id_manager.cpp" />
     <ClCompile Include="source\lv2\lv2.cpp" />

@@ -118,10 +118,8 @@ s32 sys_rwlock_rlock(PPUThread& ppu, u32 rw_lock_id, u64 timeout)
 	// add waiter; protocol is ignored in current implementation
 	sleep_entry<cpu_thread> waiter(rwlock->rsq, ppu);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -137,7 +135,7 @@ s32 sys_rwlock_rlock(PPUThread& ppu, u32 rw_lock_id, u64 timeout)
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	if (rwlock->writer || !rwlock->readers)
 	{
@@ -229,10 +227,8 @@ s32 sys_rwlock_wlock(PPUThread& ppu, u32 rw_lock_id, u64 timeout)
 	// add waiter; protocol is ignored in current implementation
 	sleep_entry<cpu_thread> waiter(rwlock->wsq, ppu);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -260,7 +256,7 @@ s32 sys_rwlock_wlock(PPUThread& ppu, u32 rw_lock_id, u64 timeout)
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	if (rwlock->readers || rwlock->writer.get() != &ppu)
 	{

@@ -359,7 +359,7 @@ void GLFragmentProgram::Compile()
 		}
 
 		LOG_NOTICE(RSX, shader.c_str()); // Log the text of the shader that failed to compile
-		Emu.Pause(); // Pause the emulator, we can't really continue from here
+		//Emu.Pause(); // Pause the emulator, we can't really continue from here
 	}
 }
 
@@ -369,7 +369,7 @@ void GLFragmentProgram::Delete()
 
 	if (id)
 	{
-		if (Emu.IsStopped())
+		if (0)
 		{
 			LOG_WARNING(RSX, "GLFragmentProgram::Delete(): glDeleteShader(%d) avoided", id);
 		}

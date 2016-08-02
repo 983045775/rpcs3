@@ -52,14 +52,12 @@ void CallbackManager::Init()
 	{
 		std::unique_lock<std::mutex> lock(m_mutex);
 
-		while (true)
+		rpcs3::loop([&]
 		{
-			CHECK_EMU_STATUS;
-
 			if (!lock)
 			{
 				lock.lock();
-				continue;
+				return;
 			}
 
 			if (m_async_cb.size())
@@ -71,12 +69,11 @@ void CallbackManager::Init()
 				if (lock) lock.unlock();
 
 				func(ppu);
-
-				continue;
+				return;
 			}
 
 			get_current_thread_cv().wait(lock);
-		}
+		});
 	};
 
 	auto thread = idm::make_ptr<PPUThread>("Callback Thread");

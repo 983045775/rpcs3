@@ -72,7 +72,7 @@ namespace rpcs3
 		}
 	}
 
-	void loop_until(std::function<void()> callback, std::function<bool()> condition)
+	void loop_until(std::function<bool()> condition, std::function<void()> callback)
 	{
 		while (loop_default_condition() && condition())
 		{
@@ -81,7 +81,7 @@ namespace rpcs3
 		}
 	}
 
-	void loop_until(std::function<bool()> condition)
+	void wait_until(std::function<bool()> condition)
 	{
 		while (loop_default_condition() && condition())
 		{

@@ -16,6 +16,10 @@ enum : u32
 	lwmutex_reserved = 0xfffffffdu,
 };
 
+// Aux
+class PPUThread;
+class cpu_thread;
+
 struct sys_lwmutex_t
 {
 	struct alignas(8) sync_var_t
@@ -62,9 +66,6 @@ struct lv2_lwmutex_t
 
 	void unlock(lv2_lock_t);
 };
-
-// Aux
-class PPUThread;
 
 // SysCalls
 s32 _sys_lwmutex_create(vm::ptr<u32> lwmutex_id, u32 protocol, vm::ptr<sys_lwmutex_t> control, u32 arg4, u64 name, u32 arg6);

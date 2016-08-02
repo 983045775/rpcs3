@@ -123,16 +123,18 @@ namespace vm
 	{
 		thread_ctrl::spawn("vm::wait", []()
 		{
-			while (!Emu.IsStopped())
+			rpcs3::loop([]
 			{
 				// Poll waiters periodically (TODO)
-				while (notify_all() && !Emu.IsPaused() && !Emu.IsStopped())
+				if (notify_all())
 				{
-					thread_ctrl::sleep(50);
+					rpcs3::loop_until([] { return notify_all() != 0; }, [] { thread_ctrl::sleep(50); });
 				}
-
-				thread_ctrl::sleep(1000);
-			}
+				else
+				{
+					thread_ctrl::sleep(1000);
+				}
+			});
 		});
 	}
 }

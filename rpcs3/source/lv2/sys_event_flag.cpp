@@ -145,11 +145,10 @@ s32 sys_event_flag_wait(PPUThread& ppu, u32 id, u64 bitptn, u32 mode, vm::ptr<u6
 
 	// add waiter; protocol is ignored in current implementation
 	sleep_entry<cpu_thread> waiter(eflag->sq, ppu);
+	int error_code = CELL_OK;
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return error_code == CELL_OK && !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -157,8 +156,8 @@ s32 sys_event_flag_wait(PPUThread& ppu, u32 id, u64 bitptn, u32 mode, vm::ptr<u6
 			if (passed >= timeout)
 			{
 				if (result) *result = eflag->pattern;
-
-				return CELL_ETIMEDOUT;
+				error_code = CELL_ETIMEDOUT;
+				return;
 			}
 
 			get_current_thread_cv().wait_for(lv2_lock, std::chrono::microseconds(timeout - passed));
@@ -167,8 +166,13 @@ s32 sys_event_flag_wait(PPUThread& ppu, u32 id, u64 bitptn, u32 mode, vm::ptr<u6
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 	
+	if (error_code != CELL_OK)
+	{
+		return error_code;
+	}
+
 	// load pattern saved upon signaling
 	if (result)
 	{

@@ -253,10 +253,8 @@ s32 sys_event_queue_receive(PPUThread& ppu, u32 equeue_id, vm::ptr<sys_event_t> 
 	// add waiter; protocol is ignored in current implementation
 	sleep_entry<cpu_thread> waiter(queue->thread_queue(lv2_lock), ppu);
 
-	while (!ppu.state.test_and_reset(cpu_state::signal))
+	rpcs3::loop_until([&] { return !ppu.state.test_and_reset(cpu_state::signal); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		if (timeout)
 		{
 			const u64 passed = get_system_time() - start_time;
@@ -272,7 +270,7 @@ s32 sys_event_queue_receive(PPUThread& ppu, u32 equeue_id, vm::ptr<sys_event_t> 
 		{
 			get_current_thread_cv().wait(lv2_lock);
 		}
-	}
+	});
 
 	if (ppu.GPR[3])
 	{

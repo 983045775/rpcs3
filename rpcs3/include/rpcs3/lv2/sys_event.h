@@ -48,6 +48,9 @@ enum : u64
 	SYS_SPU_THREAD_EVENT_EXCEPTION_KEY = 0xFFFFFFFF53505503ull,
 };
 
+class PPUThread;
+class cpu_thread;
+
 struct sys_event_queue_attribute_t
 {
 	be_t<u32> protocol; // SYS_SYNC_PRIORITY or SYS_SYNC_FIFO
@@ -131,8 +134,6 @@ struct lv2_event_port_t
 	{
 	}
 };
-
-class PPUThread;
 
 // SysCalls
 s32 sys_event_queue_create(vm::ptr<u32> equeue_id, vm::ptr<sys_event_queue_attribute_t> attr, u64 event_queue_key, s32 size);

@@ -14,6 +14,10 @@ enum
 	SYS_EVENT_FLAG_WAIT_CLEAR_ALL = 0x20,
 };
 
+// Aux
+class PPUThread;
+class cpu_thread;
+
 struct sys_event_flag_attribute_t
 {
 	be_t<u32> protocol;
@@ -105,9 +109,6 @@ struct lv2_event_flag_t
 
 	void notify_all(lv2_lock_t);
 };
-
-// Aux
-class PPUThread;
 
 // SysCalls
 s32 sys_event_flag_create(vm::ptr<u32> id, vm::ptr<sys_event_flag_attribute_t> attr, u64 init);

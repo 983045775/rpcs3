@@ -16,12 +16,10 @@ void lv2_int_serv_t::join(PPUThread& ppu, lv2_lock_t lv2_lock)
 	(*thread)->notify();
 
 	// Start joining
-	while (!(thread->state & cpu_state::exit))
+	rpcs3::loop_until([&] { return !(thread->state & cpu_state::exit); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		get_current_thread_cv().wait_for(lv2_lock, 1ms);
-	}
+	});
 
 	// Cleanup
 	idm::remove<lv2_int_serv_t>(id);
@@ -97,10 +95,8 @@ s32 _sys_interrupt_thread_establish(vm::ptr<u32> ih, u32 intrtag, u32 intrthread
 
 		LV2_LOCK;
 
-		while (!ppu.is_joining)
+		rpcs3::loop_until([&] { return !ppu.is_joining; }, [&]
 		{
-			CHECK_EMU_STATUS;
-
 			// call interrupt handler until int status is clear
 			if (handler->signal)
 			{
@@ -111,17 +107,17 @@ s32 _sys_interrupt_thread_establish(vm::ptr<u32> ih, u32 intrtag, u32 intrthread
 				ppu.fast_call(pc, rtoc);
 
 				handler->signal--;
-				continue;
+				return;
 			}
 
 			if (!lv2_lock)
 			{
 				lv2_lock.lock();
-				continue;
+				return;
 			}
 
 			get_current_thread_cv().wait(lv2_lock);
-		}
+		});
 
 		ppu.state += cpu_state::exit;
 	};

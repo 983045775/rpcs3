@@ -83,12 +83,10 @@ s32 sys_ppu_thread_join(PPUThread& ppu, u32 thread_id, vm::ptr<u64> vptr)
 	thread->is_joining = true;
 
 	// join thread
-	while (!(thread->state & cpu_state::exit))
+	rpcs3::loop_until([&] { return !(thread->state & cpu_state::exit); }, [&]
 	{
-		CHECK_EMU_STATUS;
-
 		get_current_thread_cv().wait_for(lv2_lock, 1ms);
-	}
+	});
 
 	ppu.awake();
 

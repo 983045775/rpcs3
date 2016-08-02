@@ -3,6 +3,8 @@
 #include "sys_sync.h"
 
 struct lv2_mutex_t;
+class PPUThread;
+class cpu_thread;
 
 struct sys_cond_attribute_t
 {
@@ -32,8 +34,6 @@ struct lv2_cond_t
 
 	void notify(lv2_lock_t, cpu_thread* thread);
 };
-
-class PPUThread;
 
 // SysCalls
 s32 sys_cond_create(vm::ptr<u32> cond_id, u32 mutex_id, vm::ptr<sys_cond_attribute_t> attr);

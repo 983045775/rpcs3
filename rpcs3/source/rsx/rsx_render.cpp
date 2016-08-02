@@ -22,7 +22,7 @@ draw_context_t GSFrameBase::new_context()
 GSRender::GSRender(frame_type type)
 {
 	//const auto size = g_video_out_resolution_map.at(g_cfg_video_out_resolution.get());
-	m_frame = Emu.GetCallbacks().get_gs_frame(type, 720, 480).release();
+	//m_frame = Emu.GetCallbacks().get_gs_frame(type, 720, 480).release();
 }
 
 GSRender::~GSRender()

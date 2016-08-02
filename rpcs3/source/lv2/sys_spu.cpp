@@ -539,31 +539,32 @@ s32 sys_spu_thread_group_join(u32 id, vm::ptr<u32> cause, vm::ptr<u32> status)
 		return CELL_EBUSY;
 	}
 
-	while ((group->join_state & ~SPU_TGJSF_IS_JOINING) == 0)
+	rpcs3::wait_until([&]
 	{
+		if ((group->join_state & ~SPU_TGJSF_IS_JOINING) == 0)
+		{
+			return false;
+		}
+
 		bool stopped = true;
 
 		for (auto& t : group->threads)
 		{
-			if (t)
+			if (t && t->status && (t->status & (SPU_STATUS_STOPPED_BY_STOP | SPU_STATUS_STOPPED_BY_HALT)) == 0)
 			{
-				if ((t->status & SPU_STATUS_STOPPED_BY_STOP) == 0)
-				{
-					stopped = false;
-					break;
-				}
+				stopped = false;
+				break;
 			}
 		}
 
 		if (stopped)
 		{
-			break;
+			return false;
 		}
 
-		CHECK_EMU_STATUS;
-
 		group->cv.wait_for(lv2_lock, 1ms);
-	}
+		return true;
+	});
 
 	switch (group->join_state & ~SPU_TGJSF_IS_JOINING)
 	{

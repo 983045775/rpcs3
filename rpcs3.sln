@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shader_code", "rsx_program_decompiler\shader_code\shader_code.vcxproj", "{97E17077-A21F-45EF-9C3A-73A0BC092D7E}"
 EndProject
@@ -57,7 +57,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eui", "eui", "{1F5B3660-9C3
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "console", "eui\console\console.vcxproj", "{49B99B55-2A2D-46A2-9184-5EEB50D93F28}"
 	ProjectSection(ProjectDependencies) = postProject
-		{C4A10229-4712-4BD2-B63E-50D93C67A038} = {C4A10229-4712-4BD2-B63E-50D93C67A038}
 		{FED569B9-4533-4433-B1BD-172098EC6ED8} = {FED569B9-4533-4433-B1BD-172098EC6ED8}
 	EndProjectSection
 EndProject

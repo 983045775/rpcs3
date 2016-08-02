@@ -303,7 +303,7 @@ void GLVertexProgram::Compile()
 		}
 
 		LOG_NOTICE(RSX, "%s", shader.c_str());
-		Emu.Pause();
+		//Emu.Pause();
 	}
 	//else LOG_WARNING(RSX, "Vertex shader compiled successfully!");
 
@@ -315,7 +315,7 @@ void GLVertexProgram::Delete()
 
 	if (id)
 	{
-		if (Emu.IsStopped())
+		if (0)
 		{
 			LOG_WARNING(RSX, "GLVertexProgram::Delete(): glDeleteShader(%d) avoided", id);
 		}

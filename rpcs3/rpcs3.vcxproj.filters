@@ -311,6 +311,9 @@
     <ClCompile Include="source\emulator.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="source\game_info.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\rpcs3\rsx\fragment_program.h">

@@ -1,7 +1,8 @@
 #include "rpcs3/pch.h"
 #include "rpcs3/utils/config.h"
 #include "rpcs3/vm/memory.h"
-#include "rpcs3/system.h"
+#include "rpcs3/game_info.h"
+#include "rpcs3/emulator.h"
 #include <rpcs3/rsx/thread.h>
 
 #include "rpcs3/cell/ppu/callback.h"
@@ -89,7 +90,7 @@ namespace rsx
 		//shared cache
 		load(root + "cache/", lang);
 
-		std::string title_id = Emu.GetTitleID();
+		std::string title_id = rpcs3::game_info::current().title_id;
 
 		if (!title_id.empty())
 		{
@@ -418,7 +419,7 @@ namespace rsx
 			rsx::state.vblank_count = 0;
 
 			// TODO: exit condition
-			while (!Emu.IsStopped())
+			rpcs3::loop([=]
 			{
 				if (get_system_time() - start_time > rsx::state.vblank_count * 1000000 / 60)
 				{
@@ -426,33 +427,33 @@ namespace rsx
 
 					if (rsx::state.vblank_handler)
 					{
+						/*
 						Emu.GetCallbackManager().Async([func = rsx::state.vblank_handler](PPUThread& ppu)
 						{
 							func(ppu, 1);
 						});
+						*/
 					}
 
-					continue;
+					return;
 				}
 
 				std::this_thread::yield();
-			}
+			});
 		});
 
 		auto &ctrl = state.context->control;
 
 		// TODO: exit condition
-		while (true)
+		rpcs3::loop([&]
 		{
-			CHECK_EMU_STATUS;
-
 			const u32 get = ctrl.get;
 			const u32 put = ctrl.put;
 
-			if (put == get || !Emu.IsRunning())
+			if (put == get)
 			{
 				do_internal_task();
-				continue;
+				return;
 			}
 
 			const u32 cmd = ReadIO32(get);
@@ -463,7 +464,7 @@ namespace rsx
 				u32 offs = cmd & 0x1fffffff;
 				//LOG_WARNING(RSX, "rsx jump(0x%x) #addr=0x%x, cmd=0x%x, get=0x%x, put=0x%x", offs, m_ioAddress + get, cmd, get, put);
 				ctrl.get = offs;
-				continue;
+				return;
 			}
 			if (cmd & CELL_GCM_METHOD_FLAG_CALL)
 			{
@@ -471,7 +472,7 @@ namespace rsx
 				u32 offs = cmd & ~3;
 				//LOG_WARNING(RSX, "rsx call(0x%x) #0x%x - 0x%x", offs, cmd, get);
 				ctrl.get = offs;
-				continue;
+				return;
 			}
 			if (cmd == CELL_GCM_METHOD_FLAG_RETURN)
 			{
@@ -479,13 +480,13 @@ namespace rsx
 				m_call_stack.pop();
 				//LOG_WARNING(RSX, "rsx return(0x%x)", get);
 				ctrl.get = get;
-				continue;
+				return;
 			}
 
 			if (cmd == 0) //nop
 			{
 				ctrl.get = get + 4;
-				continue;
+				return;
 			}
 
 			auto args = vm::ptr<u32>::make((u32)RSXIOMem.RealAddr(get + 4));
@@ -518,7 +519,7 @@ namespace rsx
 			}
 
 			ctrl.get = get + (count + 1) * 4;
-		}
+		});
 	}
 
 	std::string thread::get_name() const

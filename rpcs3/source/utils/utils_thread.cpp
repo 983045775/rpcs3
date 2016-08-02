@@ -2061,11 +2061,7 @@ void named_thread::start()
 		catch (const std::exception& e)
 		{
 			LOG_FATAL(GENERAL, "%s thrown: %s", typeid(e).name(), e.what());
-			Emu.Pause();
-		}
-		catch (EmulationStopped)
-		{
-			LOG_NOTICE(GENERAL, "Thread aborted");
+			rpcs3::on_pause();
 		}
 
 		thread->on_exit();

@@ -6,7 +6,9 @@
 #include <memory>
 #include <rpcs3/utils/types.h>
 #include <rpcs3/utils/atomic.h>
+#include "emulator.h"
 
+#if 0
 enum class frame_type;
 
 struct EmuCallbacks
@@ -191,3 +193,4 @@ public:
 extern Emulator Emu;
 
 #define CHECK_EMU_STATUS if (Emu.IsStopped()) throw EmulationStopped{}
+#endif

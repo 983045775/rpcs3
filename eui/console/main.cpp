@@ -5,11 +5,19 @@
 #include <unordered_map>
 #include <functional>
 #include <vector>
+#include <thread>
+#include <atomic>
+#include <memory>
+#include <chrono>
 #include <utils/string_ref.h>
 #include <eps3/enums.h>
 #include <eps3/types.h>
 #include <eps3/emulator-api.h>
 #include <conio.h>
+#include <Windows.h>
+#include "ui.h"
+
+using namespace std::chrono_literals;
 
 class console_commands
 {
@@ -513,8 +521,6 @@ void unknown_flag(const char *process_name, const char *flag_name)
 	usage(process_name);
 }
 
-#include <Windows.h>
-
 struct dynamic_library
 {
 	HMODULE m_module = nullptr;
@@ -641,9 +647,94 @@ public:
 	using dynamic_library::operator bool;
 };
 
+class window
+{
+	std::unique_ptr<ui::window> m_window;
+	std::unique_ptr<ui::context> m_context;
+	std::thread m_window_thread;
+	std::function<void()> m_custom_task;
+	std::atomic<bool> m_has_custom_task{ false };
+	std::atomic<bool> m_exit{ false };
+
+public:
+	~window()
+	{
+		m_exit = true;
+
+		if (m_window_thread.joinable())
+		{
+			m_window_thread.join();
+		}
+	}
+
+	void create(utils::string_ref title, int width, int height)
+	{
+		m_window_thread = std::thread([=]
+		{
+			m_window = std::make_unique<ui::window>(title, width, height);
+			m_context = std::make_unique<ui::context>(*m_window.get());
+
+			m_window->show();
+
+			MSG msg;
+
+			while (!m_exit)
+			{
+				if (!do_custom_task() & !m_window->process_message())
+				{
+					std::this_thread::sleep_for(1ms);
+				}
+			}
+		});
+	}
+
+private:
+	bool do_custom_task()
+	{
+		if (m_has_custom_task)
+		{
+			m_custom_task();
+			m_has_custom_task = false;
+			return true;
+		}
+
+		return false;
+	}
+
+public:
+	void set_custom_task(std::function<void()> &&custom_task)
+	{
+		while (m_has_custom_task);
+
+		m_custom_task = custom_task;
+	}
+};
+
+class emulator_context
+{
+	window m_window;
+	eps3api_library m_library;
+
+public:
+	emulator_context(utils::string_ref path)
+		: m_library(path.to_string())
+	{
+		if (m_library)
+		{
+			m_window.create("PS3 emulators output", 800, 600);
+		}
+	}
+
+	eps3api_library& library()
+	{
+		return m_library;
+	}
+};
+
+
 int main(int argc, char *argv[])
 {
-	std::unordered_map<int, eps3api_library> emulators;
+	std::unordered_map<int, emulator_context> emulators;
 	std::string path_to_elf;
 	console_commands commands;
 
@@ -725,7 +816,7 @@ int main(int argc, char *argv[])
 
 		std::string path = argv[1];
 
-		auto &library = emulators.emplace(id, path).first->second;
+		auto &library = emulators.emplace(id, path).first->second.library();
 
 		if (!library)
 		{
